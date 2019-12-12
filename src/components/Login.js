@@ -5,21 +5,26 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Registration from './registration';
 import { Grid } from '@material-ui/core';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        marginTop: theme.spacing(10),
         padding: theme.spacing(3, 2),
     },
 }));
 
 const Viewlogin = (props) => {
     const classes = useStyles();
+
     return (<div>
+
+        {
+            props.error &&
+
+            <h3 onClick={props.handleDissmis}>{props.error}</h3>
+
+        }
         <Paper className={classes.root}>
             <form>
                 <TextField
@@ -50,13 +55,14 @@ const Viewlogin = (props) => {
                     color="primary">
                     Login
                 </Button>
+
             </form>
         </Paper>
     </div>)
 }
 
 
-export default class Login extends React.Component {
+class Login extends React.Component {
 
     constructor(props) {
         super(props);
@@ -64,14 +70,18 @@ export default class Login extends React.Component {
             email: 'buqento@gmail.com',
             password: 'buqento',
             userdata: [],
-            isLogin: false
+            error: ''
         }
         this.handleLogin = this.handleLogin.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
+    handleDissmis() {
+        this.setState({ error: '' })
+    }
+
     componentDidMount() {
-        this.state.isLogin ? console.log('Login') : console.log('Not login')
+        console.log('Login component')
     }
 
     handleChange(event) {
@@ -81,6 +91,10 @@ export default class Login extends React.Component {
     }
 
     async handleLogin(event) {
+
+        if (!this.state.email) {
+            return this.setState({ error: 'Email required!' })
+        }
         const filter = this.state.email
         event.preventDefault()
         try {
@@ -93,8 +107,8 @@ export default class Login extends React.Component {
                             let userpwd = user.password
                             if (userpwd === this.state.password) {
                                 localStorage.setItem("user", JSON.stringify(this.state.userdata))
-                                // this.setState({ isLogin: true })
-                                this.props.history.push("/");
+                                this.props.handleAuthLogin()
+                                this.props.history.push("/")
                             } else {
                                 alert('username password do not match!')
                             }
@@ -109,37 +123,9 @@ export default class Login extends React.Component {
         }
     }
 
-    handleLogin_(event) {
-        event.preventDefault();
-        const filter = this.state.email
-        fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/users?search=${filter}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.length === 1) {
-                    this.setState({ userdata: data })
-                    this.state.userdata.map(user => {
-                        let userpwd = user.password
-                        if (userpwd === this.state.password) {
-                            localStorage.setItem("user", JSON.stringify(this.state.userdata))
-                            this.setState({ isLogin: true })
-                        } else {
-                            alert('username password do not match!')
-                        }
-                    })
-                } else {
-                    alert('username password do not match!')
-                }
-            })
-    }
-
     render() {
         return (
             <div>
-                {/* <AppBar position="fixed" color="primary">
-                    <Toolbar>
-                        <Typography variant="h6">dKos</Typography>
-                    </Toolbar>
-                </AppBar> */}
                 <Container>
                     <Grid container spacing={3}>
 
@@ -150,9 +136,16 @@ export default class Login extends React.Component {
                             <Viewlogin
                                 email={this.state.email}
                                 password={this.state.password}
+                                error={this.state.error}
                                 handleChange={this.handleChange}
                                 handleLogin={this.handleLogin}
+                                handleDissmis={this.handleDissmis}
                             />
+
+                            {this.props.messages}
+                            <Button onClick={this.props.handleMessages}>
+                                Add new message
+                            </Button>
                         </Grid>
                     </Grid>
                 </Container>
@@ -160,3 +153,18 @@ export default class Login extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        messages: state.messages
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleMessages: () => dispatch({ type: "MESSAGE" }),
+        handleAuthLogin: () => dispatch({type: "AUTH_LOGIN"})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -49,7 +49,7 @@ const CommentView = (props) => {
 		<Paper component="form" className={classes.root}>
 			<InputBase
 				className={classes.input}
-				placeholder="Review kos ini ..."
+				placeholder="Berikan ulasan tentang kos ini ..."
 				name="comment_text"
 				value={props.commentText}
 				onChange={props.handleChange}
@@ -132,19 +132,19 @@ class Detail extends React.Component {
 			loadingComment: false,
 			articles: [],
 			comments: [],
-			name: '',
+			name: 'Anonim',
 			comment_text: '',
 			date_text: ''
 		}
 	}
 
-	componentDidMount() {
-		let user = JSON.parse(localStorage.getItem("user"))
-		this.setState({
-			name: user[0].name
-		})
+	async componentDidMount() {
+		const user = JSON.parse(localStorage.getItem("user"));
+		if (user) {
+			this.setState({ name: user[0].name })
+		}
 		const { handle } = this.props.match.params
-		fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms/${handle}`)
+		await fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms/${handle}`)
 			.then(response => response.json())
 			.then(data => {
 				this.setState({ articles: data })
@@ -156,7 +156,8 @@ class Detail extends React.Component {
 
 	handleChange = (event) => {
 		this.setState({
-			[event.target.name]: event.target.value
+			// [event.target.name]: event.target.value
+			comment_text: event.target.value
 		})
 	}
 
@@ -249,20 +250,23 @@ class Detail extends React.Component {
 							:
 							(
 								<div>
+
 									<CommentView
 										commentText={this.state.comment_text}
 										handleChange={this.handleChange}
 										handlePost={this.handlePost} />
 									{
-										this.state.comments.map(comment =>
-											<div key={comment.id}>
-												<Comments
-													commentName={comment.name}
-													avatar={comment.avatar}
-													commentText={comment.commentText}
-													createdAt={comment.createdAt} />
-											</div>
-										).sort(function (a, b) { return b - a })
+										this.state.comments
+											.sort(function (a, b) { return b - a })
+											.map(comment =>
+												<div key={comment.id}>
+													<Comments
+														commentName={comment.name}
+														avatar={comment.avatar}
+														commentText={comment.commentText}
+														createdAt={comment.createdAt} />
+												</div>
+											)
 									}
 								</div>
 							)

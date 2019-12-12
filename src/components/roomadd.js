@@ -5,6 +5,7 @@ import { TextField, Button, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,6 +24,8 @@ const Formview = (props) => {
     return (<div>
 
         <Typography variant="h4">Data kos</Typography>
+
+        {props.loading && <LinearProgress />}
 
         <form onSubmit={props.handlePost} className={classes.root}>
 
@@ -126,7 +129,8 @@ class Roomadd extends React.Component {
             description: "",
             location: "",
             room_gender: "",
-            createdAt: ""
+            createdAt: "",
+            loading:false
         }
 
         this.handlePost = this.handlePost.bind(this)
@@ -140,6 +144,7 @@ class Roomadd extends React.Component {
     }
 
     handlePost(event) {
+        this.setState({loading:true})
         let user = JSON.parse(localStorage.getItem("user"))
         const {
             room_title,
@@ -161,19 +166,18 @@ class Roomadd extends React.Component {
             },
             { headers: { 'Content-Type': 'application/json' } },
             { withCredentials: true }
-        ).then(response => {
-            console.log(response)
-            alert('Data tersimpan!');
+        ).then((response) => {
+            this.setState({loading:false})
+            response.status === 201 && this.props.history.push("/")
         }).catch(error => {
             console.warn(error)
         })
         event.preventDefault()
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         //Get locations
-        Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/location`)
-            // .then(response => response.json())
+        await Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/location`)
             .then(response => {
                 this.setState({ locations: response.data })
             }).catch(error => {
@@ -184,6 +188,7 @@ class Roomadd extends React.Component {
     render() {
         return (<div>
             <Formview
+                loading={this.state.loading}
                 locations={this.state.locations}
                 handlePost={this.handlePost}
                 handleChange={this.handleChange}

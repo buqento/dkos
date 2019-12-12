@@ -13,14 +13,22 @@ const useStyles = makeStyles(theme => ({
 
 const Navigateview = (props) => {
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem("user"));
     const Linktoroomadd = React.forwardRef((props, ref) => (
         <RouterLink innerRef={ref} to="/roomadd" {...props} />
+    ));
+    const Linktologin = React.forwardRef((props, ref) => (
+        <RouterLink innerRef={ref} to="/login" {...props} />
     ));
     return (<div className={classes.root}>
         <Typography variant="h5">Anda pemilik kos kosan?</Typography>
         <Typography variant="subtitle1">Promosikan kos Anda agar lebih dikenal</Typography>
         <br />
-        <Button variant="outlined" component={Linktoroomadd}>Promosi sekarang</Button>
+        {
+            user ? <Button variant="outlined" component={Linktoroomadd}>Promosi sekarang</Button>
+            : <Button variant="outlined" component={Linktologin}>Login untuk promosi</Button>
+        }
+        
     </div>)
 }
 

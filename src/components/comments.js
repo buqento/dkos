@@ -9,8 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Moment from 'react-moment';
 
 const comments = (props) => {
-  return(<div>
-
+  return(
         <List>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
@@ -33,9 +32,9 @@ const comments = (props) => {
               }
             />
           </ListItem>
-          <Divider variant="inset" component="li" />
+          <Divider variant="inset" />
         </List>
-  </div>)
+  )
 }
 
 export default comments;

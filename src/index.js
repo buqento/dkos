@@ -7,23 +7,38 @@ import { Provider } from 'react-redux';
 
 //Global state
 const globalState = {
-	messages: 5
+	messages: 5,
+	loginStatus: false
 }
 
 //Reducer
 const rootReducer = (state = globalState, action) => {
-	if(action.type === "ADD_MESSAGE"){
+	if(action.type === "MESSAGE"){
 		return {
 			...state,
 			messages: state.messages + 1
 		}
 	}
+
+	if(action.type === "AUTH_LOGIN"){
+		return {
+			...state,
+			loginStatus: true
+		}
+	}
+
+	if(action.type === "AUTH_LOGOUT"){
+		return {
+			...state,
+			loginStatus: false
+		}
+	}
+
 	return state;
 }
 
 //Store
 const storeRedux = createStore(rootReducer);
-
 
 ReactDOM.render(<Provider store={storeRedux}><Home /></Provider>, document.getElementById('root'))
 

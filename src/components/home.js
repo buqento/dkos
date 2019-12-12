@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Rooms from './rooms';
 import { Route, BrowserRouter as Router, Switch, Link as RouterLink } from 'react-router-dom';
-
 import Notfound from '../notfound';
 import Detail from '../components/detail';
 import Registration from '../components/registration';
@@ -15,11 +14,12 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import HomeIcon from '@material-ui/icons/Home';
+import MailIcon from '@material-ui/icons/Mail';
+import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Divider } from '@material-ui/core';
-
-
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ButtonAppBar = () => {
+const ButtonAppBar = (props) => {
     const classes = useStyles();
     const user = JSON.parse(localStorage.getItem("user"))
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -49,8 +49,8 @@ const ButtonAppBar = () => {
         setAnchorEl(null);
     };
     const handleLogout = () => {
-        localStorage.removeItem("user")
-        this.props.history.push("/")
+        localStorage.removeItem("user");
+        props.handleAuthLogout();
     }
 
     const Linktohome = React.forwardRef((props, ref) => (
@@ -72,7 +72,7 @@ const ButtonAppBar = () => {
                         dKos
 					</Typography>
                     {
-                        user ?
+                        props.loginStatus ?
                             (
                                 <div>
                                     <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
@@ -80,6 +80,7 @@ const ButtonAppBar = () => {
                                             {user[0].name}
                                         </Typography>
                                     </Button>
+
                                     <Menu
                                         id="simple-menu"
                                         anchorEl={anchorEl}
@@ -87,6 +88,14 @@ const ButtonAppBar = () => {
                                         open={Boolean(anchorEl)}
                                         onClose={handleClose}
                                     >
+                                        <MenuItem>
+                                            <IconButton aria-label="show 4 new mails" color="inherit">
+                                                <Badge badgeContent={props.messages} color="secondary">
+                                                    <MailIcon />
+                                                </Badge>
+                                            </IconButton>
+                                            <p>Messages</p>
+                                        </MenuItem>
                                         <MenuItem onClick={handleClose}>My account</MenuItem>
                                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
                                     </Menu>
@@ -94,7 +103,9 @@ const ButtonAppBar = () => {
 
                             )
                             :
-                            <Button component={Linktologin} style={{color:"white"}}>Login</Button>
+
+                            <Button component={Linktologin} style={{ color: "white" }}>Login</Button>
+
                     }
                 </Toolbar>
             </AppBar>
@@ -102,39 +113,52 @@ const ButtonAppBar = () => {
     );
 }
 
-// const Nav = () => {
-//     const handleLogout = (props) => {
-//         localStorage.removeItem("user")
-//         // this.props.history.push(`/login`)        
-//     }
-//     const classes = useStyles();
-//     return(<div className={classes.navigation}>
-//         <Link to="/">Home</Link> |
-//         <Link to="roomadd">Add Room</Link>
-//         <Button onClick={handleLogout}>Logout</Button>
-//     </div>)
-// }
-
-const Routing = () => {
-    return (
-        <div>
-                    <Router>
-                        <Container fixed>
-                            <ButtonAppBar />
-                            <Switch>
-                                <Route exact path="/" component={Rooms} />
-                                <Route path="/login" component={Login} />
-                                <Route path="/registration" component={Registration} />
-                                <Route path="/details/:handle" component={Detail} />
-                                <Route path="/roomadd" component={Roomadd} />
-                                <Route component={Notfound} />
-                            </Switch>
-                            <Divider />
-                        </Container>
-                    </Router>
-        
-        </div>
-    )
+class Home extends React.Component {
+    render() {
+        const user = JSON.parse(localStorage.getItem("user"))
+        return (<div>
+            {
+                user ? 
+                (
+                    console.log('user is login'), 
+                    this.props.handleAuthLogin(),
+                    console.log(this.props.loginStatus)
+                ) : console.log('user not login')
+            }
+            <Router>
+                <Container fixed>
+                    <ButtonAppBar 
+                    messages={this.props.messages} 
+                    loginStatus={this.props.loginStatus} 
+                    handleAuthLogin={this.handleAuthLogin} 
+                    handleAuthLogout={this.props.handleAuthLogout} />
+                    <Switch>
+                        <Route exact path="/" component={Rooms} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/registration" component={Registration} />
+                        <Route path="/details/:handle" component={Detail} />
+                        <Route path="/roomadd" component={Roomadd} />
+                        <Route component={Notfound} />
+                    </Switch>
+                    <Divider />
+                </Container>
+            </Router>
+        </div>)
+    }
 }
 
-export default Routing;
+const mapStateToProps = (state) => {
+    return {
+        messages: state.messages,
+	    loginStatus: state.loginStatus
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleAuthLogin: () => dispatch({type: "AUTH_LOGIN"}),
+        handleAuthLogout: () => dispatch({type: "AUTH_LOGOUT"})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

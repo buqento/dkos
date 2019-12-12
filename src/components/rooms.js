@@ -22,17 +22,11 @@ import Navigate from '../components/navigate';
 import { Link as RouterLink } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
-
-
-
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import clsx from 'clsx';
 import Moment from 'react-moment';
 import AddIcon from '@material-ui/icons/Add';
-
-
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -65,14 +59,14 @@ const Roomview = (props) => {
                             <Card key={room.id}>
                                 <CardHeader
                                     avatar={
-                                        <Avatar alt="R" src={room.avatar} className={classes.bigAvatar} />
+                                        <Avatar alt="dK" src={room.avatar} className={classes.bigAvatar} />
                                     }
                                     action={
                                         <IconButton aria-label="share">
                                             <ShareIcon fontSize="small" color="primary" />
                                         </IconButton>
                                     }
-                                    title={room.room_title}
+                                    title={room.owner_name}
                                     subheader={<Moment fromNow>{room.createdAt}</Moment>}
                                 />
 
@@ -100,7 +94,7 @@ const Roomview = (props) => {
 
                                 <CardActions disableSpacing>
                                     <Typography variant="caption" color="primary" className={classes.comment}>
-                                        {room.comments.length > 0 ? room.comments.length + ' Komentar' : ''}
+                                        {room.comments.length > 0 ? room.comments.length + ' Ulasan' : ''}
                                     </Typography>
 
                                     <IconButton
@@ -207,30 +201,28 @@ class Rooms extends React.Component {
             })
     }
 
-
-    componentDidMount() {
-        //Get rooms
-        fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?sortBy=createdAt&order=desc`)
-            .then(response => response.json())
-            .then(data => {
-                this.setState({ rooms: data, loading: false })
-            })
+    async componentDidMount() {
 
         //Get locations
-        Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/location`)
-            // .then(response => response.json())
+        await Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/location`)
             .then(response => {
                 this.setState({ locations: response.data, loadLocations: false })
             }).catch(error => {
                 console.warn(error)
             })
 
+        //Get rooms
+        await fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?sortBy=createdAt&order=desc`)
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ rooms: data, loading: false })
+                console.log(data)
+            })
     }
 
     render() {
 
         return (<div>
-
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={9}>
                     <Typography variant="h5">Mau cari kos?</Typography>
@@ -250,6 +242,22 @@ class Rooms extends React.Component {
                     {
                         this.state.loading ?
                             <div>
+                                <Grid container spacing={2}>
+                                    <Grid item md={6} sm={12}>
+                                        <Skeleton variant="rect" width="100%" height={200} />
+                                        <React.Fragment>
+                                            <Skeleton height={30} style={{ marginBottom: 2 }} />
+                                            <Skeleton height={30} width="80%" />
+                                        </React.Fragment>
+                                    </Grid>
+                                    <Grid item md={6} sm={12}>
+                                        <Skeleton variant="rect" width="100%" height={200} />
+                                        <React.Fragment>
+                                            <Skeleton height={30} style={{ marginBottom: 2 }} />
+                                            <Skeleton height={30} width="80%" />
+                                        </React.Fragment>
+                                    </Grid>
+                                </Grid>
                                 <Grid container spacing={2}>
                                     <Grid item md={6} sm={12}>
                                         <Skeleton variant="rect" width="100%" height={200} />
@@ -321,4 +329,5 @@ const mapDispatchToProps = (dispatch) => {
         handlePlus: () => dispatch({ type: "ADD_MESSAGE" })
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Rooms);
