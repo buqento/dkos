@@ -4,9 +4,11 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Registration from './registration';
+import Loginfb from './Loginfb';
 import { Grid } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,12 +21,8 @@ const Viewlogin = (props) => {
 
     return (<div>
 
-        {
-            props.error &&
-
-            <h3 onClick={props.handleDissmis}>{props.error}</h3>
-
-        }
+        {props.error && <h3 onClick={props.handleDissmis}>{props.error}</h3>}
+        {props.loading && <LinearProgress />}
         <Paper className={classes.root}>
             <form>
                 <TextField
@@ -58,6 +56,7 @@ const Viewlogin = (props) => {
 
             </form>
         </Paper>
+
     </div>)
 }
 
@@ -70,7 +69,8 @@ class Login extends React.Component {
             email: 'buqento@gmail.com',
             password: 'buqento',
             userdata: [],
-            error: ''
+            error: '',
+            loading: false
         }
         this.handleLogin = this.handleLogin.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -91,13 +91,14 @@ class Login extends React.Component {
     }
 
     async handleLogin(event) {
-
+        
         if (!this.state.email) {
             return this.setState({ error: 'Email required!' })
         }
         const filter = this.state.email
         event.preventDefault()
         try {
+            this.setState({loading:true})
             await fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/users?search=${filter}`)
                 .then(response => response.json())
                 .then(data => {
@@ -117,6 +118,7 @@ class Login extends React.Component {
                         alert('username password do not match!')
                     }
                 })
+                this.setState({loading:false})
 
         } catch (e) {
             alert(e.message)
@@ -137,6 +139,7 @@ class Login extends React.Component {
                                 email={this.state.email}
                                 password={this.state.password}
                                 error={this.state.error}
+                                loading={this.state.loading}
                                 handleChange={this.handleChange}
                                 handleLogin={this.handleLogin}
                                 handleDissmis={this.handleDissmis}
@@ -146,6 +149,8 @@ class Login extends React.Component {
                             <Button onClick={this.props.handleMessages}>
                                 Add new message
                             </Button>
+
+                            <Loginfb />
                         </Grid>
                     </Grid>
                 </Container>
@@ -162,7 +167,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleMessages: () => dispatch({ type: "MESSAGE" }),
+        handleMessages: () => dispatch({ type: "MESSAGE", p: 5 }),
         handleAuthLogin: () => dispatch({type: "AUTH_LOGIN"})
     }
 }

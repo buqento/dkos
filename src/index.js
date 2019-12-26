@@ -4,36 +4,37 @@ import * as serviceWorker from './serviceWorker';
 import Home from './components/home';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import 'leaflet/dist/leaflet.css';
 
 //Global state
 const globalState = {
-	messages: 5,
-	loginStatus: false
+	order: 1,
+	filter:""
 }
 
 //Reducer
 const rootReducer = (state = globalState, action) => {
-	if(action.type === "MESSAGE"){
+
+	if(action.type === "PLUS_ORDER"){
 		return {
 			...state,
-			messages: state.messages + 1
+			order: state.order + 1
 		}
 	}
 
-	if(action.type === "AUTH_LOGIN"){
-		return {
+	if(action.type === "FILTER_LOCATION"){
+		return{
 			...state,
-			loginStatus: true
+			filter: action.filter
 		}
 	}
 
-	if(action.type === "AUTH_LOGOUT"){
-		return {
+	if(action.type === "FILTER_LOCATIONx"){
+		return{
 			...state,
-			loginStatus: false
+			filter: action.filter
 		}
 	}
-
 	return state;
 }
 

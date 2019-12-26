@@ -1,25 +1,33 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import Moment from 'react-moment';
+import CurrencyFormat from 'react-currency-format';
+import Peta from './peta';
+import Roomsmore from './roomsmore';
+import Fbcomment from './fbcomment';
+import Fbshare from './fbshare';
+import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
+
+
+import {
+	MdPictureInPicture, MdToys, MdMotorcycle, MdWifi, MdAcUnit, MdKitchen, MdHotel } from 'react-icons/md';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
+import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import { Typography, Breadcrumbs, Link, Grid, Divider } from '@material-ui/core';
-import Comments from './comments';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import SendIcon from '@material-ui/icons/Send';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Skeleton from '@material-ui/lab/Skeleton';
-import { connect } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		padding: '2px 4px',
+		padding: theme.spacing(1, 2),
 		display: 'flex',
 		alignItems: 'center',
 		maxWidth: 900,
@@ -43,82 +51,153 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const CommentView = (props) => {
-	const classes = useStyles();
-	return (<div>
-		<Paper component="form" className={classes.root}>
-			<InputBase
-				className={classes.input}
-				placeholder="Berikan ulasan tentang kos ini ..."
-				name="comment_text"
-				value={props.commentText}
-				onChange={props.handleChange}
-			/>
-			<IconButton onClick={props.handlePost} className={classes.iconButton} aria-label="search">
-				<SendIcon />
-			</IconButton>
-		</Paper>
-	</div>)
-}
-
 const DetailView = (props) => {
 	const classes = useStyles();
+
 	return (
 		<div>
+
 			<Card className={classes.card}>
-				<CardActionArea>
-					<CardMedia
-						className={classes.media}
-						image={props.avatar}
-						title={props.room_title}
-					/>
-					<CardContent>
+				<CardHeader
+					avatar={
+						<Avatar alt="dK" src={props.avatar} className={classes.bigAvatar} />
+					}
+					action={
+						<Fbshare
+							id={props.id}
+							room_title={props.room_title}
+							description={props.description} />
+					}
+					title={props.owner_name}
+					subheader={<Moment fromNow>{props.createdAt}</Moment>}
+				/>
+				<CardMedia
+					className={classes.media}
+					image={props.image_url}
+					title={props.room_title}
+				/>
+				<CardContent>
 
-						<Typography variant="body1">Kos
-							{
-								props.room_gender === 1 ? " Putra" :
-									props.room_gender === 2 ? " Putri" : " Campur"
-							}
-						</Typography>
+					<Typography variant="h5">{props.room_title + ' ' + props.location}</Typography>
+					<Typography variant="body1">Kos
+						{props.room_gender === 1 ? " Putra" : props.room_gender === 2 ? " Putri" : " Campur"}
+					</Typography>
 
-						<Typography variant="h5">{props.room_title}</Typography>
+					<Divider className={classes.divider} />
+					<Typography variant="body1">{props.owner_phone}</Typography>
 
-						<Divider className={classes.divider} />
-						<Typography variant="body1">Deskripsi Kost</Typography>
-						<Typography variant="caption">{props.description}</Typography>
+					<Divider className={classes.divider} />
+					<Typography variant="body1">
+						<CurrencyFormat value={props.price_month} displayType={'text'} thousandSeparator={true} prefix={'Rp '} /> / Bulan
+					</Typography>
 
-						<Divider className={classes.divider} />
-						<Typography variant="body1">Fasilitas Kamar</Typography>
-						<Typography variant="caption">
-							Kasur, Lemari pakaian, TV, AC, Kursi belajar, Wastafel, Sekamar berdua
-						</Typography>
+					<Divider className={classes.divider} />
+					<Typography variant="body1">Deskripsi Kost</Typography>
+					<Typography variant="caption">{props.description}</Typography>
 
-						<Divider className={classes.divider} />
-						<Typography variant="body1">Fasilitas Bersama</Typography>
-						<Typography variant="caption">
-							Dapur, Balcon, Akses kunci 24 jam
-						</Typography>
+					<Divider className={classes.divider} />
 
-						<Divider className={classes.divider} />
-						<Typography variant="body1">Lokasi kos</Typography>
+					<Grid container spacing={1}>
+						<Grid item xs={12} sm={6}>
+							<Typography variant="body1">Fasilitas Kamar</Typography>
+							<Typography variant="caption">
+								<List component="nav">
+									{props.facilities[0].lemari &&
+										<ListItem>
+											<ListItemIcon>
+												<MdKitchen size="2em" />
+											</ListItemIcon>
+											<ListItemText primary="Lemari Pakaian" />
+										</ListItem>
+									}
+									{props.facilities[0].kasur &&
+										<ListItem>
+											<ListItemIcon>
+												<MdHotel size="2em" />
+											</ListItemIcon>
+											<ListItemText primary="Kasur" />
+										</ListItem>
+									}
+									{props.facilities[0].meja &&
+										<ListItem>
+											<ListItemIcon>
+												<MdPictureInPicture size="2em" />
+											</ListItemIcon>
+											<ListItemText primary="Meja Belajar" />
+										</ListItem>
+									}
+									{props.facilities[0].wifi &&
+										<ListItem>
+											<ListItemIcon>
+												<MdWifi size="2em" />
+											</ListItemIcon>
+											<ListItemText primary="Wifi Hotspot" />
+										</ListItem>
+									}
+									{props.facilities[0].kipas &&
+										<ListItem>
+											<ListItemIcon>
+												<MdToys size="2em" />
+											</ListItemIcon>
+											<ListItemText primary="Kipas Angin" />
+										</ListItem>
+									}
+									{props.facilities[0].ac &&
+										<ListItem>
+											<ListItemIcon>
+												<MdAcUnit size="2em" />
+											</ListItemIcon>
+											<ListItemText primary="Air Conditioner" />
+										</ListItem>
+									}
+								</List>
+							</Typography>
+						</Grid>
 
-						<Divider className={classes.divider} />
-						<Typography variant="body1">Pemilik kost</Typography>
-						<Typography variant="caption">
-							{props.owner_name}
-						</Typography>
+						<Grid item>
+							<Typography variant="body1">Fasilitas Umum</Typography>
+							<Typography variant="caption">
+								<List>
+									{props.facilities[0].parkirMotor &&
+										<ListItem>
+											<ListItemIcon>
+												<OutdoorGrillIcon size="2em" />
+											</ListItemIcon>
+											<ListItemText primary="Dapur Umum" />
+										</ListItem>
+									}
+									{props.facilities[0].parkirMotor &&
+										<ListItem>
+											<ListItemIcon>
+												<MdMotorcycle size="2em" />
+											</ListItemIcon>
+											<ListItemText primary="Parkiran Sepeda Motor" />
+										</ListItem>
+									}
+									{props.facilities[0].parkirMobil &&
+										<ListItem>
+											<ListItemIcon>
+												<MdDirectionsCar size="2em" />
+											</ListItemIcon>
+											<ListItemText primary="Parkiran Mobil" />
+										</ListItem>
+									}
+								</List>
+							</Typography>
+						</Grid>
+					</Grid>
 
-					</CardContent>
-				</CardActionArea>
-				<CardActions>
-					<Button size="small" color="primary">
-						Bagikan
-        			</Button>
-					<Button size="small" color="primary">
-						Simpan
-        			</Button>
-				</CardActions>
+					<Divider className={classes.divider} />
+					<Typography variant="body1">Lokasi kos</Typography>
+					<Peta lat={props.lat} lng={props.lng} room_title={props.room_title} />
+
+				</CardContent>
 			</Card>
+			<Typography variant="h5">
+				Kos lainnya
+			</Typography>
+			<Roomsmore />
+
 		</div>
 	)
 }
@@ -129,59 +208,22 @@ class Detail extends React.Component {
 		super(props);
 		this.state = {
 			loading: true,
-			loadingComment: false,
-			articles: [],
-			comments: [],
-			name: 'Anonim',
-			comment_text: '',
+			room: [],
+			facilities: [],
 			date_text: ''
 		}
 	}
 
 	async componentDidMount() {
 		const user = JSON.parse(localStorage.getItem("user"));
-		if (user) {
-			this.setState({ name: user[0].name })
-		}
+		if (user) { this.setState({ name: user.name }) }
 		const { handle } = this.props.match.params
 		await fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms/${handle}`)
 			.then(response => response.json())
 			.then(data => {
-				this.setState({ articles: data })
-				this.setState({ comments: this.state.articles.comments })
-				this.setState({ loading: false })
-			}
-			)
-	}
-
-	handleChange = (event) => {
-		this.setState({
-			// [event.target.name]: event.target.value
-			comment_text: event.target.value
-		})
-	}
-
-	handlePost = () => {
-		this.setState({ comment_text: "", loadingComment: true })
-		const { handle } = this.props.match.params
-		let comment =
-		{
-			name: this.state.name,
-			commentText: this.state.comment_text,
-			createdAt: Date.now()
-		};
-		fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms/${handle}/comments`,
-			{
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(comment)
-			}
-		).then(result => {
-			result.json().then(() => {
-				this.componentDidMount()
-				this.setState({ comment_text: "", loadingComment: false })
+				this.setState({ room: data })
+				this.setState({ facilities: this.state.room.facilities, loading: false })
 			})
-		})
 	}
 
 	render() {
@@ -190,7 +232,6 @@ class Detail extends React.Component {
 		));
 
 		return (<div>
-
 			{
 				this.state.loading ?
 					<Skeleton height={30} width="20%" />
@@ -199,7 +240,7 @@ class Detail extends React.Component {
 						<div>
 							<Breadcrumbs aria-label="breadcrumb">
 								<Link color="inherit" component={Linktohome}>Home</Link>
-								<Typography color="textPrimary">{this.state.articles.room_title}</Typography>
+								<Typography color="textPrimary">{this.state.room.room_title}</Typography>
 							</Breadcrumbs>
 						</div>
 					)
@@ -208,69 +249,51 @@ class Detail extends React.Component {
 			<br />
 
 			<Grid container spacing={1}>
-				<Grid item md={8}>
+				<Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
 
-					{
-						this.state.loading ?
-							<div>
-								<Skeleton variant="rect" width="100%" height={200} style={{ marginBottom: 2 }} />
-								<React.Fragment>
-									<Skeleton height={30} style={{ marginBottom: 2 }} />
-									<Skeleton height={30} width="80%" />
-								</React.Fragment>
-							</div>
-							:
-							(
-								<DetailView
-									avatar={this.state.articles.avatar}
-									room_title={this.state.articles.room_title}
-									description={this.state.articles.description}
-									room_gender={this.state.articles.room_gender}
-									owner_name={this.state.articles.owner_name}
-									owner_phone={this.state.articles.owner_phone} />
-							)
+					{this.state.loading ?
+						<div>
+							<Skeleton variant="rect" width="100%" height={200} style={{ marginBottom: 2 }} />
+							<React.Fragment>
+								<Skeleton height={30} style={{ marginBottom: 2 }} />
+								<Skeleton height={30} width="80%" />
+							</React.Fragment>
+						</div>
+						:
+						(
+							<DetailView
+								id={this.state.room.id}
+								avatar={this.state.room.avatar}
+								image_url={this.state.room.image_url}
+								room_title={this.state.room.room_title}
+								price_title_time={this.state.room.price_title_time}
+								price_month={this.state.room.price_month}
+								description={this.state.room.description}
+								room_gender={this.state.room.room_gender}
+								owner_name={this.state.room.owner_name}
+								owner_phone={this.state.room.owner_phone}
+								location={this.state.room.location}
+								lat={this.state.room.lat}
+								lng={this.state.room.lng}
+								createdAt={this.state.room.createdAt}
+								facilities={this.state.facilities} />
+						)
 					}
 				</Grid>
-
-				<Grid item md={4}>
-					{
-						this.state.loadingComment ?
-							<LinearProgress /> : ''
+				<Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+					{this.state.loadingComment ? <LinearProgress /> : ''}
+					{this.state.loading ?
+						<div>
+							<Skeleton variant="rect" width="100%" height={50} />
+							<React.Fragment>
+								<Skeleton variant="circle" width={40} height={40} />
+								<Skeleton height={30} style={{ marginBottom: 2 }} />
+								<Skeleton height={30} width="80%" />
+							</React.Fragment>
+						</div>
+						: <Fbcomment id={this.state.room.id} />
 					}
-					{
-						this.state.loading ?
-							<div>
-								<Skeleton variant="rect" width="100%" height={50} />
-								<React.Fragment>
-									<Skeleton variant="circle" width={40} height={40} />
-									<Skeleton height={30} style={{ marginBottom: 2 }} />
-									<Skeleton height={30} width="80%" />
-								</React.Fragment>
-							</div>
-							:
-							(
-								<div>
 
-									<CommentView
-										commentText={this.state.comment_text}
-										handleChange={this.handleChange}
-										handlePost={this.handlePost} />
-									{
-										this.state.comments
-											.sort(function (a, b) { return b - a })
-											.map(comment =>
-												<div key={comment.id}>
-													<Comments
-														commentName={comment.name}
-														avatar={comment.avatar}
-														commentText={comment.commentText}
-														createdAt={comment.createdAt} />
-												</div>
-											)
-									}
-								</div>
-							)
-					}
 				</Grid>
 
 			</Grid>
@@ -279,10 +302,4 @@ class Detail extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		messages: state.messages
-	}
-}
-
-export default connect(mapStateToProps)(Detail);
+export default Detail;

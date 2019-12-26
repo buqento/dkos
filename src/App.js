@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import Lifecycle from './lifecycle';
+import Home from './components/home';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    showLifecycle: true,
+    btnText: "hide"
+  }
+
+  componentDidMount(){}
+
+  showHiddenLifecycle = () => {
+    this.setState({showLifecycle: !this.state.showLifecycle})
+    this.state.showLifecycle ? this.setState({btnText:"show"}) : this.setState({btnText:"hide"})
+  }
+
+  render(){
+    return(<div>
+      <button onClick={this.showHiddenLifecycle}>{this.state.btnText}</button>
+      {
+        this.state.showLifecycle ? <Home /> : ''
+      }
+    </div>)
+  }
 }
 
 export default App;
