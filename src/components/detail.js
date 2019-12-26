@@ -9,8 +9,7 @@ import Fbshare from './fbshare';
 import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
 
 
-import {
-	MdPictureInPicture, MdToys, MdMotorcycle, MdWifi, MdAcUnit, MdKitchen, MdHotel } from 'react-icons/md';
+import { MdPictureInPicture, MdDirectionsCar, MdToys, MdMotorcycle, MdWifi, MdAcUnit, MdKitchen, MdHotel } from 'react-icons/md';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
