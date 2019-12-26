@@ -59,7 +59,7 @@ class Roomsmore extends React.Component {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button href={"https://localhost:3000/room/"+room.id}>Selengkapnya</Button>
+                                        <Button href={"https://buqento.github.io/room/"+room.id}>Selengkapnya</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>
