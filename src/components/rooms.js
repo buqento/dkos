@@ -42,11 +42,22 @@ const Roomview = (props) => {
 
         <Grid container spacing={2} className={classes.root}>
             {
+
+                props.loading ?
+                    <Grid container spacing={1}>
+                        <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
+                            <Skeleton variant="rect" width="100%" height={200} />
+                        </Grid>
+                        <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                            <Skeleton variant="rect" width="100%" height={200} />
+                        </Grid>
+                    </Grid>
+                :
                 props.rooms
                     .slice(0, numberOfItems)
                     .map((room) =>
 
-                        <Grid item md={6} sm={12} xs={12} key={room.id}>
+                        <Grid item xs={12} sm={6} md={6} lg={6} xl={6} key={room.id}>
                             <Card key={room.id}>
                                 <CardHeader
                                     avatar={
@@ -187,6 +198,7 @@ class Rooms extends React.Component {
 
     componentDidMount() {
         console.log("componentDidMount")
+        this.setState({loading:true})
         Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/location`)
             .then(response => {
                 this.setState({ locations: response.data })
@@ -196,9 +208,11 @@ class Rooms extends React.Component {
         Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?sortBy=createdAt&order=desc`)
             .then(response => {
                 this.setState({ rooms: response.data })
+                this.setState({loading:false})
             }).catch(error => {
                 console.warn(error)
             })
+
     }
 
     render() {

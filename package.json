@@ -7,6 +7,7 @@
     "@material-ui/core": "^4.7.1",
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.35",
+    "@unicef/material-ui-currency-textfield": "^0.8.4",
     "axios": "^0.19.0",
     "firebase": "^7.6.1",
     "gh-pages": "^2.1.1",

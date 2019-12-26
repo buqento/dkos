@@ -7,8 +7,6 @@ import Roomsmore from './roomsmore';
 import Fbcomment from './fbcomment';
 import Fbshare from './fbshare';
 import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
-
-
 import { MdPictureInPicture, MdDirectionsCar, MdToys, MdMotorcycle, MdWifi, MdAcUnit, MdKitchen, MdHotel } from 'react-icons/md';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -187,14 +185,11 @@ const DetailView = (props) => {
 					</Grid>
 
 					<Divider className={classes.divider} />
-					<Typography variant="body1">Lokasi kos</Typography>
+					<Typography variant="body1">Lokasi</Typography>
 					<Peta lat={props.lat} lng={props.lng} room_title={props.room_title} />
 
 				</CardContent>
 			</Card>
-			<Typography variant="h5">
-				Kos lainnya
-			</Typography>
 			<Roomsmore />
 
 		</div>

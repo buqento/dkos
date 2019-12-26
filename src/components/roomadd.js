@@ -43,6 +43,8 @@ const Formview = (props) => {
                         fullWidth
                     />
                     <CurrencyFormat 
+                        customInput={TextField}
+                        variant="outlined"
                         name="price_month"
                         placeholder="Harga sewa"
                         margin="dense"
@@ -50,27 +52,23 @@ const Formview = (props) => {
                         required
                         fullWidth
                         thousandSeparator={true} 
-                        prefix={'Rp'} />
-                    {/* <TextField
-                        variant="outlined"
-                        name="price_month"
-                        placeholder="Harga sewa"
-                        value={props.price_month}
-                        margin="dense"
-                        onChange={props.handleChange}
-                        required
-                        fullWidth
-                    /> */}
-                    <TextField
+                        prefix={'Rp '} />
+
+                    <CurrencyFormat 
+                        customInput={TextField}
                         variant="outlined"
                         name="owner_phone"
-                        placeholder="Telepon"
-                        value={props.owner_name}
+                        placeholder="+62 852 xxxx xxxx"
+                        format="+62 ### #### ####" 
+                        mask="_"
                         margin="dense"
                         onChange={props.handleChange}
                         required
                         fullWidth
-                    />
+                        thousandSeparator={true} 
+                        prefix={'Rp '} />
+                    
+                    
                     <TextField
                         variant="outlined"
                         name="description"

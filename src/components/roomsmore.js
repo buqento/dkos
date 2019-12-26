@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
-import { Link as RouterLink } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
+import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardMedia from '@material-ui/core/CardMedia';
+import {Button, CardMedia, CardActions, CardContent} from '@material-ui/core';
 
+import CurrencyFormat from 'react-currency-format';
 
 class Roomsmore extends React.Component {
     constructor(props) {
@@ -27,8 +27,6 @@ class Roomsmore extends React.Component {
     }
 
     render() {
-        const Linkdetail = React.forwardRef((props, ref) => <RouterLink innerRef={ref} {...props} />);
-
         return (<div>
             {
                 this.state.loading ?
@@ -48,22 +46,23 @@ class Roomsmore extends React.Component {
                         {this.state.rooms.map(room =>
                             <Grid item xs={12} sm={6} md={6} lg={6} xl={6} key={room.id}>
                                 <Card key={room.id}>
-                                    <CardHeader
-                                        title={room.price_title_time}
-                                        // subheader={room.price_title_time}
-                                    />
-
-                                    <CardActionArea
-                                        component={Linkdetail}
-                                        to={"/room/" + room.id}>
-                                        <CardMedia
-                                            component="img"
-                                            alt={room.room_title}
-                                            image={room.image_url}
-                                            title={room.room_title}
+                                    <CardMedia
+                                        height="120"
+                                        component="img"
+                                        alt={room.room_title}
+                                        image={room.image_url}
+                                        title={room.room_title}
                                         />
-                                    </CardActionArea>
-                                    <a href={"https://localhost:3000/room/"+room.id}>More</a>                                </Card>
+                                    <CardContent>
+                                        <Typography variant="body1">{room.room_title}</Typography>
+                                        <Typography variant="body2">
+                                            <CurrencyFormat value={room.price_month} displayType={'text'} thousandSeparator={true} prefix={'Rp '} /> / Bulan
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button href={"https://localhost:3000/room/"+room.id}>Selengkapnya</Button>
+                                    </CardActions>
+                                </Card>
                             </Grid>
                         )}
                     </Grid>
