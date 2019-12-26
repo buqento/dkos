@@ -7,6 +7,8 @@ import Roomsmore from './roomsmore';
 import Fbcomment from './fbcomment';
 import Fbshare from './fbshare';
 import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import MoneyIcon from '@material-ui/icons/Money';
 import { MdPictureInPicture, MdDirectionsCar, MdToys, MdMotorcycle, MdWifi, MdAcUnit, MdKitchen, MdHotel } from 'react-icons/md';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -32,7 +34,9 @@ const useStyles = makeStyles(theme => ({
 	media: {
 		height: 240,
 	},
-
+	price: {
+		color: "blue"
+	},
 	input: {
 		marginLeft: theme.spacing(1),
 		flex: 1,
@@ -80,16 +84,28 @@ const DetailView = (props) => {
 						{props.room_gender === 1 ? " Putra" : props.room_gender === 2 ? " Putri" : " Campur"}
 					</Typography>
 
-					<Divider className={classes.divider} />
-					<Typography variant="body1">{props.owner_phone}</Typography>
 
 					<Divider className={classes.divider} />
-					<Typography variant="body1">
-						<CurrencyFormat value={props.price_month} displayType={'text'} thousandSeparator={true} prefix={'Rp '} /> / Bulan
-					</Typography>
+					<ListItem>
+						<ListItemIcon>
+							<MoneyIcon size="2em" />
+						</ListItemIcon>
+						<ListItemText>
+							<CurrencyFormat value={props.price_month} displayType={'text'} thousandSeparator={true} prefix={'Rp '} /> / Bulan
+						</ListItemText>
+					</ListItem>
 
 					<Divider className={classes.divider} />
-					<Typography variant="body1">Deskripsi Kost</Typography>
+					<ListItem>
+						<ListItemIcon>
+							<WhatsAppIcon size="2em" />
+						</ListItemIcon>
+						<ListItemText primary={props.owner_phone} />
+					</ListItem>
+
+
+					<Divider className={classes.divider} />
+					<Typography variant="body1">Deskripsi</Typography>
 					<Typography variant="caption">{props.description}</Typography>
 
 					<Divider className={classes.divider} />
@@ -190,7 +206,7 @@ const DetailView = (props) => {
 
 				</CardContent>
 			</Card>
-			<Roomsmore />
+			<Roomsmore location={props.location} />
 
 		</div>
 	)

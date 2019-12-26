@@ -17,7 +17,7 @@ class Roomsmore extends React.Component {
     }
 
     async componentDidMount() {
-        await fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?page=2&limit=2&sortBy=createdAt&order=desc`)
+        await fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?search=${this.props.location}&sortBy=createdAt&order=desc`)
             .then(response => response.json())
             .then(data => {
                 this.setState({ rooms: data })
@@ -59,7 +59,7 @@ class Roomsmore extends React.Component {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button href={"https://buqento.github.io/room/"+room.id}>Selengkapnya</Button>
+                                        <Button href={"../room/"+room.id}>Selengkapnya</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>
