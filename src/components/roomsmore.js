@@ -3,7 +3,6 @@ import { Grid } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import {Button, CardMedia, CardActions, CardContent} from '@material-ui/core';
 
 import CurrencyFormat from 'react-currency-format';
