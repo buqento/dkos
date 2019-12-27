@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/dkos/static/css/main.e55ea047.chunk.css",
-    "main.js": "/dkos/static/js/main.5f98b3a9.chunk.js",
-    "main.js.map": "/dkos/static/js/main.5f98b3a9.chunk.js.map",
+    "main.js": "/dkos/static/js/main.1d24e4d0.chunk.js",
+    "main.js.map": "/dkos/static/js/main.1d24e4d0.chunk.js.map",
     "runtime-main.js": "/dkos/static/js/runtime-main.68d2069b.js",
     "runtime-main.js.map": "/dkos/static/js/runtime-main.68d2069b.js.map",
     "static/css/2.098bc035.chunk.css": "/dkos/static/css/2.098bc035.chunk.css",
     "static/js/2.a7a4a652.chunk.js": "/dkos/static/js/2.a7a4a652.chunk.js",
     "static/js/2.a7a4a652.chunk.js.map": "/dkos/static/js/2.a7a4a652.chunk.js.map",
     "index.html": "/dkos/index.html",
-    "precache-manifest.b4b3cec04d6bc53a4e840385a436c05a.js": "/dkos/precache-manifest.b4b3cec04d6bc53a4e840385a436c05a.js",
+    "precache-manifest.5ebdc59b6a4352243e35d29fad3da27c.js": "/dkos/precache-manifest.5ebdc59b6a4352243e35d29fad3da27c.js",
     "service-worker.js": "/dkos/service-worker.js",
     "static/css/2.098bc035.chunk.css.map": "/dkos/static/css/2.098bc035.chunk.css.map",
     "static/css/main.e55ea047.chunk.css.map": "/dkos/static/css/main.e55ea047.chunk.css.map"
@@ -19,6 +19,6 @@
     "static/css/2.098bc035.chunk.css",
     "static/js/2.a7a4a652.chunk.js",
     "static/css/main.e55ea047.chunk.css",
-    "static/js/main.5f98b3a9.chunk.js"
+    "static/js/main.1d24e4d0.chunk.js"
   ]
 }
