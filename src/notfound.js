@@ -1,5 +1,18 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { Typography, Breadcrumbs, Link, Grid, Divider } from '@material-ui/core';
 
-const Notfound = () => <h1>Not found</h1>
+
+const Linktohome = React.forwardRef((props, ref) => (
+	<RouterLink innerRef={ref} to="/" {...props} />
+));
+
+const Notfound = () => 
+<div>
+	<Typography variant="h6" color="error">Ups! Halaman tidak ditemukan</Typography>
+	<Typography variant="body2">
+		<Link color="inherit" component={Linktohome}>Kembali ke Beranda</Link>
+	</Typography>
+</div>;
 
 export default Notfound

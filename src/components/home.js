@@ -15,6 +15,7 @@ class Home extends React.Component {
                     <Nav />
                     <Switch>
                         <Route exact path="/" component={Rooms} />
+                        <Route path="/dkos" component={Rooms} />
                         <Route path="/room/:handle" component={Detail} />
                         <Route path="/roomadd" component={Roomadd} />
                         <Route component={Notfound} />
