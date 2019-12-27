@@ -42,6 +42,15 @@ const Formview = (props) => {
                         required
                         fullWidth
                     />
+                    <TextField
+                        variant="outlined"
+                        name="image_url"
+                        placeholder="URL Foto"
+                        margin="dense"
+                        onChange={props.handleChange}
+                        required
+                        fullWidth
+                    />
                     <CurrencyFormat 
                         customInput={TextField}
                         variant="outlined"
@@ -263,6 +272,7 @@ class Roomadd extends React.Component {
             locations: [],
             lastData: "",
             room_title: "",
+            image_url: "",
             price_month: "",
             owner_phone: "",
             owner_name: "",
@@ -302,6 +312,7 @@ class Roomadd extends React.Component {
         let user = JSON.parse(localStorage.getItem("user"))
         const {
             room_title,
+            image_url,
             price_month,
             owner_phone,
             description,
@@ -323,6 +334,7 @@ class Roomadd extends React.Component {
             {
                 avatar:user.profile.picture.data.url,
                 room_title: room_title,
+                image_url: image_url,
                 price_month: price_month,
                 owner_phone: owner_phone,
                 owner_name: user.profile.first_name,

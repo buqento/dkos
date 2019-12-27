@@ -206,7 +206,7 @@ const DetailView = (props) => {
 
 				</CardContent>
 			</Card>
-			<Roomsmore location={props.location} />
+			{/*<Roomsmore location={props.location} />*/}
 
 		</div>
 	)
