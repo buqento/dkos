@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6b5d32d4f4fb918f30273752fb63f465",
+    "revision": "d9723759d974c3994a3095e7ad2d6594",
     "url": "/dkos/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/dkos/static/css/2.098bc035.chunk.css"
   },
   {
-    "revision": "01e50558ebca459755e8",
+    "revision": "2d2a751b28fef637614e",
     "url": "/dkos/static/css/main.e55ea047.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/dkos/static/js/2.a7a4a652.chunk.js"
   },
   {
-    "revision": "01e50558ebca459755e8",
-    "url": "/dkos/static/js/main.4488d70a.chunk.js"
+    "revision": "2d2a751b28fef637614e",
+    "url": "/dkos/static/js/main.5f98b3a9.chunk.js"
   },
   {
     "revision": "60f55be4fbbc53a03857",
