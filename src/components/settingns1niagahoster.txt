@@ -1,0 +1,10 @@
+ns1.niagahoster.com
+
+
+
+HTTPS = true
+
+marinyo.com
+ns1.dewaweb.com
+ns2.dewaweb.com
+ns3.dewaweb.com
