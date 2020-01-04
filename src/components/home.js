@@ -4,6 +4,7 @@ import Rooms from './rooms';
 import Notfound from '../notfound';
 import Detail from './detail';
 import Roomadd from './roomadd';
+import Favorites from './favorites';
 import Nav from './nav';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,6 +39,7 @@ export default class Home extends React.Component {
                         <Route path="/dkos" component={Rooms} />
                         <Route path="/room/:handle" component={Detail} />
                         <Route path="/roomadd" component={Roomadd} />
+                        <Route path="/fav" component={Favorites} />
                         <Route component={Notfound} />
                     </Switch>
                 </Container>

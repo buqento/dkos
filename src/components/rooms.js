@@ -40,12 +40,9 @@ const Roomview = (props) => {
     const user = JSON.parse(localStorage.getItem("user"));
     const numberOfItems = props.limit;
     const Linkdetail = React.forwardRef((props, ref) => <RouterLink innerRef={ref} {...props} />);
-
     return (<div>
-
         <Grid container spacing={2} className={classes.root}>
             {
-
                 props.loading ?
                     <Grid container spacing={1}>
                         <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
@@ -85,12 +82,14 @@ const Roomview = (props) => {
                                             </Typography>
                                         </CardContent>
 
+
+                                    </CardActionArea>
                                       <CardActions disableSpacing>
-                                        <IconButton aria-label="add to favorites">
+                                        <IconButton aria-label="add to favorites" onClick={props.handleFavorites(room.id)}>
                                             {
                                                 user &&
-                                                room.likes.find(uid => {return uid === parseInt(user.profile.id)}) ? 
-                                                <FavoriteIcon /> : <FavoriteBorderIcon />
+                                                room.favorites.find(uid => {return uid === parseInt(user.profile.id)}) ? 
+                                                <FavoriteIcon style={{color:"pink"}} /> : <FavoriteBorderIcon />
                                             }
                                         </IconButton>
                                         <IconButton aria-label="share">
@@ -101,12 +100,10 @@ const Roomview = (props) => {
                                             description={room.description} />
                                         </IconButton>
                                         <Typography variant="body2" className={clsx(classes.expand)}>
-                                          <div><Moment fromNow>{room.createdAt}</Moment>&nbsp;&nbsp;&nbsp;</div>
+                                          <Moment fromNow>{room.createdAt}</Moment>&nbsp;&nbsp;&nbsp;
                                         </Typography>
 
                                       </CardActions>
-                                    </CardActionArea>
-
                                 </Card>
 
                             </Grid>
@@ -133,7 +130,6 @@ const Roomview = (props) => {
 
     </div>)
 }
-
 
 const LocationFilter = (props) => {
     return (<div>
@@ -184,6 +180,25 @@ class Rooms extends React.Component {
         this.setState({ limit: this.state.limit + 4 })
     }
 
+    handleFavorites = param => e => {
+        const i = param - 1;
+        const user = JSON.parse(localStorage.getItem('user'))
+        const favorites = this.state.rooms[i].favorites
+        favorites.push(parseInt(user.profile.id))
+        const data = {favorites: favorites}
+        return fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms/${param}`,{
+                    method:'PUT',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(res => {
+                    return res
+                }).catch(err => {
+                    alert(err)
+                })
+    }
+
     handleFilter = (event) => {
         this.setState({ loading: true })
         this.setState({ [event.target.name]: event.target.value })
@@ -204,24 +219,20 @@ class Rooms extends React.Component {
             }).catch(error => {
                 console.warn(error)
             })
-
         Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?sortBy=createdAt&order=desc`)
             .then(response => {
                 this.setState({ rooms: response.data })
                 this.setState({ loading: false })
+
             }).catch(error => {
                 console.warn(error)
             })
     }
 
-
     render() {
         return (<div>
-
-
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={9} lg={9} xl={9}>
-
                     <LocationFilter
                         locations={this.state.locations}
                         filter={this.state.filter}
@@ -265,17 +276,18 @@ class Rooms extends React.Component {
                                     </Grid>
                                 </Grid>
                             </div>
-                            : (<div>
+                            : 
+                            (<div>
                                 <Roomview
                                     isLike={this.isLike}
                                     limit={this.state.limit}
                                     rooms={this.state.rooms}
+                                    handleFavorites={this.handleFavorites}
                                     handleShowMore={this.handleShowMore}
                                 />
                             </div>)
                     }
                 </Grid>
-
                 <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
                     <Navigate />
                 </Grid>
@@ -283,7 +295,5 @@ class Rooms extends React.Component {
             </Grid>
         </div>)
     }
-
 }
-
 export default Rooms;
