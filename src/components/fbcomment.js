@@ -1,11 +1,12 @@
 import React from 'react';
 import { FacebookProvider, Comments } from 'react-facebook';
+import { APP_ID } from '../global';
 
 export default class Fbcomment extends React.Component {
     render() {
         return (
-            <FacebookProvider appId="2615774338658413">
-                <Comments href={"https://marinyo.com/room/" + this.props.id} width="auto" />
+            <FacebookProvider appId={APP_ID}>
+                <Comments href={"https://tantekos.com/room/" + this.props.id} width="auto" />
             </FacebookProvider>
         )
     }

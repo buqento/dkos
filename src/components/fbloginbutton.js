@@ -1,5 +1,6 @@
 import React from 'react';
 import { FacebookProvider, LoginButton } from 'react-facebook';
+import { APP_ID } from '../global';
 
 export default class Fbloginbutton extends React.Component {
 
@@ -8,24 +9,14 @@ export default class Fbloginbutton extends React.Component {
     }
 
     handleError = (error) => {
-        console.log(error)
+        alert(error)
     }
 
     constructor(props) {
         super(props);
         this.state = {
-            _isMounted: false
+            _isMounted: true
         }
-        console.log("constructor")
-    }
-    componentWillMount() {
-        console.log("componentWillMount")
-        this.setState({ _isMounted: false })
-    }
-
-    componentDidMount() {
-        console.log("componentDidMount")
-        this.setState({ _isMounted: true })
     }
 
     render() {
@@ -33,15 +24,14 @@ export default class Fbloginbutton extends React.Component {
             <div>
                 {
                     this.state._isMounted &&
-
-                    <FacebookProvider appId="2615774338658413" style={{ color: 'red' }}>
-                        <LoginButton
-                            scope="email"
-                            onCompleted={this.handleResponse}
-                            onError={this.handleError}>
-                            Masuk dengan facebook
-                    </LoginButton>
-                    </FacebookProvider>
+                        <FacebookProvider appId={APP_ID}>
+                            <LoginButton
+                                scope="email"
+                                onCompleted={this.handleResponse}
+                                onError={this.handleError}>
+                                Masuk dengan facebook
+                        </LoginButton>
+                        </FacebookProvider>
                 }
             </div>
         )

@@ -2,11 +2,8 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import Fbloginstatus from '../components/fbloginstatus';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import HomeIcon from '@material-ui/icons/Home';
+import { IconButton, Typography, AppBar, Toolbar } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -32,10 +29,10 @@ const Navbar = (props) => {
             <AppBar position="fixed" color="primary">
                 <Toolbar>
                     <IconButton component={Linktohome} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <HomeIcon />
+                        <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        Manggurebe
+                        Tantekos
                     </Typography>
                     <Fbloginstatus />
                 </Toolbar>
@@ -45,5 +42,5 @@ const Navbar = (props) => {
 }
 
 export default class Nav extends React.Component {
-    render() {return <Navbar />}
+    render() { return <Navbar /> }
 }

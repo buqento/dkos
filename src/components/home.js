@@ -6,8 +6,28 @@ import Detail from './detail';
 import Roomadd from './roomadd';
 import Nav from './nav';
 import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import Fab from '@material-ui/core/Fab';
 
-class Home extends React.Component {
+const useStyles = makeStyles(theme => ({
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+}));
+
+const FabAction = (props) => {
+    const classes = useStyles();
+    return(<div>
+          <Fab color="secondary" aria-label="add" className={classes.fab} href="https://wa.me/6285770825336?text=Hi Tantekos, Saya ingin mempromosikan kos.">
+            <WhatsAppIcon style={{color:"#25d366"}} />
+          </Fab>
+        </div>)
+}
+
+export default class Home extends React.Component {
     render() {
         return (<div>
             <Router>
@@ -22,20 +42,7 @@ class Home extends React.Component {
                     </Switch>
                 </Container>
             </Router>
+            <FabAction />
         </div>)
     }
 }
-
-// const mapStateToProps = (state) => {
-//     return {
-//         loginStatus: state.loginStatus
-//     }
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         handleAuthLogin: () => dispatch({ type: "AUTH_LOGIN" }),
-//     }
-// }
-
-export default Home;

@@ -16,7 +16,6 @@ class Locations extends React.Component {
         this.state = {
             locations: []
         }
-        console.log("constructor")
     }
 
     componentDidMount() {
@@ -30,7 +29,6 @@ class Locations extends React.Component {
     }
 
     render() {
-        console.log("render")
         return (<div>
 
             <List>

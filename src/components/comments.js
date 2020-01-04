@@ -9,32 +9,32 @@ import Typography from '@material-ui/core/Typography';
 import Moment from 'react-moment';
 
 const comments = (props) => {
-  return(
-        <List>
-          <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar alt="Remy Sharp" src={props.avatar} />
-            </ListItemAvatar>
-            <ListItemText
-              primary={props.commentName}
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    className="display: inline"
-                    color="textPrimary"
-                  >
-                    {props.commentText}
-                  </Typography>
-                  — <Moment fromNow>{props.createdAt}</Moment>
-                </React.Fragment>
-              }
-            />
-          </ListItem>
-          <Divider variant="inset" />
-        </List>
-  )
+	return (
+		<List>
+			<ListItem alignItems="flex-start">
+				<ListItemAvatar>
+					<Avatar alt="Remy Sharp" src={props.avatar} />
+				</ListItemAvatar>
+				<ListItemText
+					primary={props.commentName}
+					secondary={
+						<React.Fragment>
+							<Typography
+								component="span"
+								variant="body2"
+								className="display: inline"
+								color="textPrimary"
+							>
+								{props.commentText}
+							</Typography>
+							— <Moment fromNow>{props.createdAt}</Moment>
+						</React.Fragment>
+					}
+				/>
+			</ListItem>
+			<Divider variant="inset" />
+		</List>
+	)
 }
 
 export default comments;

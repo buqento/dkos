@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
+import {CardActions} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Select, MenuItem, Grid } from '@material-ui/core';
@@ -12,11 +12,13 @@ import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Link as RouterLink } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
 import Moment from 'react-moment';
-import AddIcon from '@material-ui/icons/Add';
 import Fbshare from './fbshare';
 import Navigate from './navigate';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import IconButton from '@material-ui/core/IconButton';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -35,6 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 const Roomview = (props) => {
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem("user"));
     const numberOfItems = props.limit;
     const Linkdetail = React.forwardRef((props, ref) => <RouterLink innerRef={ref} {...props} />);
 
@@ -52,64 +55,75 @@ const Roomview = (props) => {
                             <Skeleton variant="rect" width="100%" height={200} />
                         </Grid>
                     </Grid>
-                :
-                props.rooms
-                    .slice(0, numberOfItems)
-                    .map((room) =>
+                    :
+                    props.rooms
+                        .slice(0, numberOfItems)
+                        .map((room) =>
+                            <Grid item xs={12} sm={6} md={6} lg={6} xl={6} key={room.id}>
+                                <Card key={room.id}>
+                                    <CardActionArea
+                                        component={Linkdetail}
+                                        to={"/room/" + room.id}>
+                                        <CardMedia
+                                            className={useStyles.media}
+                                            component="img"
+                                            alt={room.room_title}
+                                            height="200"
+                                            image={room.image_url}
+                                            title={room.room_title}
+                                        />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5">
+                                                {room.room_title} 
+                                            </Typography>
+                                            <Typography variant="body1">Kos
+							                {
+                                                    room.room_gender === 1 ? " Putra" :
+                                                        room.room_gender === 2 ? " Putri" : " Campur"
+                                                } &bull; {room.location} &bull; {room.price_month}
+                                                
+                                            </Typography>
+                                        </CardContent>
 
-                        <Grid item xs={12} sm={6} md={6} lg={6} xl={6} key={room.id}>
-                            <Card key={room.id}>
-                                <CardHeader
-                                    avatar={
-                                        <Avatar alt="dK" src={room.avatar} className={classes.bigAvatar} />
-                                    }
-                                    action={
-                                        <Fbshare
+                                      <CardActions disableSpacing>
+                                        <IconButton aria-label="add to favorites">
+                                            {
+                                                user &&
+                                                room.likes.find(uid => {return uid === parseInt(user.profile.id)}) ? 
+                                                <FavoriteIcon /> : <FavoriteBorderIcon />
+                                            }
+                                        </IconButton>
+                                        <IconButton aria-label="share">
+                                          <Fbshare
                                             id={room.id}
+                                            image_url={room.image_url}
                                             room_title={room.room_title}
                                             description={room.description} />
-                                    }
-                                    title={room.owner_name}
-                                    subheader={<Moment fromNow>{room.createdAt}</Moment>}
-                                />
-
-                                <CardActionArea
-                                    component={Linkdetail}
-                                    to={"/room/" + room.id}>
-                                    <CardMedia
-                                        className={useStyles.media}
-                                        component="img"
-                                        alt={room.room_title}
-                                        height="140"
-                                        image={room.image_url}
-                                        title={room.room_title}
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5">
-                                            {room.room_title}
+                                        </IconButton>
+                                        <Typography variant="body2" className={clsx(classes.expand)}>
+                                          <div><Moment fromNow>{room.createdAt}</Moment>&nbsp;&nbsp;&nbsp;</div>
                                         </Typography>
-                                        <Typography variant="body1">Kos
-							                {
-                                                room.room_gender === 1 ? " Putra" :
-                                                    room.room_gender === 2 ? " Putri" : " Campur"
-                                            } - {room.location}
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
 
-                            </Card>
+                                      </CardActions>
+                                    </CardActionArea>
 
-                        </Grid>
+                                </Card>
 
-                    )
+                            </Grid>
+
+                        )
 
             }
 
             <Grid item>
                 {
                     (props.limit > props.rooms.length) ? '' :
-                        <Button onClick={props.handleShowMore} variant="outlined" className={classes.more}>
-                            <AddIcon />
+                        <Button onClick={props.handleShowMore}
+                            variant="outlined"
+                            color="secondary"
+                            size="medium"
+                            className={classes.more}>
+                            Lebih banyak
                         </Button>
                 }
             </Grid>
@@ -119,6 +133,7 @@ const Roomview = (props) => {
 
     </div>)
 }
+
 
 const LocationFilter = (props) => {
     return (<div>
@@ -131,7 +146,7 @@ const LocationFilter = (props) => {
             onChange={props.handleFilter}
             autoWidth
         >
-            <MenuItem key="semua" value="semua">Semua Lokasi</MenuItem>
+            <MenuItem key="semua" value="semua">Ambon&nbsp;</MenuItem>
 
             {
                 props.locations.sort(function (a, b) {
@@ -145,7 +160,7 @@ const LocationFilter = (props) => {
                     }
                     return 0;
                 }).map(location =>
-                    <MenuItem key={location.name} value={location.name}>{location.name}</MenuItem>
+                    <MenuItem key={location.name} value={location.name}>{location.name}&nbsp;</MenuItem>
                 )
             }
         </Select>
@@ -163,7 +178,6 @@ class Rooms extends React.Component {
             loading: false,
             limit: 4
         }
-        console.log("constructor")
     }
 
     handleShowMore = () => {
@@ -171,53 +185,40 @@ class Rooms extends React.Component {
     }
 
     handleFilter = (event) => {
+        this.setState({ loading: true })
         this.setState({ [event.target.name]: event.target.value })
         let url = "";
         event.target.value !== "semua" ?
-        url = `https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?search=${event.target.value}`
-        :
-        url = `https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms`
+            url = `https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?search=${event.target.value}`
+            :
+            url = `https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms`
         fetch(url)
             .then(response => response.json())
-            .then(data => { this.setState({ rooms: data }) })
-    }
-
-    static getDerivedStateFromProps(nextProps) {
-        console.log("getDerivedStateFromProps")
-        return true
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("shouldComponentUpdate")
-        return true
-    }
-
-    componentDidUpdate(nextProps, nextState) {
-        console.log("componentDidUpdate")
+            .then(data => { this.setState({ rooms: data, loading: false }) })
     }
 
     componentDidMount() {
-        console.log("componentDidMount")
-        this.setState({loading:true})
         Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/location`)
             .then(response => {
                 this.setState({ locations: response.data })
             }).catch(error => {
                 console.warn(error)
             })
+
         Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?sortBy=createdAt&order=desc`)
             .then(response => {
                 this.setState({ rooms: response.data })
-                this.setState({loading:false})
+                this.setState({ loading: false })
             }).catch(error => {
                 console.warn(error)
             })
-
     }
 
+
     render() {
-        console.log("render")
         return (<div>
+
+
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={9} lg={9} xl={9}>
 
@@ -266,6 +267,7 @@ class Rooms extends React.Component {
                             </div>
                             : (<div>
                                 <Roomview
+                                    isLike={this.isLike}
                                     limit={this.state.limit}
                                     rooms={this.state.rooms}
                                     handleShowMore={this.handleShowMore}
@@ -279,7 +281,6 @@ class Rooms extends React.Component {
                 </Grid>
 
             </Grid>
-
         </div>)
     }
 

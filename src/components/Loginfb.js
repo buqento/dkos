@@ -12,7 +12,7 @@ class Loginfb extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         // console.log('Status login facebook: asem ', this.props.messages)
     }
 
@@ -69,7 +69,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleAuthLogin: () => dispatch({type: "AUTH_LOGIN"})
+        handleAuthLogin: () => dispatch({ type: "AUTH_LOGIN" })
     }
 }
 

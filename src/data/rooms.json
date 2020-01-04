@@ -1,0 +1,202 @@
+[
+  {
+    "id": "1",
+    "createdAt": 1577900501185,
+    "room_title": "Almira Kost & Homestay",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 52,
+    "owner_phone": "+62 853 4300 0101",
+    "description": "Hai guys yang masih cari tempat tinggal harian atau bulanan di kota Ambon Manise bisa langsung datang ke Almira Kost & Homestay di Seilale (jalan masuk dari gapura hative) depan Sekolah SD 30. Lokasi strategis, bersih dan nyaman. Berminat? Hubungi kami di nomor 082238004630",
+    "location": "Seilale",
+    "room_gender": 3,
+    "owner_name": "user.profile.first_name",
+    "lat": 9,
+    "lng": 39,
+    "image_url": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/75349163_118028696310111_1230955700255981568_n.jpg?_nc_cat=101&_nc_eui2=AeHNUb4e3JICc8AE5AFP2apNEaK1VVYGgTL9J8z_e5dDlKghGyfNEiLebNxKnrs6cCJisOC0pn_-JqVQSWJto1LDxIe6T30Y_bxgcdbs5y7Zvg&_nc_oc=AQm-65G8qqG8-geJVrwtYLQ9FDDQaWsdl-Q86VpMGnvLapCAdHU8FwYZbCvjYYQ8oIw&_nc_ht=scontent-sin2-1.xx&oh=b964e5bdeee3a9671ab275abd297d033&oe=5EA872BC",
+    "price_month": "Rp 500,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/75388155_118028756310105_4740737502065721344_n.jpg?_nc_cat=102&_nc_eui2=AeGyP4bHDhIzxe2E4cth7QRsg2KSQ--NSiESGuV6cpeMLNEV6LABOrhUGAAqr6mG91vvjEcOH7Eef-QORMKEZQuFSfLubJGN-puvetvlPgYKBA&_nc_oc=AQnhwNrk8REvF1SIPZ8skVz5ggTb2F8evljQwM4ztF3sJnyXZsYWI2wpjek6VcSGXj4&_nc_ht=scontent-sin2-1.xx&oh=c38eb75e49bf6db6fc1d14bb9cc6528a&oe=5E985510",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/73482829_118028856310095_5549510398299865088_n.jpg?_nc_cat=105&_nc_eui2=AeED1g-Vy6evagDEvOoZO-tQGidj3yTVtrIvG1imJrppDKeNZClDDJT8lTqlj_OTGBlQBcYcXeo401vaNUsekH_oKY-Rh7nsejx6xK3iw5QdxQ&_nc_oc=AQlWIa-hSDcirLlcOr6pRL-581Q7agDHvE26LU7iFFGojJmBTwo34BERD062LGusp9E&_nc_ht=scontent-sin2-1.xx&oh=3eabd09d1d529626a32492ab3acab053&oe=5EB10E28",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/74316001_118028882976759_2210624125427253248_n.jpg?_nc_cat=106&_nc_eui2=AeFuX_zqMGN99CyhVmC7Xo_LRMpTSUKN8kPl-ayb-vlihM2H8gbubv3uGb4auqpzyxvlHK9rY3ycRuwYO2Fv-pJEaRcPpwd2Ij2_CS2I3kAiNw&_nc_oc=AQlQTQm6MyGLBRuqIrI0dNqfE73G0PI4BmJIoq9TYnJxAyCrrCaOXaIi36W8zrg29nM&_nc_ht=scontent-sin2-1.xx&oh=9cf2c8b616e95ae9f66246645cd8e658&oe=5E6A74C5",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": true,
+        "wifi": true,
+        "kipas": true,
+        "ac": true,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -3.697656377010184,
+      "lng": 128.1765004992485
+    },
+    "likes": [10218122970640227]
+  },
+  {
+    "id": "2",
+    "createdAt": 1577936589864,
+    "room_title": "Kos Halong Atas",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 62,
+    "owner_phone": "+62 821 9799 4488",
+    "description": "Terima kos dengan harga terjangkau. Lokasi Halong atas (samping perumahan pemda). Luas kamar 3x4 dan 2.5x3.",
+    "location": "Halong",
+    "room_gender": 3,
+    "owner_name": "user.profile.first_name",
+    "lat": 49,
+    "lng": 48,
+    "image_url": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/p720x720/78746796_462589131059108_4028018809217482752_o.jpg?_nc_cat=101&_nc_eui2=AeFHp3qTJzV-r17PP5GywrekjtU1s43MPayNYANfVZlMRDtZFes9dVsQuK8Mz46VyHpFLZt24AW-ZgH7y0ttRnBrnYSPw2eKPdWWJQrmVmwtUw&_nc_oc=AQk7x8p7BWqD0x-HsZqXz6qnJozc-MDdyMWyP0FqYcVtIGuZ125v-x-JGmeO6C_fiso&_nc_ht=scontent-sin2-1.xx&oh=f6beca62e8a45bdae1e7849c0725ebc9&oe=5EA72261",
+    "price_month": "Rp 500,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-0/p180x540/78227887_462589237725764_1484718053324226560_o.jpg?_nc_cat=106&_nc_eui2=AeEiJTOTbSV5hEjw494x2rWUM039dUk4h1N70fdv-RUUIWkBaHe4Zab1MX8r2IYXDnJPattikkdKj5fHprT73ofyQEAhCunhgtiNg05a9MIOoQ&_nc_oc=AQnlC4rrHY4VAoW_GRZTj3mBSgjf1ylzM5IyenXo54fLhhb-p_7YiaB4jzOZzr4d0QI&_nc_ht=scontent-sin2-1.xx&oh=af1a918b88c9a91e0121bacce721abb9&oe=5EA368A2",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-0/p180x540/73224271_462589387725749_5658190353837064192_o.jpg?_nc_cat=111&_nc_eui2=AeFmzkBGUWe-yG9Q3LOExZY6B0dtZRlb1JRORZZC6asEZ6JWs5yScVnT_RT76HNZMKCekS1tv_WwQhYvQXS2DDjMxbNpjNWqRWWTib2wQIg7lw&_nc_oc=AQmO6VqtOHRLHb3Tn1Vpb_kwBk9DI8I3VRmvFoPQ2V2JSyNX8awHenotEMovmG3mbAw&_nc_ht=scontent-sin2-1.xx&oh=4ff496cb201d167e3dd6f046207202e0&oe=5E6DCE19",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-0/p180x540/78994661_462589094392445_253772596565245952_o.jpg?_nc_cat=100&_nc_eui2=AeF4cBhjfCbHbRmj-JCUpjBOuRb12CbquXIjUgUfUgYcDojHBEX649XYquPGG3VVWKmgqdO0MEWukBkaO-eJ7acv8Z6lnXQhBeJGCmupKNo-cA&_nc_oc=AQn3EM2z9O__XC-UfIASjnIbBrDVtUC5IxeLV0w63hDHHK3V0XZ7xceL4CUOtOJSyLc&_nc_ht=scontent-sin2-1.xx&oh=be26f7f8f290e5d9adfa57be5f209f29&oe=5E6C3504",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": false,
+        "wifi": false,
+        "kipas": true,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -3.65873783936901,
+      "lng": 128.22251379489902
+    },
+    "likes": [1,2]
+  },
+  {
+    "id": "3",
+    "createdAt": 1577959102001,
+    "room_title": "Kos Gudang Arang",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 98,
+    "owner_phone": "+62 857 7082 5336",
+    "description": "Kost khusus pegawai, karyawan dan keluarga. Fasilitas, air bersih, listrik, mesih cuci, kompor gas. Bangunan 2 lantai, tempat cuci pakaian, tempat jemur pakaian berada di lantai 3. Lokasi kompleks.perumahan PU.",
+    "location": "Benteng",
+    "room_gender": 3,
+    "owner_name": "user.profile.first_name",
+    "lat": 79,
+    "lng": 15,
+    "image_url": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/75464107_10214195062702768_1446807888830922752_n.jpg?_nc_cat=102&_nc_eui2=AeFJJnpnhXRzb_s_rz-SIGJ2FYjrC_OBRN51eGqElYAKOR7XI4W3-0vjyNzOsCrewx1Fy0D4-vtMHz6MXg3pOPTX1u1M_Ye8R_Gsor1zVrq3XQ&_nc_oc=AQmJLa089-lmSqXmTmDV6enFbm4Gn0dROlRmm_494usuE6H2mHhyuhcx5O2TIVhz17Q&_nc_ht=scontent-sin2-1.xx&oh=21c1b7e54a4094ae4ebe2d5dc065de9e&oe=5EAD8E4A",
+    "price_month": "Rp 1,500,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/75258502_10214195062302758_8240334888444624896_n.jpg?_nc_cat=103&_nc_eui2=AeFBKqtVipyB-dBXSkbiltqtLmyp_SYFwi-7j-xSmjHSn_8dOW_4jgmAoWWp180--fOL2EwS53gofPMPUAqTAxznlX4eWFzI8dM29UmcI53nHw&_nc_oc=AQkHe8LDLguY66l22cM4qAzxlbTuREZ9Iz4ZF8sMOG2G95MGgunULqPO2oJXTUl-8vU&_nc_ht=scontent-sin2-1.xx&oh=b1bc4c3a3e0d2d562dc2eaf0ddaaffcd&oe=5EB293BA",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/75361029_10214195063542789_2307536274300338176_n.jpg?_nc_cat=109&_nc_eui2=AeFxLLS3xX9uRZs98XsAI8fPOQsb088LxrHqd9yCbt9F4GIFPDppNLfpdXRVrC_74zZiBPpMhytF93Nzv4YhAYBdmkbd_E7LQ3g7OtAMOmGYTQ&_nc_oc=AQkXIOGyM7yQI4nGGkl2OxWxgd72ULjV02f3HJsZT3YSx1xN_GXuM13m4fuGAw2ylkI&_nc_ht=scontent-sin2-1.xx&oh=0b4aa6cbef3038c2d3bd0f1b9be0d399&oe=5E9622B5",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/74647594_10214195063262782_843524254015160320_n.jpg?_nc_cat=105&_nc_eui2=AeHzTXUBTiIdFGZ1qXW4cwXqqbLXXcuErg1hvJyG3MoPFE61sB8USn1WVcMOcNglc1acu4ReCHyhi9_aBMLUrsvhHsIXb4qdpOpdDimDtpkX5Q&_nc_oc=AQnRak86sFprpBOWgTn4Ryg7RXUq1HaylOaIlrSA8jFK_lzUa0n96gF458L4Vrr4sio&_nc_ht=scontent-sin2-1.xx&oh=b9b8f6c267ff4f14ffabc5232244ad1e&oe=5E69279B",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": true,
+        "wifi": true,
+        "kipas": false,
+        "ac": true,
+        "parkirMotor": true,
+        "parkirMobil": true
+      }
+    ],
+    "latLng": {
+      "lat": -3.7023890840600426,
+      "lng": 128.16412746906283
+    },
+    "likes": [1,2,3]
+  },
+  {
+    "id": "4",
+    "createdAt": 1577959503389,
+    "room_title": "Kos Passo",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 4,
+    "owner_phone": "+62 823 9813 5412",
+    "description": "Kos kontrak jangka panjang. Kamar mandi dalam. Lokasi sekitar SPN Passo.",
+    "location": "Passo",
+    "room_gender": 3,
+    "owner_name": "user.profile.first_name",
+    "lat": 27,
+    "lng": 8,
+    "image_url": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/73240683_1253518014830810_8110779063976591360_n.jpg?_nc_cat=103&_nc_eui2=AeHz8bkXyDIt36_nZzeooFInPPU-i7QCV1zrCfYuIzhke_0wi3DbriHsTX9vvdGRvTpyoyDAhYNGTG_yCOPv5MPMR8OtWdHR7tYcTuHZqRjSxw&_nc_oc=AQnZM4EmGDj12U3Prl4nER18ipTBCL_mC-Q_AnWGHp-n_P3h9SxkEICf4_nBwhekHBw&_nc_ht=scontent-sin2-1.xx&oh=4773c54088fa2e9074e0191d65952d01&oe=5EB00032",
+    "price_month": "Rp 450,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/74440986_1253518058164139_4937485706172825600_n.jpg?_nc_cat=109&_nc_eui2=AeHdN2QCyl_yETXSwNMQRmAAQZmIu38ds4q-eB94bv1NhB3jXCWkuVXAbpqYTJIuHI7Iofa5MbjPABlUDnvEdQ12uuJwaSj_-GN3h-VRUgwntg&_nc_oc=AQm1NKuBLKKbDjaIFMpy2kDits0I6xE_E3_8qxQgUwg6TAVR9gGEIsYRifemzz6FPLM&_nc_ht=scontent-sin2-1.xx&oh=2b75eb5557e86ee4051aed34f0f8ef40&oe=5E9B6EBB",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/74585065_1253518101497468_5188969570500608000_n.jpg?_nc_cat=105&_nc_eui2=AeFMLZYxrHhDH0t-88HGS970PQFXZ8c-2vghsqILK-sZzgei4FlIA-evrc2nwHuFa_w4MAhcqY9DjLVtqmMNKqGzskMEYKrDyJxed0dNaAUOZA&_nc_oc=AQm06PkQHCBtT0VvLXQgZ4SZZj7WQH6hNBil60evuuQAxlcmkv3FW0XqV9TRfn_6ngo&_nc_ht=scontent-sin2-1.xx&oh=269cd4698065ad040fadebf47bd69006&oe=5EA3A804",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/74588991_1253518081497470_3282597655556915200_n.jpg?_nc_cat=107&_nc_eui2=AeGZa-spNUjqOfO4RG3qrc_lm94N8MJMf99_AmWpCuxkL8zWuZXBvNYVcT8SZsLJC8w1tSWM86VNNYHCmAotZ2vSRoYWDll0fKyYt3J1EGSfow&_nc_oc=AQnJi0koX87HhgvQx8nJqo4rkr1bu6cSYkNh8UNlOWl1UlR2YI7C8F7pdelyc9OmnqE&_nc_ht=scontent-sin2-1.xx&oh=296c2c23d6dc2b19941102f5c70895a4&oe=5E97E480",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": true,
+        "wifi": false,
+        "kipas": false,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -3.6321676569589094,
+      "lng": 128.25353890657425
+    },
+    "likes": [1,2,10218122970640227,4]
+  }
+]

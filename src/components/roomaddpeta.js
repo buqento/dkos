@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import L from 'leaflet';
 import '../App.css';
 import { Map, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
@@ -10,36 +11,60 @@ var myIcon = L.icon({
   popupAnchor: [0, -41]
 })
 
-class Peta extends React.Component {
+class Roomaddpeta extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      latLng: props.latLng,
-      zoom: 16
+      zoom: 18
     }
   }
 
   render() {
+    const latLng = [this.props.lat, this.props.lng]
     return (
-      <Map className="map" center={this.state.latLng} zoom={this.state.zoom} zoomControl={false}>
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a>'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          maxNativeZoom={18}
-          maxZoom={18}
-        />
+      <>
+        <Map
+          className="map"
+          center={latLng}
+          zoom={this.state.zoom}
+          zoomControl={false}
+          onClick={this.props.handleAddlocation}>
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a>'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            maxNativeZoom={18}
+            maxZoom={18}
+          />
 
-        <ZoomControl position="topright" />
-        <Marker position={this.state.latLng} icon={myIcon}>
-          <Popup>
-            {this.props.room_title}
-          </Popup>
-        </Marker>
-      </Map>
+          <ZoomControl position="topright" />
+          {latLng && <Marker position={latLng} icon={myIcon}>
+            <Popup>Lokasi kos</Popup>
+          </Marker>
+          }
+
+        </Map>
+      </>
     )
   }
 
 }
 
-export default Peta;
+
+const mapStateToProps = (state) => {
+  return {
+    lat: state.lat,
+    lng: state.lng
+  }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleAddlocation: (e) => {
+      dispatch({ type: "ADD_LOCATION", loc: e.latlng })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Roomaddpeta);

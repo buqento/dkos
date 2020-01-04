@@ -2,7 +2,7 @@
   "name": "kost",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://buqento.github.io/dkos",
+  "homepage": "https://tk.klasiskotaambon.org/",
   "dependencies": {
     "@material-ui/core": "^4.7.1",
     "@material-ui/icons": "^4.5.1",
@@ -12,12 +12,14 @@
     "firebase": "^7.6.1",
     "gh-pages": "^2.1.1",
     "leaflet": "^1.6.0",
+    "material-ui-image": "^3.2.2",
     "moment": "^2.24.0",
     "react": "^16.12.0",
     "react-currency-format": "^1.0.0",
     "react-dom": "^16.12.0",
     "react-facebook": "^8.1.4",
     "react-facebook-login": "^4.1.1",
+    "react-helmet": "^5.2.1",
     "react-icons": "^3.8.0",
     "react-leaflet": "^2.6.1",
     "react-moment": "^0.9.6",
@@ -26,15 +28,14 @@
     "react-scripts": "3.2.0",
     "react-share": "^3.0.1",
     "react-spinners": "^0.6.1",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "sweetalert2-react": "^0.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

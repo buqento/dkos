@@ -1,0 +1,54 @@
+[
+  {
+    "id": "1",
+    "roomId": "1",
+    "createdAt": "2019-12-26T21:17:46.219Z",
+    "lemari": true,
+    "kasur": true,
+    "meja": true,
+    "wifi": true,
+    "kipas": true,
+    "ac": true,
+    "parkirMotor": true,
+    "parkirMobil": true
+  },
+  {
+    "id": "2",
+    "roomId": "2",
+    "createdAt": "2019-12-26T21:17:46.219Z",
+    "lemari": true,
+    "kasur": true,
+    "meja": true,
+    "wifi": true,
+    "kipas": false,
+    "ac": true,
+    "parkirMotor": true,
+    "parkirMobil": true
+  },
+  {
+    "id": "3",
+    "roomId": "3",
+    "createdAt": "2019-12-26T21:17:46.219Z",
+    "lemari": false,
+    "kasur": true,
+    "meja": false,
+    "wifi": false,
+    "kipas": false,
+    "ac": false,
+    "parkirMotor": true,
+    "parkirMobil": false
+  },
+  {
+    "id": "4",
+    "roomId": "4",
+    "createdAt": "2019-12-26T21:17:46.219Z",
+    "lemari": false,
+    "kasur": true,
+    "meja": false,
+    "wifi": false,
+    "kipas": false,
+    "ac": false,
+    "parkirMotor": true,
+    "parkirMobil": false
+  }
+]

@@ -91,14 +91,14 @@ class Login extends React.Component {
     }
 
     async handleLogin(event) {
-        
+
         if (!this.state.email) {
             return this.setState({ error: 'Email required!' })
         }
         const filter = this.state.email
         event.preventDefault()
         try {
-            this.setState({loading:true})
+            this.setState({ loading: true })
             await fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/users?search=${filter}`)
                 .then(response => response.json())
                 .then(data => {
@@ -118,7 +118,7 @@ class Login extends React.Component {
                         alert('username password do not match!')
                     }
                 })
-                this.setState({loading:false})
+            this.setState({ loading: false })
 
         } catch (e) {
             alert(e.message)
@@ -168,7 +168,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleMessages: () => dispatch({ type: "MESSAGE", p: 5 }),
-        handleAuthLogin: () => dispatch({type: "AUTH_LOGIN"})
+        handleAuthLogin: () => dispatch({ type: "AUTH_LOGIN" })
     }
 }
 

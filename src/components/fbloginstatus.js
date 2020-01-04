@@ -2,47 +2,34 @@ import React from 'react';
 import { FacebookProvider, Status } from 'react-facebook';
 import Fbloginbutton from './fbloginbutton';
 import Typography from '@material-ui/core/Typography';
+import { APP_ID } from '../global';
 
 export default class Fbloginstatus extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            _isMounted: false
-        }
-        console.log("constructor")
-    }
-
-    componentWillMount() {
-        console.log("componentWillMount")
-        this.setState({ _isMounted: false })
-    }
-
-    componentDidMount() {
-        console.log("componentDidMount")
-        this.setState({ _isMounted: true })
-    }
-
     render() {
         const user = JSON.parse(localStorage.getItem("user"));
         return (
-            <div>
+            <>
                 {
-                    this.state._isMounted &&
-                    <FacebookProvider appId="2615774338658413">
+                    <FacebookProvider appId={APP_ID}>
                         <Status>
                             {
-                                ({ status }) => (
-                                    status !== "connected" ? <Fbloginbutton /> :
-                                        <Typography variant="body2">
-                                            {user.profile.first_name}
-                                        </Typography>
+                                ({ loading, status }) => (
+
+                                    <>
+                                    {console.log(status)}
+                                    {
+                                        status !== "connected" ? <Fbloginbutton /> :
+                                                                            <Typography variant="body2">
+                                                                                {user.profile.first_name}
+                                                                            </Typography>
+                                    }
+                                    </>
                                 )
                             }
                         </Status>
                     </FacebookProvider>
                 }
-            </div>
+            </>
         )
     }
 }

@@ -1,32 +1,30 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import Moment from 'react-moment';
 import CurrencyFormat from 'react-currency-format';
 import Peta from './peta';
-import Roomsmore from './roomsmore';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 import Fbcomment from './fbcomment';
+import Navigate from './navigate';
 import Fbshare from './fbshare';
 import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import MoneyIcon from '@material-ui/icons/Money';
 import { MdPictureInPicture, MdDirectionsCar, MdToys, MdMotorcycle, MdWifi, MdAcUnit, MdKitchen, MdHotel } from 'react-icons/md';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
 import { Typography, Breadcrumbs, Link, Grid, Divider } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Skeleton from '@material-ui/lab/Skeleton';
-import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Image from 'material-ui-image'
+import { Helmet } from 'react-helmet';
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		padding: theme.spacing(1, 2),
+		padding: theme.spacing(1, 1),
 		display: 'flex',
 		alignItems: 'center',
 		maxWidth: 900,
@@ -46,6 +44,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	card: {
 		marginBottom: 20,
+		boxShadow: "none"
 	},
 	divider: {
 		marginBottom: 20,
@@ -56,159 +55,149 @@ const DetailView = (props) => {
 	const classes = useStyles();
 
 	return (
-		<div>
 
-			<Card className={classes.card}>
-				<CardHeader
-					avatar={
-						<Avatar alt="dK" src={props.avatar} className={classes.bigAvatar} />
-					}
-					action={
-						<Fbshare
-							id={props.id}
-							room_title={props.room_title}
-							description={props.description} />
-					}
-					title={props.owner_name}
-					subheader={<Moment fromNow>{props.createdAt}</Moment>}
-				/>
-				<CardMedia
-					className={classes.media}
-					image={props.image_url}
-					title={props.room_title}
-				/>
-				<CardContent>
+		<>
+			<GridList cellHeight={200} cols={4}>
+				{props.photo_arr.map(tile => (
+					<GridListTile key={tile.img} cols={tile.cols || 1}>
+						<Image src={tile.img} alt={tile.title} />
+					</GridListTile>
+				))}
+			</GridList>
 
-					<Typography variant="h5">{props.room_title + ' ' + props.location}</Typography>
-					<Typography variant="body1">Kos
-						{props.room_gender === 1 ? " Putra" : props.room_gender === 2 ? " Putri" : " Campur"}
-					</Typography>
+			<Typography variant="h5">{props.room_title}</Typography>
+			<Typography gutterBottom variant="body1">Kos
+						{props.room_gender === 1 ? " Putra" : props.room_gender === 2 ? " Putri" : " Campur"} &bull; {props.location}
+			</Typography>
 
 
-					<Divider className={classes.divider} />
-					<ListItem>
-						<ListItemIcon>
-							<MoneyIcon size="2em" />
-						</ListItemIcon>
-						<ListItemText>
-							<CurrencyFormat value={props.price_month} displayType={'text'} thousandSeparator={true} prefix={'Rp '} /> / Bulan
+			<Divider className={classes.divider} />
+			<ListItem>
+				<ListItemIcon>
+					<MoneyIcon size="2em" />
+				</ListItemIcon>
+				<ListItemText>
+					<CurrencyFormat value={props.price_month} displayType={'text'} thousandSeparator={true} prefix={'Rp '} /> / Bulan
 						</ListItemText>
-					</ListItem>
+			</ListItem>
 
-					<Divider className={classes.divider} />
-					<ListItem>
-						<ListItemIcon>
-							<WhatsAppIcon size="2em" />
-						</ListItemIcon>
-						<ListItemText primary={props.owner_phone} />
-					</ListItem>
+			<Divider className={classes.divider} />
+			<ListItem>
+				<ListItemIcon>
+					<WhatsAppIcon size="2em" />
+				</ListItemIcon>
+				<ListItemText primary={props.owner_phone} />
+			</ListItem>
 
 
-					<Divider className={classes.divider} />
-					<Typography variant="body1">Deskripsi</Typography>
-					<Typography variant="caption">{props.description}</Typography>
+			<Divider className={classes.divider} />
+			<Typography variant="body1">Deskripsi</Typography>
+			<Typography gutterBottom variant="caption">{props.description}</Typography>
 
-					<Divider className={classes.divider} />
+			<Divider className={classes.divider} />
 
-					<Grid container spacing={1}>
-						<Grid item xs={12} sm={6}>
-							<Typography variant="body1">Fasilitas Kamar</Typography>
-							<Typography variant="caption">
-								<List component="nav">
-									{props.facilities[0].lemari &&
-										<ListItem>
-											<ListItemIcon>
-												<MdKitchen size="2em" />
-											</ListItemIcon>
-											<ListItemText primary="Lemari Pakaian" />
-										</ListItem>
-									}
-									{props.facilities[0].kasur &&
-										<ListItem>
-											<ListItemIcon>
-												<MdHotel size="2em" />
-											</ListItemIcon>
-											<ListItemText primary="Kasur" />
-										</ListItem>
-									}
-									{props.facilities[0].meja &&
-										<ListItem>
-											<ListItemIcon>
-												<MdPictureInPicture size="2em" />
-											</ListItemIcon>
-											<ListItemText primary="Meja Belajar" />
-										</ListItem>
-									}
-									{props.facilities[0].wifi &&
-										<ListItem>
-											<ListItemIcon>
-												<MdWifi size="2em" />
-											</ListItemIcon>
-											<ListItemText primary="Wifi Hotspot" />
-										</ListItem>
-									}
-									{props.facilities[0].kipas &&
-										<ListItem>
-											<ListItemIcon>
-												<MdToys size="2em" />
-											</ListItemIcon>
-											<ListItemText primary="Kipas Angin" />
-										</ListItem>
-									}
-									{props.facilities[0].ac &&
-										<ListItem>
-											<ListItemIcon>
-												<MdAcUnit size="2em" />
-											</ListItemIcon>
-											<ListItemText primary="Air Conditioner" />
-										</ListItem>
-									}
-								</List>
-							</Typography>
-						</Grid>
+			<Grid container spacing={1}>
+				<Grid item xs={12} sm={6}>
+					<Typography variant="body1">Fasilitas Kamar</Typography>
+					<Typography variant="caption">
+						<List component="nav">
+							{props.facilities_arr[0].lemari &&
+								<ListItem>
+									<ListItemIcon>
+										<MdKitchen size="2em" />
+									</ListItemIcon>
+									<ListItemText primary="Lemari Pakaian" />
+								</ListItem>
+							}
+							{props.facilities_arr[0].kasur &&
+								<ListItem>
+									<ListItemIcon>
+										<MdHotel size="2em" />
+									</ListItemIcon>
+									<ListItemText primary="Kasur" />
+								</ListItem>
+							}
+							{props.facilities_arr[0].meja &&
+								<ListItem>
+									<ListItemIcon>
+										<MdPictureInPicture size="2em" />
+									</ListItemIcon>
+									<ListItemText primary="Meja Belajar" />
+								</ListItem>
+							}
+							{props.facilities_arr[0].wifi &&
+								<ListItem>
+									<ListItemIcon>
+										<MdWifi size="2em" />
+									</ListItemIcon>
+									<ListItemText primary="Wifi Hotspot" />
+								</ListItem>
+							}
+							{props.facilities_arr[0].kipas &&
+								<ListItem>
+									<ListItemIcon>
+										<MdToys size="2em" />
+									</ListItemIcon>
+									<ListItemText primary="Kipas Angin" />
+								</ListItem>
+							}
+							{props.facilities_arr[0].ac &&
+								<ListItem>
+									<ListItemIcon>
+										<MdAcUnit size="2em" />
+									</ListItemIcon>
+									<ListItemText primary="Air Conditioner" />
+								</ListItem>
+							}
+						</List>
+					</Typography>
+				</Grid>
 
-						<Grid item>
-							<Typography variant="body1">Fasilitas Umum</Typography>
-							<Typography variant="caption">
-								<List>
-									{props.facilities[0].parkirMotor &&
-										<ListItem>
-											<ListItemIcon>
-												<OutdoorGrillIcon size="2em" />
-											</ListItemIcon>
-											<ListItemText primary="Dapur Umum" />
-										</ListItem>
-									}
-									{props.facilities[0].parkirMotor &&
-										<ListItem>
-											<ListItemIcon>
-												<MdMotorcycle size="2em" />
-											</ListItemIcon>
-											<ListItemText primary="Parkiran Sepeda Motor" />
-										</ListItem>
-									}
-									{props.facilities[0].parkirMobil &&
-										<ListItem>
-											<ListItemIcon>
-												<MdDirectionsCar size="2em" />
-											</ListItemIcon>
-											<ListItemText primary="Parkiran Mobil" />
-										</ListItem>
-									}
-								</List>
-							</Typography>
-						</Grid>
-					</Grid>
+				<Grid item>
+					<Typography variant="body1">Fasilitas Umum</Typography>
+					<Typography variant="caption">
+						<List>
+							{props.facilities_arr[0].parkirMotor &&
+								<ListItem>
+									<ListItemIcon>
+										<OutdoorGrillIcon size="2em" />
+									</ListItemIcon>
+									<ListItemText primary="Dapur" />
+								</ListItem>
+							}
+							{props.facilities_arr[0].parkirMotor &&
+								<ListItem>
+									<ListItemIcon>
+										<MdMotorcycle size="2em" />
+									</ListItemIcon>
+									<ListItemText primary="Parkiran Sepeda Motor" />
+								</ListItem>
+							}
+							{props.facilities_arr[0].parkirMobil &&
+								<ListItem>
+									<ListItemIcon>
+										<MdDirectionsCar size="2em" />
+									</ListItemIcon>
+									<ListItemText primary="Parkiran Mobil" />
+								</ListItem>
+							}
+						</List>
+					</Typography>
+				</Grid>
+			</Grid>
 
-					<Divider className={classes.divider} />
-					<Typography variant="body1">Lokasi</Typography>
-					<Peta lat={props.lat} lng={props.lng} room_title={props.room_title} />
 
-				</CardContent>
-			</Card>
-			{/*<Roomsmore location={props.location} />*/}
 
-		</div>
+			<Divider className={classes.divider} />
+			<Typography variant="body1">Lokasi</Typography>
+			<Peta latLng={props.latLng} room_title={props.room_title} />
+			<br />
+			<Fbshare
+				id={props.id}
+				image_url={props.image_url}
+				room_title={props.room_title}
+				description={props.description} />
+		</>
 	)
 }
 
@@ -220,7 +209,8 @@ class Detail extends React.Component {
 			loading: true,
 			room: [],
 			facilities: [],
-			date_text: ''
+			date_text: '',
+			showAlert: false
 		}
 	}
 
@@ -241,7 +231,16 @@ class Detail extends React.Component {
 			<RouterLink innerRef={ref} to="/" {...props} />
 		));
 
-		return (<div>
+		return (<>
+
+			<Helmet>
+				<meta property="og:url" content={"https://www.tantekos.com/room/" + this.state.room.id} />
+				<meta property="og:type" content="article" />
+				<meta property="og:title" content={this.state.room.room_title} />
+				<meta property="og:description" content={this.state.room.room_title + ' ' + this.state.room.location + ' - ' + this.state.room.description} />
+				<meta property="og:image" content={this.state.room.image_url} />
+			</Helmet>
+
 			{
 				this.state.loading ?
 					<Skeleton height={30} width="20%" />
@@ -283,10 +282,10 @@ class Detail extends React.Component {
 								owner_name={this.state.room.owner_name}
 								owner_phone={this.state.room.owner_phone}
 								location={this.state.room.location}
-								lat={this.state.room.lat}
-								lng={this.state.room.lng}
+								latLng={this.state.room.latLng}
 								createdAt={this.state.room.createdAt}
-								facilities={this.state.facilities} />
+								photo_arr={this.state.room.photo_arr}
+								facilities_arr={this.state.room.facilities_arr} />
 						)
 					}
 				</Grid>
@@ -296,19 +295,18 @@ class Detail extends React.Component {
 						<div>
 							<Skeleton variant="rect" width="100%" height={50} />
 							<React.Fragment>
-								<Skeleton variant="circle" width={40} height={40} />
 								<Skeleton height={30} style={{ marginBottom: 2 }} />
 								<Skeleton height={30} width="80%" />
 							</React.Fragment>
 						</div>
 						: <Fbcomment id={this.state.room.id} />
 					}
+					<Navigate />
 
 				</Grid>
 
 			</Grid>
-
-		</div>)
+		</>)
 	}
 }
 

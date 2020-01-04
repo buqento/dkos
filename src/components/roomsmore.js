@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import {Button, CardMedia, CardActions, CardContent} from '@material-ui/core';
+import { Button, CardMedia, CardActions, CardContent } from '@material-ui/core';
 
 import CurrencyFormat from 'react-currency-format';
 
@@ -51,7 +51,7 @@ class Roomsmore extends React.Component {
                                         alt={room.room_title}
                                         image={room.image_url}
                                         title={room.room_title}
-                                        />
+                                    />
                                     <CardContent>
                                         <Typography variant="body1">{room.room_title}</Typography>
                                         <Typography variant="body2">
@@ -59,7 +59,7 @@ class Roomsmore extends React.Component {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button href={"../room/"+room.id}>Selengkapnya</Button>
+                                        <Button href={"../room/" + room.id}>Selengkapnya</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>

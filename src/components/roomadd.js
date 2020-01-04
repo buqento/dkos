@@ -10,6 +10,8 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Select from '@material-ui/core/Select';
+import { Helmet } from "react-helmet";
+import Roomaddpeta from './roomaddpeta';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -23,6 +25,10 @@ const useStyles = makeStyles(theme => ({
 const Formview = (props) => {
     const classes = useStyles();
     return (<div>
+        <Helmet>
+            <title>Add Room</title>
+            <meta name="description" content="Add new room" />
+        </Helmet>
 
         <Typography variant="h5">Data kos</Typography>
 
@@ -45,13 +51,41 @@ const Formview = (props) => {
                     <TextField
                         variant="outlined"
                         name="image_url"
-                        placeholder="URL Foto"
+                        placeholder="Foto utama"
                         margin="dense"
                         onChange={props.handleChange}
                         required
                         fullWidth
                     />
-                    <CurrencyFormat 
+
+                    <TextField
+                        variant="outlined"
+                        name="photo_one"
+                        placeholder="Detail foto"
+                        margin="dense"
+                        onChange={props.handleChange}
+                        required
+                        fullWidth
+                    />
+                    <TextField
+                        variant="outlined"
+                        name="photo_two"
+                        placeholder="Detail foto"
+                        margin="dense"
+                        onChange={props.handleChange}
+                        required
+                        fullWidth
+                    />
+                    <TextField
+                        variant="outlined"
+                        name="photo_three"
+                        placeholder="Detail foto"
+                        margin="dense"
+                        onChange={props.handleChange}
+                        required
+                        fullWidth
+                    />
+                    <CurrencyFormat
                         customInput={TextField}
                         variant="outlined"
                         name="price_month"
@@ -60,24 +94,23 @@ const Formview = (props) => {
                         onChange={props.handleChange}
                         required
                         fullWidth
-                        thousandSeparator={true} 
+                        thousandSeparator={true}
                         prefix={'Rp '} />
 
-                    <CurrencyFormat 
+                    <CurrencyFormat
                         customInput={TextField}
                         variant="outlined"
                         name="owner_phone"
                         placeholder="+62 852 xxxx xxxx"
-                        format="+62 ### #### ####" 
+                        format="+62 ### #### ####"
                         mask="_"
                         margin="dense"
                         onChange={props.handleChange}
                         required
                         fullWidth
-                        thousandSeparator={true} 
-                        prefix={'Rp '} />
-                    
-                    
+                        thousandSeparator={true} />
+
+
                     <TextField
                         variant="outlined"
                         name="description"
@@ -89,72 +122,54 @@ const Formview = (props) => {
                         fullWidth
                         multiline
                     />
+                    <br />
+                    <br />
 
                     <Select
                         value={props.room_gender}
                         onChange={props.handleChange}
                         name="room_gender"
+                        variant="outlined"
                         margin="dense"
                         required
                         fullWidth
                     >
-                    {
-                        [{ id: 1, label: "Putra" }, { id: 2, label: "Putri" }, { id: 3, label: "Campur" }]
-                            .map(option => (
-                                <MenuItem key={option.id} value={option.id}>
-                                    {option.label}
-                                </MenuItem>
-                            ))
-                    }
+                        {
+                            [{ id: 1, label: "Putra" }, { id: 2, label: "Putri" }, { id: 3, label: "Campur" }]
+                                .map(option => (
+                                    <MenuItem key={option.id} value={option.id}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))
+                        }
                     </Select>
-
+                    <br />
+                    <br />
                     <Select
                         value={props.location}
                         onChange={props.handleChange}
                         name="location"
-                        margin="dense"
-                        required
-                        fullWidth
-                        >
-                            {props.locations.map(option => (
-                                <MenuItem key={option.id} value={option.name}>
-                                    {option.name}
-                                </MenuItem>
-                            ))}
-                    </Select>
-
-                    {/* <TextField
                         variant="outlined"
-                        label="Lokasi"
-                        name="location"
                         margin="dense"
-                        value={props.locationSelect}
-                        onChange={props.handleChange}
-                        select
                         required
                         fullWidth
                     >
-                    </TextField> */}
-                    <TextField
-                        variant="outlined"
-                        name="lat"
-                        placeholder="Latitude"
-                        value={props.lat}
-                        margin="dense"
-                        onChange={props.handleChange}
-                        required
-                        fullWidth
-                    />
-                    <TextField
-                        variant="outlined"
-                        name="lng"
-                        placeholder="Longitude"
-                        value={props.lng}
-                        margin="dense"
-                        onChange={props.handleChange}
-                        required
-                        fullWidth
-                    />
+                        {props.locations.sort(function (a, b) {
+                    var nameA = a.name.toUpperCase();
+                    var nameB = b.name.toUpperCase();
+                    if (nameA < nameB) {
+                        return -1;
+                    }
+                    if (nameA > nameB) {
+                        return 1;
+                    }
+                    return 0;
+                }).map(option => (
+                            <MenuItem key={option.id} value={option.name}>
+                                {option.name}
+                            </MenuItem>
+                        ))}
+                    </Select>
                 </Grid>
 
                 <Grid item md={6}>
@@ -255,6 +270,10 @@ const Formview = (props) => {
                         }
                         label="Parkiran Mobil"
                     />
+
+                    <Roomaddpeta />
+
+
                 </Grid>
             </Grid>
             <Button variant="outlined" color="primary" type="submit">Publish</Button>
@@ -273,13 +292,17 @@ class Roomadd extends React.Component {
             lastData: "",
             room_title: "",
             image_url: "",
+            photo_arr: "",
+            facilities_arr: "",
+            photo_one: "",
+            photo_two: "",
+            photo_three: "",
             price_month: "",
             owner_phone: "",
             owner_name: "",
             description: "",
             location: "",
-            lat: "-6.164705",
-            lng: "106.781984",
+            latLng: [],
             room_gender: 1,
             createdAt: "",
             lemari: true,
@@ -309,17 +332,18 @@ class Roomadd extends React.Component {
 
     handlePost(event) {
         this.setState({ loading: true })
-        let user = JSON.parse(localStorage.getItem("user"))
+        // let user = JSON.parse(localStorage.getItem("user"))
         const {
             room_title,
             image_url,
+            photo_one,
+            photo_two,
+            photo_three,
             price_month,
             owner_phone,
             description,
             room_gender,
             location,
-            lat,
-            lng,
             lemari,
             kasur,
             meja,
@@ -332,16 +356,51 @@ class Roomadd extends React.Component {
 
         Axios.post(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms`,
             {
-                avatar:user.profile.picture.data.url,
+                avatar: "user.profile.picture.data.url",
                 room_title: room_title,
                 image_url: image_url,
+                photo_arr:
+                    [
+                        {
+                            img: photo_one,
+                            title: "t1",
+                            cols: 4
+                        },
+                        {
+                            img: photo_two,
+                            title: "t2",
+                            cols: 2
+                        },
+                        {
+                            img: photo_three,
+                            title: "t3",
+                            cols: 2
+                        }
+                    ],
+                facilities_arr:
+                    [
+                        {
+                            lemari: lemari,
+                            kasur: kasur,
+                            meja: meja,
+                            wifi: wifi,
+                            kipas: kipas,
+                            ac: ac,
+                            parkirMotor: parkirMotor,
+                            parkirMobil: parkirMobil
+                        }
+                    ],
                 price_month: price_month,
                 owner_phone: owner_phone,
-                owner_name: user.profile.first_name,
+                owner_name: "user.profile.first_name",
                 description: description,
                 location: location,
-                lat: lat,
-                lng: lng,
+                latLng:
+                {
+                    lat: this.props.lat,
+                    lng: this.props.lng
+                }
+                ,
                 room_gender: room_gender,
                 createdAt: Date.now()
             },
@@ -350,31 +409,11 @@ class Roomadd extends React.Component {
         ).then((response) => {
             this.setState({ loading: false })
             console.log(response)
-            // response.status === 201 && this.props.history.push("/")
         }).catch(error => {
             console.warn(error)
         })
 
-        Axios.post(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms/${this.state.lastData}/facilities`,
-            {               
-                lemari: lemari,
-                kasur: kasur,
-                meja: meja,
-                wifi: wifi,
-                kipas: kipas,
-                ac: ac,
-                parkirMotor: parkirMotor,
-                parkirMobil: parkirMobil
-            },
-            { headers: { 'Content-Type': 'application/json' } },
-            { withCredentials: true }
-        ).then((response) => {
-            this.setState({ loading: false })
-            console.log(response)
-            response.status === 201 && this.props.history.push("/")
-        }).catch(error => {
-            console.warn(error)
-        })
+
         event.preventDefault()
     }
 
@@ -383,23 +422,11 @@ class Roomadd extends React.Component {
         await Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/location`)
             .then(response => {
                 this.setState({ locations: response.data })
-                this.setState({ location: this.state.locations[0].name})
+                this.setState({ location: this.state.locations[0].name })
             }).catch(error => {
                 console.warn(error)
             })
 
-        // Get Last ID Room
-        await Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms`)
-            .then(response => {
-                if(response.data.length === 0){
-                    this.setState({ lastData: 1 })
-                }else{
-                    let last = response.data[response.data.length - 1]
-                    let lastData = parseInt(last.id) + 1
-                    this.setState({ lastData: lastData })    
-                }
-            })
-            .catch(e => console.warn(e))
     }
 
     render() {
@@ -408,6 +435,7 @@ class Roomadd extends React.Component {
                 room_gender={this.state.room_gender}
                 locations={this.state.locations}
                 location={this.state.location}
+                latLng={this.props.latLng}
                 lemari={this.state.lemari}
                 kasur={this.state.kasur}
                 meja={this.state.meja}
@@ -427,8 +455,9 @@ class Roomadd extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return{
-        loginStatus: state.loginStatus
+    return {
+        lat: state.lat,
+        lng: state.lng
     }
 }
 
