@@ -6,7 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^4.7.1",
     "@material-ui/icons": "^4.5.1",
-    "@material-ui/lab": "^4.0.0-alpha.35",
+    "@material-ui/lab": "^4.0.0-alpha.39",
     "@unicef/material-ui-currency-textfield": "^0.8.4",
     "axios": "^0.19.0",
     "firebase": "^7.6.1",
@@ -19,6 +19,7 @@
     "react-dom": "^16.12.0",
     "react-facebook": "^8.1.4",
     "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.0.7",
     "react-helmet": "^5.2.1",
     "react-icons": "^3.8.0",
     "react-leaflet": "^2.6.1",
@@ -27,8 +28,10 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-share": "^3.0.1",
+    "react-slug": "^0.1.2",
     "react-spinners": "^0.6.1",
     "redux": "^4.0.4",
+    "slugify": "^1.3.6",
     "sweetalert2-react": "^0.8.3"
   },
   "scripts": {

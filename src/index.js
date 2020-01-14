@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import 'leaflet/dist/leaflet.css';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 
-
+// Create theme
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -27,7 +27,7 @@ const theme = createMuiTheme({
 
 //Global state
 const globalState = {
-	order: 1,
+	loginStatus: false,
 	filter:"",
 	lat:-3.693139,
 	lng: 128.183085
@@ -36,22 +36,54 @@ const globalState = {
 //Reducer
 const rootReducer = (state = globalState, action) => {
 
-	if(action.type === "FILTER_LOCATION"){
-		return{
-			...state,
-			filter: action.filter
+	switch(action.type){
+		case "FILTER_LOCATION": {
+			return{
+				...state,
+				filter: action.filter
+			}
+		}
+		case "ADD_LOCATION": {
+			return{
+				...state,
+				lat:action.loc.lat,
+				lng:action.loc.lng
+			}
+		}
+		case "LOGIN_STATUS": {
+			return{
+				...state,
+				loginStatus: !state.loginStatus
+			}
+		}
+		default:{
+			return{
+				...state
+			}
 		}
 	}
 
-	if(action.type === "ADD_LOCATION"){
-		return{
-			...state,
-			lat:action.loc.lat,
-			lng:action.loc.lng
-		}
-	}
+	// if(action.type === "FILTER_LOCATION"){
+	// 	return{
+	// 		...state,
+	// 		filter: action.filter
+	// 	}
+	// }
+	// if(action.type === "LOGIN_STATUS"){
+	// 	return{
+	// 		...state,
+	// 		loginStatus: !state.loginStatus
+	// 	}
+	// }
+	// if(action.type === "ADD_LOCATION"){
+	// 	return{
+	// 		...state,
+	// 		lat:action.loc.lat,
+	// 		lng:action.loc.lng
+	// 	}
+	// }
 
-	return state;
+	// return state;
 }
 
 //Store
@@ -70,3 +102,4 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+// serviceWorker.register();

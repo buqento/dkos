@@ -12,6 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Select from '@material-ui/core/Select';
 import { Helmet } from "react-helmet";
 import Roomaddpeta from './roomaddpeta';
+import Slugify from 'slugify';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -27,7 +28,6 @@ const Formview = (props) => {
     return (<div>
         <Helmet>
             <title>Add Room</title>
-            <meta name="description" content="Add new room" />
         </Helmet>
 
         <Typography variant="h5">Data kos</Typography>
@@ -85,6 +85,7 @@ const Formview = (props) => {
                         required
                         fullWidth
                     />
+
                     <CurrencyFormat
                         customInput={TextField}
                         variant="outlined"
@@ -155,16 +156,16 @@ const Formview = (props) => {
                         fullWidth
                     >
                         {props.locations.sort(function (a, b) {
-                    var nameA = a.name.toUpperCase();
-                    var nameB = b.name.toUpperCase();
-                    if (nameA < nameB) {
-                        return -1;
-                    }
-                    if (nameA > nameB) {
-                        return 1;
-                    }
-                    return 0;
-                }).map(option => (
+                            var nameA = a.name.toUpperCase();
+                            var nameB = b.name.toUpperCase();
+                            if (nameA < nameB) {
+                                return -1;
+                            }
+                            if (nameA > nameB) {
+                                return 1;
+                            }
+                            return 0;
+                        }).map(option => (
                             <MenuItem key={option.id} value={option.name}>
                                 {option.name}
                             </MenuItem>
@@ -305,6 +306,7 @@ class Roomadd extends React.Component {
             latLng: [],
             room_gender: 1,
             createdAt: "",
+            slug: "",
             lemari: true,
             kasur: true,
             meja: false,
@@ -359,48 +361,28 @@ class Roomadd extends React.Component {
                 avatar: "user.profile.picture.data.url",
                 room_title: room_title,
                 image_url: image_url,
-                photo_arr:
-                    [
-                        {
-                            img: photo_one,
-                            title: "t1",
-                            cols: 4
-                        },
-                        {
-                            img: photo_two,
-                            title: "t2",
-                            cols: 2
-                        },
-                        {
-                            img: photo_three,
-                            title: "t3",
-                            cols: 2
-                        }
-                    ],
-                facilities_arr:
-                    [
-                        {
-                            lemari: lemari,
-                            kasur: kasur,
-                            meja: meja,
-                            wifi: wifi,
-                            kipas: kipas,
-                            ac: ac,
-                            parkirMotor: parkirMotor,
-                            parkirMobil: parkirMobil
-                        }
-                    ],
+                photo_arr: [
+                    { img: photo_one, title: "t1", cols: 4 },
+                    { img: photo_two, title: "t2", cols: 2 },
+                    { img: photo_three, title: "t3", cols: 2 }
+                ],
+                facilities_arr: [{
+                    lemari: lemari,
+                    kasur: kasur,
+                    meja: meja,
+                    wifi: wifi,
+                    kipas: kipas,
+                    ac: ac,
+                    parkirMotor: parkirMotor,
+                    parkirMobil: parkirMobil
+                }],
                 price_month: price_month,
                 owner_phone: owner_phone,
                 owner_name: "user.profile.first_name",
                 description: description,
                 location: location,
-                latLng:
-                {
-                    lat: this.props.lat,
-                    lng: this.props.lng
-                }
-                ,
+                slug: Slugify(room_title.toLowerCase()),
+                latLng: { lat: this.props.lat, lng: this.props.lng },
                 room_gender: room_gender,
                 createdAt: Date.now()
             },
@@ -412,8 +394,6 @@ class Roomadd extends React.Component {
         }).catch(error => {
             console.warn(error)
         })
-
-
         event.preventDefault()
     }
 
@@ -426,7 +406,6 @@ class Roomadd extends React.Component {
             }).catch(error => {
                 console.warn(error)
             })
-
     }
 
     render() {
@@ -451,7 +430,6 @@ class Roomadd extends React.Component {
             />
         </div>)
     }
-
 }
 
 const mapStateToProps = (state) => {

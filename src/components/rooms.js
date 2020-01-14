@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import {CardActions} from '@material-ui/core';
+import { CardActions } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Select, MenuItem, Grid } from '@material-ui/core';
@@ -15,9 +15,6 @@ import { Link as RouterLink } from 'react-router-dom';
 import Moment from 'react-moment';
 import Fbshare from './fbshare';
 import Navigate from './navigate';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
@@ -37,7 +34,6 @@ const useStyles = makeStyles(theme => ({
 
 const Roomview = (props) => {
     const classes = useStyles();
-    const user = JSON.parse(localStorage.getItem("user"));
     const numberOfItems = props.limit;
     const Linkdetail = React.forwardRef((props, ref) => <RouterLink innerRef={ref} {...props} />);
     return (<div>
@@ -60,7 +56,7 @@ const Roomview = (props) => {
                                 <Card key={room.id}>
                                     <CardActionArea
                                         component={Linkdetail}
-                                        to={"/room/" + room.id}>
+                                        to={"/room/" + room.slug}>
                                         <CardMedia
                                             className={useStyles.media}
                                             component="img"
@@ -71,39 +67,33 @@ const Roomview = (props) => {
                                         />
                                         <CardContent>
                                             <Typography gutterBottom variant="h5">
-                                                {room.room_title} 
+                                                {room.room_title}
                                             </Typography>
-                                            <Typography variant="body1">Kos
-							                {
+                                            <Typography variant="body1">
+
+                                                {
                                                     room.room_gender === 1 ? " Putra" :
                                                         room.room_gender === 2 ? " Putri" : " Campur"
-                                                } &bull; {room.location} &bull; {room.price_month}
-                                                
+                                                } &bull; {room.location} &bull; {room.favorites.length >= 1 && room.favorites.length + ' Suka'}
+
                                             </Typography>
                                         </CardContent>
-
-
                                     </CardActionArea>
-                                      <CardActions disableSpacing>
-                                        <IconButton aria-label="add to favorites" onClick={props.handleFavorites(room.id)}>
-                                            {
-                                                user &&
-                                                room.favorites.find(uid => {return uid === parseInt(user.profile.id)}) ? 
-                                                <FavoriteIcon style={{color:"pink"}} /> : <FavoriteBorderIcon />
-                                            }
-                                        </IconButton>
-                                        <IconButton aria-label="share">
-                                          <Fbshare
-                                            id={room.id}
-                                            image_url={room.image_url}
-                                            room_title={room.room_title}
-                                            description={room.description} />
-                                        </IconButton>
-                                        <Typography variant="body2" className={clsx(classes.expand)}>
-                                          <Moment fromNow>{room.createdAt}</Moment>&nbsp;&nbsp;&nbsp;
-                                        </Typography>
 
-                                      </CardActions>
+                                    <CardActions disableSpacing>
+                                        <Button variant="outlined">
+                                            <Fbshare
+                                                id={room.id}
+                                                slug={room.slug}
+                                                image_url={room.image_url}
+                                                room_title={room.room_title}
+                                                description={room.description} />
+                                        </Button>
+                                        <Typography variant="body2" className={clsx(classes.expand)}>
+                                            <Moment fromNow>{room.createdAt}</Moment>&nbsp;&nbsp;&nbsp;
+                                    </Typography>
+                                    </CardActions>
+
                                 </Card>
 
                             </Grid>
@@ -142,7 +132,7 @@ const LocationFilter = (props) => {
             onChange={props.handleFilter}
             autoWidth
         >
-            <MenuItem key="semua" value="semua">Ambon&nbsp;</MenuItem>
+            <MenuItem key="semua" value="semua">Semua Lokasi&nbsp;</MenuItem>
 
             {
                 props.locations.sort(function (a, b) {
@@ -180,25 +170,6 @@ class Rooms extends React.Component {
         this.setState({ limit: this.state.limit + 4 })
     }
 
-    handleFavorites = param => e => {
-        const i = param - 1;
-        const user = JSON.parse(localStorage.getItem('user'))
-        const favorites = this.state.rooms[i].favorites
-        favorites.push(parseInt(user.profile.id))
-        const data = {favorites: favorites}
-        return fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms/${param}`,{
-                    method:'PUT',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(res => {
-                    return res
-                }).catch(err => {
-                    alert(err)
-                })
-    }
-
     handleFilter = (event) => {
         this.setState({ loading: true })
         this.setState({ [event.target.name]: event.target.value })
@@ -213,6 +184,7 @@ class Rooms extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({ loading: true })
         Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/location`)
             .then(response => {
                 this.setState({ locations: response.data })
@@ -230,7 +202,7 @@ class Rooms extends React.Component {
     }
 
     render() {
-        return (<div>
+        return (
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={9} lg={9} xl={9}>
                     <LocationFilter
@@ -238,7 +210,6 @@ class Rooms extends React.Component {
                         filter={this.state.filter}
                         handleFilter={this.handleFilter}
                     />
-                    <br />
                     <br />
                     {
                         this.state.loading ?
@@ -276,24 +247,20 @@ class Rooms extends React.Component {
                                     </Grid>
                                 </Grid>
                             </div>
-                            : 
-                            (<div>
-                                <Roomview
-                                    isLike={this.isLike}
-                                    limit={this.state.limit}
-                                    rooms={this.state.rooms}
-                                    handleFavorites={this.handleFavorites}
-                                    handleShowMore={this.handleShowMore}
-                                />
-                            </div>)
+                            :
+                            <Roomview
+                                isLike={this.isLike}
+                                limit={this.state.limit}
+                                rooms={this.state.rooms}
+                                handleShowMore={this.handleShowMore}
+                            />
                     }
                 </Grid>
                 <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
                     <Navigate />
                 </Grid>
 
-            </Grid>
-        </div>)
+            </Grid>)
     }
 }
 export default Rooms;

@@ -50,14 +50,12 @@ class Roomaddpeta extends React.Component {
 
 }
 
-
 const mapStateToProps = (state) => {
   return {
     lat: state.lat,
     lng: state.lng
   }
 }
-
 
 const mapDispatchToProps = (dispatch) => {
   return {

@@ -7,7 +7,7 @@
     "price_title_time": 52,
     "owner_phone": "+62 853 4300 0101",
     "description": "Hai guys yang masih cari tempat tinggal harian atau bulanan di kota Ambon Manise bisa langsung datang ke Almira Kost & Homestay di Seilale (jalan masuk dari gapura hative) depan Sekolah SD 30. Lokasi strategis, bersih dan nyaman. Berminat? Hubungi kami di nomor 082238004630",
-    "location": "Seilale",
+    "location": "Ambon",
     "room_gender": 3,
     "owner_name": "user.profile.first_name",
     "lat": 9,
@@ -47,7 +47,7 @@
       "lat": -3.697656377010184,
       "lng": 128.1765004992485
     },
-    "favorites": []
+    "slug": "almira-kost-homestay"
   },
   {
     "id": "2",
@@ -57,7 +57,7 @@
     "price_title_time": 62,
     "owner_phone": "+62 821 9799 4488",
     "description": "Terima kos dengan harga terjangkau. Lokasi Halong atas (samping perumahan pemda). Luas kamar 3x4 dan 2.5x3.",
-    "location": "Halong",
+    "location": "Ambon",
     "room_gender": 3,
     "owner_name": "user.profile.first_name",
     "lat": 49,
@@ -97,7 +97,7 @@
       "lat": -3.65873783936901,
       "lng": 128.22251379489902
     },
-    "favorites": []
+    "slug": "kos-halong-atas"
   },
   {
     "id": "3",
@@ -107,7 +107,7 @@
     "price_title_time": 98,
     "owner_phone": "+62 857 7082 5336",
     "description": "Kost khusus pegawai, karyawan dan keluarga. Fasilitas, air bersih, listrik, mesih cuci, kompor gas. Bangunan 2 lantai, tempat cuci pakaian, tempat jemur pakaian berada di lantai 3. Lokasi kompleks.perumahan PU.",
-    "location": "Benteng",
+    "location": "Ambon",
     "room_gender": 3,
     "owner_name": "user.profile.first_name",
     "lat": 79,
@@ -147,7 +147,7 @@
       "lat": -3.7023890840600426,
       "lng": 128.16412746906283
     },
-    "favorites": []
+    "slug": "kos-gudang-arang"
   },
   {
     "id": "4",
@@ -157,7 +157,7 @@
     "price_title_time": 4,
     "owner_phone": "+62 823 9813 5412",
     "description": "Kos kontrak jangka panjang. Kamar mandi dalam. Lokasi sekitar SPN Passo.",
-    "location": "Passo",
+    "location": "Ambon",
     "room_gender": 3,
     "owner_name": "user.profile.first_name",
     "lat": 27,
@@ -197,6 +197,406 @@
       "lat": -3.6321676569589094,
       "lng": 128.25353890657425
     },
-    "favorites": []
+    "slug": "kos-passo"
+  },
+  {
+    "id": "5",
+    "createdAt": 1578373636614,
+    "room_title": "Kos Dekat IAIN Ambon",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 57,
+    "owner_phone": "+62 857 7082 5336",
+    "description": "Kos nyaman dan sejuk, failitas kamar mandi dalam ada westafel, listrik token 900 watt. Lokasi sekitar kampus IAIN, parkiran luas.",
+    "location": "Ambon",
+    "room_gender": 1,
+    "owner_name": "user.profile.first_name",
+    "lat": 96,
+    "lng": 86,
+    "image_url": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/81487828_893368947731753_4343747906755362816_n.jpg?_nc_cat=106&_nc_oc=AQkbPrEsi0tDtYIFe5D3Vd7IV_B82KT67Us-Mv3xMBF_GZmdb1r15Zd2k1q8B2fIBZI&_nc_ht=scontent-sin2-1.xx&oh=da711e55e712f3bd66d39aeeb02c88a0&oe=5EB383AA",
+    "price_month": "Rp 500,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/80433004_893368987731749_1361288239494725632_n.jpg?_nc_cat=103&_nc_oc=AQnAqekmaXqXQB7R9ARi5vbbjo_G6VuaCh20K9qYCzPaNRdtTswd2cEq5Oog-AjQjhw&_nc_ht=scontent-sin2-1.xx&oh=93883c54aaa45c52dee8d084c78fc132&oe=5E97F2BD",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/81149914_893368967731751_4295471357656825856_n.jpg?_nc_cat=110&_nc_oc=AQk5nm-CrEtRmjvlj2Rem2lcticRKNXYYXO0LKHyFsENHPpihv2Wv3MvNSbdMefX5iU&_nc_ht=scontent-sin2-1.xx&oh=e9e8843a2517582017b298016bf16983&oe=5EB2F7BD",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent-sin2-1.xx.fbcdn.net/v/t1.0-9/81487828_893368947731753_4343747906755362816_n.jpg?_nc_cat=106&_nc_oc=AQkbPrEsi0tDtYIFe5D3Vd7IV_B82KT67Us-Mv3xMBF_GZmdb1r15Zd2k1q8B2fIBZI&_nc_ht=scontent-sin2-1.xx&oh=da711e55e712f3bd66d39aeeb02c88a0&oe=5EB383AA",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": false,
+        "wifi": false,
+        "kipas": false,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -3.6833537141772323,
+      "lng": 128.22402119636538
+    },
+    "slug": "kos-dekat-iain-ambon"
+  },
+  {
+    "id": "6",
+    "createdAt": 1578456193659,
+    "room_title": "Mawi Kos Jakbar",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 60,
+    "owner_phone": "+62 895 3339 6860",
+    "description": "Kontrakan kosong 1 petak luas kamar mandi di dalam ada tempat masaknya +westapel bangunan bawah 900/bln listrik sendiri token air bebas lok Kembangan selatan dekat perumahan puri mension GG H majuk patokannya gudang JNE Jakarta barat sekitar 5 mnt ke mol puri indah WA 0895333968608",
+    "location": "Jakarta Barat",
+    "room_gender": 3,
+    "owner_name": "user.profile.first_name",
+    "lat": 33,
+    "lng": 15,
+    "image_url": "https://scontent.fcgk18-2.fna.fbcdn.net/v/t1.0-9/81545672_539803863280187_887995350420291584_n.jpg?_nc_cat=100&_nc_oc=AQlnxbMw0BwQtJHz5cKpxkUd55cmKHrII7Txk82DpAdpqK3qlAdmx_j0M82A3SQjhIk&_nc_ht=scontent.fcgk18-2.fna&oh=f7a88dd9ff543b38c69117cf95b32aff&oe=5E90F70F",
+    "price_month": "Rp 900,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent.fcgk18-2.fna.fbcdn.net/v/t1.0-9/81828518_539803909946849_1670247098479542272_n.jpg?_nc_cat=104&_nc_oc=AQm529IC5W72FJIoADiZUOiFVJmqIrP2whfIo1OZ-E1BWCDGHfWp623fXTcASmTjK5k&_nc_ht=scontent.fcgk18-2.fna&oh=3da873176ce86af41b47531da5ef6373&oe=5E9367AB",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/81808260_539803953280178_8871651323829813248_n.jpg?_nc_cat=108&_nc_oc=AQmi9oakeJyAI9oDri9w2_qL4yayeCuo6xvQbh4c1d9_AUCpYWtY7QbbscsNn-7vgqI&_nc_ht=scontent.fcgk18-1.fna&oh=a1886d1b30242b43088f8f52034d5f65&oe=5E65881E",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/81866222_539803836613523_233164858147733504_n.jpg?_nc_cat=105&_nc_oc=AQm9zwUBXOKbEUl3EdCaLqhlMz0cgng7qP_3aGND_MjVpTSa3EpPaiOfn2LSFHlaNqY&_nc_ht=scontent.fcgk18-1.fna&oh=0fa366d9bda9e32879dcd17ba8bbeb8e&oe=5EA14DB9",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": false,
+        "wifi": true,
+        "kipas": true,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -6.2046470363130535,
+      "lng": 106.786208152771
+    },
+    "slug": "mawi-kos-jakbar"
+  },
+  {
+    "id": "7",
+    "createdAt": 1578456757528,
+    "room_title": "Aziz Kedoya",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 8,
+    "owner_phone": "+62 821 1112 1023",
+    "description": "Kontrakan tiga petak, daya listrik 900watt. Lokasi Jl Kebon Jeruk, deket masjid/puskesmas kebon jeruk, Jakarta Barat. WA 082111121023",
+    "location": "Jakarta Barat",
+    "room_gender": 3,
+    "owner_name": "user.profile.first_name",
+    "lat": 96,
+    "lng": 9,
+    "image_url": "https://scontent.fcgk18-2.fna.fbcdn.net/v/t1.0-9/s960x960/81492437_171885504054673_7135328541503127552_o.jpg?_nc_cat=107&_nc_oc=AQkcNSj2_U51WAjrjOS-2jFXOuLJ1UvT7--ABoVwl0lzZxap8EhrE5vec7WIRpkT3gc&_nc_ht=scontent.fcgk18-2.fna&_nc_tp=1&oh=fbd345a3f1c62e523c2da6e13bdb5ae5&oe=5E966B57",
+    "price_month": "Rp 1,200,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/s960x960/81943041_171885530721337_6662535449182994432_o.jpg?_nc_cat=109&_nc_oc=AQnAKXK9Iitlz3bm-9OH2a1VgYz1oLPEOMqFKelEIl3CFhWdV2yjhUTgXdewOKRl_RE&_nc_ht=scontent.fcgk18-1.fna&_nc_tp=1&oh=c53c329e8c2f6ed0b8c840a447553a24&oe=5EA9FA4F",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/s960x960/81034597_171885577387999_8966579103322865664_o.jpg?_nc_cat=111&_nc_oc=AQngjRtG_bfTwlrLekCRifp6tRu3uWh5s7kr8yLSUJAUMvMpeuq73H7GgeF437y7lVY&_nc_ht=scontent.fcgk18-1.fna&_nc_tp=1&oh=7c682bdbab5550be5eab8b9ebfe1fbaf&oe=5EA0E84C",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/s960x960/81876310_171885470721343_2277544955759034368_o.jpg?_nc_cat=109&_nc_oc=AQk11eaD_uaahottvrFR2FGKry96qyEY8Wvl0vzPb0irG3ZahxtH5neFCctwlHd6F1Y&_nc_ht=scontent.fcgk18-1.fna&_nc_tp=1&oh=810bdfdbd8170908f95c36c3813c6db9&oe=5E9A26C7",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": false,
+        "wifi": false,
+        "kipas": false,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -6.174098760809283,
+      "lng": 106.7965078353882
+    },
+    "slug": "aziz-kedoya"
+  },
+  {
+    "id": "8",
+    "createdAt": 1578457619074,
+    "room_title": "Nurul Fatika",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 92,
+    "owner_phone": "+62 877 8561 5069",
+    "description": "Bangunan milik sndiri. 3 Petak, kamar mandi dalam wastafel. Fasilitas dapur, ruang tamu Nett @1.2 udh bersih, free air (air sanyo) + listrik. NO BANJIR, NO BOCOR YA. Bangunan stengah tembok, stengah triplek. Alamat : jl surya mulya, kedoya selatan jakarta barat (patokan komplek taman cahaya). Masuk komplek dlu, baru masuk gang. WA only 0877-8561-5069 nurul / 0838-9516-6975 sharif",
+    "location": "Jakarta Barat",
+    "room_gender": 3,
+    "owner_name": "user.profile.first_name",
+    "lat": 31,
+    "lng": 0,
+    "image_url": "https://scontent.fcgk18-2.fna.fbcdn.net/v/t1.0-9/81507838_1932262970253409_2110595492449615872_n.jpg?_nc_cat=104&_nc_oc=AQmG3Ruiu4H1_eRDruwlg3n56doazbE8cRP1OTHgTXaCaHq9iGnkkrA0o4EMNoE3pvw&_nc_ht=scontent.fcgk18-2.fna&oh=ac6eb622723e8bc81d9dd191499ebbbc&oe=5EB18FEF",
+    "price_month": "Rp 1,200,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent.fcgk18-2.fna.fbcdn.net/v/t1.0-9/81805264_1932263126920060_7840846412441976832_n.jpg?_nc_cat=102&_nc_oc=AQkWUFeSamAmlv4hq0wuvNipsZgGgf3R1Hjd8KEo0wH2Xz0iMc6QfIPm1sCQlFeVB_0&_nc_ht=scontent.fcgk18-2.fna&oh=206cfdf384e5b9e0b7668334595cdc1b&oe=5E947C7D",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent.fcgk18-2.fna.fbcdn.net/v/t1.0-9/82333578_1932263383586701_3855680574995824640_n.jpg?_nc_cat=102&_nc_oc=AQntKWvMPNFBl_wsFCPm77vKATsfyUcGamidHCT9HsuI4cG80qIMxBXflplxJ-NpIgQ&_nc_ht=scontent.fcgk18-2.fna&oh=62f38abd9e06d4bf9cb309f5b7e366d6&oe=5EA4E16F",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/81385761_1932263486920024_4814019131718238208_n.jpg?_nc_cat=101&_nc_oc=AQmDp_zc5idpCydNgQ0A2_HcA0ZGt2-ZFaknX4nggozZJszi8bBZHsaVd7vPy0hnxns&_nc_ht=scontent.fcgk18-1.fna&oh=c9d554a8873b52dc75fe79fdc7215ba6&oe=5EB0D195",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": false,
+        "kasur": false,
+        "meja": false,
+        "wifi": false,
+        "kipas": false,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -6.173591208304232,
+      "lng": 106.79563343524934
+    },
+    "slug": "nurul-fatika"
+  },
+  {
+    "id": "9",
+    "createdAt": 1578589260105,
+    "room_title": "Rumah Kemanggisan",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 100,
+    "owner_phone": "+62 858 8341 1559",
+    "description": "Rumah dikontrakan lokasi Kemanggisan, ruangan tiga petak, sewa bulanan harga bisa nego.",
+    "location": "Jakarta Barat",
+    "room_gender": 3,
+    "owner_name": "user.profile.first_name",
+    "lat": 64,
+    "lng": 1,
+    "image_url": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/81882821_2893506970683596_2970615740891136000_n.jpg?_nc_cat=109&_nc_oc=AQmOv3Qoobk5E5C5-KBUs4fJkeTZAUBGNJHaPphEr4_nyRmGi10fVMFuco2J_ECwhBA&_nc_ht=scontent.fcgk18-1.fna&oh=c5cdb816d97f466a8be99dd0858ad87c&oe=5EA9FCE8",
+    "price_month": "Rp 2,000,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/82128335_2893507014016925_7277272060970139648_n.jpg?_nc_cat=101&_nc_oc=AQlT83Nuc9cfCQFWBBHKZi-PrIs9zoKm6tyGN2B2M0mXHn0K_hYAsv0aNw88gFcwLxI&_nc_ht=scontent.fcgk18-1.fna&oh=119a4303629556af95e26a161ddaba41&oe=5EB1FE66",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent.fcgk18-2.fna.fbcdn.net/v/t1.0-9/82799573_2893507054016921_5632114503576453120_n.jpg?_nc_cat=100&_nc_oc=AQmAE7wn92N4x4lf-TpKqpk7MPjq5yTwNCAo5C76hgZ1Cp9te1ehsk3vm_o_zBu5isw&_nc_ht=scontent.fcgk18-2.fna&oh=24e0b7e5c7ff122d4743f05f562a7af0&oe=5EA79BC4",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent.fcgk18-2.fna.fbcdn.net/v/t1.0-9/81869266_2893507114016915_7933084567450157056_n.jpg?_nc_cat=110&_nc_oc=AQl6ZBaM_fzCE4jGfYPLKZsPtG8x_qT8JqVPvrGN_57NQGiJ7h_3Z8ZFvQy6VNA62SE&_nc_ht=scontent.fcgk18-2.fna&oh=d4797faee27f180504b95448dda3bfb7&oe=5EAAB489",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": false,
+        "kasur": false,
+        "meja": false,
+        "wifi": false,
+        "kipas": false,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -6.188791806146201,
+      "lng": 466.79136872291576
+    },
+    "slug": "rumah-kemanggisan"
+  },
+  {
+    "id": "10",
+    "createdAt": 1578651375850,
+    "room_title": "Beni Sabeni",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 65,
+    "owner_phone": "+62 896 5553 0117",
+    "description": "Masih 2 kamar lagi nih kaka, kamar kost khusus buat wanita, fasilitas tempat tidur, lemari, kipas angin, tv(diruang tengah) km mandi (masih diruangan kost), peralatan masak (bagi yg bisa masak2). Lokasi Jln Ketapang Gang H. lihin jati padang Pasarminggu.. Dekat ke pejaten village, kampus unas, stasiun Pasar Minggu halte busway pejaten Info lebih lanjut WA/tlfn",
+    "location": "Jakarta Selatan",
+    "room_gender": 2,
+    "owner_name": "user.profile.first_name",
+    "lat": 42,
+    "lng": 4,
+    "image_url": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/53257530_554746048357611_2114608039876100096_n.jpg?_nc_cat=108&_nc_oc=AQnfc9YOPKKXoqigRvfApnCtr5Kmr52rxx9a9nZ2jTuDw2rFaHNoE1f5VXyAYcWIym8&_nc_ht=scontent.fcgk18-1.fna&oh=c2f2daed93fa505f7eb858ac58b27b1e&oe=5E9F9350",
+    "price_month": "Rp 850,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/52901607_554745975024285_3767628067481059328_n.jpg?_nc_cat=108&_nc_oc=AQnI_RAuPxKxuQET2xBffX5iLA_4xWCD16Fzc7Vxxy5zFgWK5kY-Pu4gf5dp-hnSp3Q&_nc_ht=scontent.fcgk18-1.fna&oh=e1776c013297cb10ff00f93eec5fbe95&oe=5E933D88",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent.fcgk18-2.fna.fbcdn.net/v/t1.0-9/53517173_554745995024283_8056696251669807104_n.jpg?_nc_cat=110&_nc_oc=AQmcm6X-ne-_rmtiNS6HaXZJcvvzsYhSdM7mxngI0wYceHc9yhCXFNQhNjt5H_RN_zI&_nc_ht=scontent.fcgk18-2.fna&oh=7cd1a12b62b6a1840340a3c2f96b2120&oe=5EA66CFC",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/53257530_554746048357611_2114608039876100096_n.jpg?_nc_cat=108&_nc_oc=AQnfc9YOPKKXoqigRvfApnCtr5Kmr52rxx9a9nZ2jTuDw2rFaHNoE1f5VXyAYcWIym8&_nc_ht=scontent.fcgk18-1.fna&oh=c2f2daed93fa505f7eb858ac58b27b1e&oe=5E9F9350",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": false,
+        "wifi": false,
+        "kipas": true,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -3.693139,
+      "lng": 128.183085
+    },
+    "slug": "beni-sabeni"
+  },
+  {
+    "id": "11",
+    "createdAt": 1578676579263,
+    "room_title": "Kos Kali Deres",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 54,
+    "owner_phone": "+62 822 2003 8446",
+    "description": "Assallamu'allaiikum slmt malam sobat semua..edisi bantu temen admin..yg nyari kontrakan harga merakyat..free air pam+listrik (pemakaian normal)..area kali deres, kontak WA.",
+    "location": "Jakarta Barat",
+    "room_gender": 3,
+    "owner_name": "user.profile.first_name",
+    "lat": 87,
+    "lng": 29,
+    "image_url": "https://scontent.fcgk18-2.fna.fbcdn.net/v/t1.0-9/p720x720/81374729_195779878136260_8957001717094809600_o.jpg?_nc_cat=106&_nc_oc=AQkhwcya40ZTX6b0b5XJX0eWtB_P_0BIamQPGr5p37xrgjJLb5n3TdeP-6681Gvhpfg&_nc_ht=scontent.fcgk18-2.fna&_nc_tp=1&oh=43c621eac3cc5fab324c84364cbc6c45&oe=5E931821",
+    "price_month": "Rp 650,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/p720x720/81722342_195779891469592_8604688178323914752_o.jpg?_nc_cat=101&_nc_oc=AQlkIG6SgXr6Q7q7h4jhK36y3Eo_WH3xJ5egN0yfskHMGeo21C7Y2zI-MXqkTew1QgA&_nc_ht=scontent.fcgk18-1.fna&_nc_tp=1&oh=96a02fc36a12f224c0a78b172c81cd9d&oe=5E8EF8A9",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/p720x720/81329890_195779868136261_962415640327487488_o.jpg?_nc_cat=111&_nc_oc=AQnSAtyHLic41hZhoHMETraQTrMUSCYPZLTnndEJGRNVswFgML2RuXYb6AcxAMytiyE&_nc_ht=scontent.fcgk18-1.fna&_nc_tp=1&oh=7ef79c9a3e554686011ee75778f3b3b4&oe=5EADCC06",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent.fcgk18-2.fna.fbcdn.net/v/t1.0-9/p720x720/81374729_195779878136260_8957001717094809600_o.jpg?_nc_cat=106&_nc_oc=AQkhwcya40ZTX6b0b5XJX0eWtB_P_0BIamQPGr5p37xrgjJLb5n3TdeP-6681Gvhpfg&_nc_ht=scontent.fcgk18-2.fna&_nc_tp=1&oh=43c621eac3cc5fab324c84364cbc6c45&oe=5E931821",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": false,
+        "wifi": false,
+        "kipas": true,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -6.1302358674098425,
+      "lng": 106.70629978179932
+    },
+    "slug": "kos-kali-deres"
+  },
+  {
+    "id": "12",
+    "createdAt": 1578678263252,
+    "room_title": "Kos Cempaka Baru Timur",
+    "avatar": "user.profile.picture.data.url",
+    "price_title_time": 47,
+    "owner_phone": "+62 813 1993 5367",
+    "description": "Dikontrakan sebuah kamar bangunan baru.petakan di cempaka baru timur dengan fasilitas: Listrik token 1300kwh, Air tanah, Kamar mandi. Tersedia parkiran motor pagar besi. Boleh buat keluarga bawa anak. Dekat ke pasar sumur batu. Info lanjut via WA.",
+    "location": "Jakarta Pusat",
+    "room_gender": 3,
+    "owner_name": "user.profile.first_name",
+    "lat": 23,
+    "lng": 85,
+    "image_url": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/p720x720/81506415_160439955228921_4532481457074995200_o.jpg?_nc_cat=103&_nc_oc=AQntaKToIiw5GLQONQWlsLpbtu47u1YRTyI3ilAp-tlAloWLGX7L3ZMdMpglo9ME2HE&_nc_ht=scontent.fcgk18-1.fna&_nc_tp=1&oh=9a1bc097fa174cb33e8d45276a0086cb&oe=5E9B72B1",
+    "price_month": "Rp 1,500,000",
+    "photo_arr": [
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/p720x720/81649494_160439981895585_1259084123977285632_o.jpg?_nc_cat=108&_nc_oc=AQmyzkA2sjLlDu0tEvDlNX_fybktyfnsS2xdA2dBLZhjqPdHgp6EMOqoGY6zJjuOQsw&_nc_ht=scontent.fcgk18-1.fna&_nc_tp=1&oh=14d1f9be463ff6181c0acb694ff8ec97&oe=5EADD297",
+        "title": "t1",
+        "cols": 4
+      },
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/p720x720/82054260_160440031895580_5909070569101328384_o.jpg?_nc_cat=109&_nc_oc=AQlWqKiZyMa3laDP9SRCtPeRs3nXUjlRP6Q-NTRvZT-Z9qB2ll3qBSGtLgIXS7USy-0&_nc_ht=scontent.fcgk18-1.fna&_nc_tp=1&oh=3bd2f0e354ea739150e7356bd7399f58&oe=5EAEA3DA",
+        "title": "t2",
+        "cols": 2
+      },
+      {
+        "img": "https://scontent.fcgk18-1.fna.fbcdn.net/v/t1.0-9/p720x720/82232813_160440078562242_7785358299720843264_o.jpg?_nc_cat=109&_nc_oc=AQkzk1NKjvSIMslDjvF2p_Xcd92HIuDhTFdDt63fJLfe29HXCagUyiDoHY5Z8cuLCGU&_nc_ht=scontent.fcgk18-1.fna&_nc_tp=1&oh=86aaa180c3392c36ad4281a898c4138f&oe=5E8FD3D6",
+        "title": "t3",
+        "cols": 2
+      }
+    ],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": true,
+        "wifi": true,
+        "kipas": true,
+        "ac": true,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -6.1910517256500945,
+      "lng": 106.79500311613084
+    },
+    "slug": "kos-cempaka-baru-timur"
   }
 ]

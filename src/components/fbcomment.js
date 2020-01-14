@@ -6,7 +6,7 @@ export default class Fbcomment extends React.Component {
     render() {
         return (
             <FacebookProvider appId={APP_ID}>
-                <Comments href={"https://tantekos.com/room/" + this.props.id} width="auto" />
+                <Comments href={"https://tantekos.com/room/" + this.props.slug} width="auto" />
             </FacebookProvider>
         )
     }

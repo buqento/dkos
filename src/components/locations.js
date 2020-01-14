@@ -1,7 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
 import { connect } from 'react-redux';
-
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -19,7 +18,6 @@ class Locations extends React.Component {
     }
 
     componentDidMount() {
-        console.log("componentDidMount")
         Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/location`)
             .then(response => {
                 this.setState({ locations: response.data })

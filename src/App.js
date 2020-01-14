@@ -1,5 +1,4 @@
 import React from 'react';
-// import Lifecycle from './lifecycle';
 import Home from './components/home';
 
 class App extends React.Component {
