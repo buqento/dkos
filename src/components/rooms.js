@@ -74,7 +74,7 @@ const Roomview = (props) => {
                                                 {
                                                     room.room_gender === 1 ? " Putra" :
                                                         room.room_gender === 2 ? " Putri" : " Campur"
-                                                } &bull; {room.location} &bull; {room.favorites.length >= 1 && room.favorites.length + ' Suka'}
+                                                } &bull; {room.location} &bull; {room.views} Lihat &bull; {room.favorites.length >= 1 && room.favorites.length + ' Suka'}
 
                                             </Typography>
                                         </CardContent>
@@ -162,12 +162,12 @@ class Rooms extends React.Component {
             locations: [],
             filter: "semua",
             loading: false,
-            limit: 4
+            limit: 6
         }
     }
 
     handleShowMore = () => {
-        this.setState({ limit: this.state.limit + 4 })
+        this.setState({ limit: this.state.limit + 6 })
     }
 
     handleFilter = (event) => {

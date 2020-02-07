@@ -10,7 +10,6 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Select from '@material-ui/core/Select';
-import { Helmet } from "react-helmet";
 import Roomaddpeta from './roomaddpeta';
 import Slugify from 'slugify';
 
@@ -26,9 +25,6 @@ const useStyles = makeStyles(theme => ({
 const Formview = (props) => {
     const classes = useStyles();
     return (<div>
-        <Helmet>
-            <title>Add Room</title>
-        </Helmet>
 
         <Typography variant="h5">Data kos</Typography>
 
@@ -334,7 +330,6 @@ class Roomadd extends React.Component {
 
     handlePost(event) {
         this.setState({ loading: true })
-        // let user = JSON.parse(localStorage.getItem("user"))
         const {
             room_title,
             image_url,
@@ -358,13 +353,14 @@ class Roomadd extends React.Component {
 
         Axios.post(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms`,
             {
-                avatar: "user.profile.picture.data.url",
+                avatar: "https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar-300x300.jpg",
                 room_title: room_title,
                 image_url: image_url,
                 photo_arr: [
-                    { img: photo_one, title: "t1", cols: 4 },
-                    { img: photo_two, title: "t2", cols: 2 },
-                    { img: photo_three, title: "t3", cols: 2 }
+                    { src: image_url, thumbnail: image_url, thumbnailWidth: 320, thumbnailHeight: 174 },
+                    { src: photo_one, thumbnail: photo_one, thumbnailWidth: 320, thumbnailHeight: 174 },
+                    { src: photo_two, thumbnail: photo_two, thumbnailWidth: 320, thumbnailHeight: 174 },
+                    { src: photo_three, thumbnail: photo_three, thumbnailWidth: 320, thumbnailHeight: 174 }
                 ],
                 facilities_arr: [{
                     lemari: lemari,
@@ -378,9 +374,10 @@ class Roomadd extends React.Component {
                 }],
                 price_month: price_month,
                 owner_phone: owner_phone,
-                owner_name: "user.profile.first_name",
+                owner_name: "Tantekos",
                 description: description,
                 location: location,
+                views: 1,
                 slug: Slugify(room_title.toLowerCase()),
                 latLng: { lat: this.props.lat, lng: this.props.lng },
                 room_gender: room_gender,
@@ -390,6 +387,7 @@ class Roomadd extends React.Component {
             { withCredentials: true }
         ).then((response) => {
             this.setState({ loading: false })
+            
             console.log(response)
         }).catch(error => {
             console.warn(error)

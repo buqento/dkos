@@ -9,8 +9,6 @@ import Navigate from './navigate';
 import Peta from './peta';
 import Fbshare from './fbshare';
 
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import MoneyIcon from '@material-ui/icons/Money';
@@ -24,7 +22,6 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Image from 'material-ui-image'
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Dialog from '@material-ui/core/Dialog';
@@ -32,6 +29,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Gallery from 'react-grid-gallery';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -89,18 +87,21 @@ const DetailView = (props) => {
 			</DialogActions>
 		</Dialog>
 
-		{/*tampilkan daftar gambar pada komponen gridlist*/}
-		<GridList cellHeight={200} cols={4}>
+		{/*tampilkan daftar gambar pada komponen */}
+		<Gallery images={props.photo_arr} isOpen={false} />
+
+		{/*		<GridList cellHeight={200} cols={4}>
 			{props.photo_arr.map(tile => (
 				<GridListTile key={tile.img} cols={tile.cols || 1}>
 					<Image src={tile.img} alt={tile.title} />
 				</GridListTile>
 			))}
-		</GridList>
+		</GridList>*/}
 
 		{/*tampilkan detail data kos*/}
+		<br />
 		<Typography variant="h5">{props.room_title}</Typography>
-		<Typography gutterBottom variant="body1">{props.room_gender === 1 ? " Putra" : props.room_gender === 2 ? " Putri" : " Campur"} &bull; {props.location}
+		<Typography gutterBottom variant="body1">{props.room_gender === 1 ? " Putra" : props.room_gender === 2 ? " Putri" : " Campur"} &bull; {props.location} &bull; {props.views} Lihat
 		</Typography>
 
 		{/*tampilkan grup button*/}
@@ -155,7 +156,7 @@ const DetailView = (props) => {
 		</ListItem>
 
 		<Divider className={classes.divider} />
-		
+
 		{/*tampilkan deskripsi*/}
 		<Typography variant="body1"><strong>Deskripsi</strong></Typography>
 		<Typography gutterBottom variant="body2">{props.description}</Typography>
@@ -252,7 +253,7 @@ const DetailView = (props) => {
 
 		{/*tampilkan lokasi menggunakan komponen peta*/}
 		<Typography variant="body1"><strong>Lokasi</strong></Typography>
-		<Peta latLng={props.latLng} room_title={props.room_title} />
+		<Peta latLng={props.latLng} room_title={props.room_title} zoom={16} maxZoom={18} />
 		<br />
 
 	</div>)
@@ -272,6 +273,17 @@ class Detail extends React.Component {
 			showAlert: false,
 			likes: 0
 		}
+	}
+
+	handleViewCount = () => {
+		Axios.put(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms/${this.state.room.id}`,
+			{ views: this.state.room.views + 1 })
+			.then(response => {
+				console.log(response)
+			})
+			.catch(err => {
+				console.log(err)
+			})
 	}
 
 	handleFavorites = () => {
@@ -334,22 +346,19 @@ class Detail extends React.Component {
 	}
 
 	async componentDidMount() {
-
 		const user = JSON.parse(localStorage.getItem("user"));
 		const { slug } = this.props.match.params
 
 		// temukan data dengan kriteria slug
-		await fetch(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?filter=${slug}`)
-			.then(response => response.json())
-			.then(data => {
-
-				// ubah state: room = response data
-				this.setState({ room: data[0] })
+		await Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?filter=${slug}`)
+			.then(response => {
+				this.setState({ room: response.data[0] })
 				this.setState({
 					facilities: this.state.room.facilities,
 					likes: this.state.room.favorites.length,
 					loading: false
 				})
+				this.handleViewCount()
 			})
 
 		// item user ada pada localstorage
@@ -382,7 +391,7 @@ class Detail extends React.Component {
 				<meta property="og:description" content={this.state.room.room_title + ' ' + this.state.room.location + ' - ' + this.state.room.description} />
 				<meta property="og:image" content={this.state.room.image_url} />
 				{
-					this.state.room.room_title && <title>{"Tantekos - "+this.state.room.room_title}</title>
+					this.state.room.room_title && <title>{"Tantekos - " + this.state.room.room_title}</title>
 				}
 				<meta name="description" content={this.state.room.room_title + ' ' + this.state.room.location + ' - ' + this.state.room.description} />
 			</Helmet>
@@ -408,49 +417,49 @@ class Detail extends React.Component {
 				<Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
 
 					{
-						
+
 						// tampilkan skeleton jika state loading = true
-
 						this.state.loading ?
-						<div>
-							<Skeleton variant="rect" width="100%" height={200} style={{ marginBottom: 2 }} />
-							<React.Fragment>
-								<Skeleton height={30} style={{ marginBottom: 2 }} />
-								<Skeleton height={30} width="80%" />
-							</React.Fragment>
-						</div>
-						:
-						(
+							<div>
+								<Skeleton variant="rect" width="100%" height={200} style={{ marginBottom: 2 }} />
+								<React.Fragment>
+									<Skeleton height={30} style={{ marginBottom: 2 }} />
+									<Skeleton height={30} width="80%" />
+								</React.Fragment>
+							</div>
+							:
+							(
 
-							// tampilkan detail jika state loading = false
-							<DetailView
-								id={this.state.room.id}
-								avatar={this.state.room.avatar}
-								image_url={this.state.room.image_url}
-								room_title={this.state.room.room_title}
-								price_title_time={this.state.room.price_title_time}
-								price_month={this.state.room.price_month}
-								description={this.state.room.description}
-								room_gender={this.state.room.room_gender}
-								owner_name={this.state.room.owner_name}
-								owner_phone={this.state.room.owner_phone}
-								location={this.state.room.location}
-								latLng={this.state.room.latLng}
-								createdAt={this.state.room.createdAt}
-								photo_arr={this.state.room.photo_arr}
-								facilities_arr={this.state.room.facilities_arr}
-								handleFavorites={this.handleFavorites}
-								likes={this.state.likes}
-								isFavorite={this.state.isFavorite}
-								isLogin={this.state.isLogin}
-							/>
-						)
+								// tampilkan detail jika state loading = false
+								<DetailView
+									id={this.state.room.id}
+									avatar={this.state.room.avatar}
+									image_url={this.state.room.image_url}
+									room_title={this.state.room.room_title}
+									price_title_time={this.state.room.price_title_time}
+									price_month={this.state.room.price_month}
+									description={this.state.room.description}
+									room_gender={this.state.room.room_gender}
+									owner_name={this.state.room.owner_name}
+									owner_phone={this.state.room.owner_phone}
+									location={this.state.room.location}
+									latLng={this.state.room.latLng}
+									createdAt={this.state.room.createdAt}
+									views={this.state.room.views}
+									photo_arr={this.state.room.photo_arr}
+									facilities_arr={this.state.room.facilities_arr}
+									handleFavorites={this.handleFavorites}
+									likes={this.state.likes}
+									isFavorite={this.state.isFavorite}
+									isLogin={this.state.isLogin}
+								/>
+							)
 					}
 				</Grid>
 				<Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
 
 					{/*tampilkan komponen komentar facebook*/}
-					<Fbcomment id={this.state.room.id} />
+					<Fbcomment slug={this.state.room.slug} />
 
 					{/*tampilkan komponen navigate*/}
 					<Navigate />

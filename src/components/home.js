@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import Fab from '@material-ui/core/Fab';
 import Helmet from 'react-helmet';
+
 const useStyles = makeStyles(theme => ({
   fab: {
     position: 'fixed',

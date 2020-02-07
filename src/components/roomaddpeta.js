@@ -16,7 +16,7 @@ class Roomaddpeta extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      zoom: 18
+      zoom: 14
     }
   }
 

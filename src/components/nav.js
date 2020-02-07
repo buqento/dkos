@@ -50,8 +50,5 @@ const Navbar = (props) => {
 }
 
 export default class Nav extends React.Component {
-    comonentDidMount() {
-        console.log('mount')
-    }
     render() { return <Navbar loginStatus={this.props.loginStatus} handleStatus={this.props.handleStatus} /> }
 }
