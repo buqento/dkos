@@ -4,18 +4,19 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import { CardActions } from '@material-ui/core';
+import { CardActions, Box } from '@material-ui/core';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Select, MenuItem, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { Link as RouterLink } from 'react-router-dom';
 import Moment from 'react-moment';
 import Fbshare from './fbshare';
-import Navigate from './navigate';
 import clsx from 'clsx';
+import House from './house';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -36,7 +37,7 @@ const Roomview = (props) => {
     const classes = useStyles();
     const numberOfItems = props.limit;
     const Linkdetail = React.forwardRef((props, ref) => <RouterLink innerRef={ref} {...props} />);
-    return (<div>
+    return (<Box>
         <Grid container spacing={2} className={classes.root}>
             {
                 props.loading ?
@@ -74,24 +75,27 @@ const Roomview = (props) => {
                                                 {
                                                     room.room_gender === 1 ? " Putra" :
                                                         room.room_gender === 2 ? " Putri" : " Campur"
-                                                } &bull; {room.location} &bull; {room.views} Lihat &bull; {room.favorites.length >= 1 && room.favorites.length + ' Suka'}
+                                                } &bull; {room.location} &bull; <Moment fromNow>{room.createdAt}</Moment>
 
                                             </Typography>
                                         </CardContent>
                                     </CardActionArea>
 
                                     <CardActions disableSpacing>
-                                        <Button variant="outlined">
-                                            <Fbshare
-                                                id={room.id}
-                                                slug={room.slug}
-                                                image_url={room.image_url}
-                                                room_title={room.room_title}
-                                                description={room.description} />
-                                        </Button>
+                                        <ButtonGroup color="secondary" aria-label="outlined secondary button group">
+                                            <Button variant="outlined">
+                                                <Fbshare
+                                                    id={room.id}
+                                                    slug={room.slug}
+                                                    image_url={room.image_url}
+                                                    room_title={room.room_title}
+                                                    description={room.description} />
+                                            </Button>
+                                            <Button href={"../room/" + room.slug}>Selengkapnya</Button>
+                                        </ButtonGroup>
                                         <Typography variant="body2" className={clsx(classes.expand)}>
-                                            <Moment fromNow>{room.createdAt}</Moment>&nbsp;&nbsp;&nbsp;
-                                    </Typography>
+                                            {/* <Moment fromNow>{room.createdAt}</Moment>&nbsp;&nbsp;&nbsp; */}
+                                        </Typography>
                                     </CardActions>
 
                                 </Card>
@@ -106,8 +110,8 @@ const Roomview = (props) => {
                 {
                     (props.limit > props.rooms.length) ? '' :
                         <Button onClick={props.handleShowMore}
-                            variant="outlined"
-                            color="secondary"
+                            variant="contained"
+                            color="primary"
                             size="medium"
                             className={classes.more}>
                             Lebih banyak
@@ -118,43 +122,41 @@ const Roomview = (props) => {
 
         <Divider />
 
-    </div>)
+    </Box>)
 }
 
-const LocationFilter = (props) => {
-    return (<div>
+// const LocationFilter = (props) => {
+//     return (<div>
+//         <Select
+//             variant="outlined"
+//             name="filter"
+//             margin="dense"
+//             value={props.filter}
+//             onChange={props.handleFilter}
+//             autoWidth
+//         >
+//             <MenuItem key="semua" value="semua">Semua Lokasi&nbsp;</MenuItem>
 
-        <Select
-            variant="outlined"
-            name="filter"
-            margin="dense"
-            value={props.filter}
-            onChange={props.handleFilter}
-            autoWidth
-        >
-            <MenuItem key="semua" value="semua">Semua Lokasi&nbsp;</MenuItem>
-
-            {
-                props.locations.sort(function (a, b) {
-                    var nameA = a.name.toUpperCase();
-                    var nameB = b.name.toUpperCase();
-                    if (nameA < nameB) {
-                        return -1;
-                    }
-                    if (nameA > nameB) {
-                        return 1;
-                    }
-                    return 0;
-                }).map(location =>
-                    <MenuItem key={location.name} value={location.name}>{location.name}&nbsp;</MenuItem>
-                )
-            }
-        </Select>
-    </div>)
-}
+//             {
+//                 props.locations.sort(function (a, b) {
+//                     var nameA = a.name.toUpperCase();
+//                     var nameB = b.name.toUpperCase();
+//                     if (nameA < nameB) {
+//                         return -1;
+//                     }
+//                     if (nameA > nameB) {
+//                         return 1;
+//                     }
+//                     return 0;
+//                 }).map(location =>
+//                     <MenuItem key={location.name} value={location.name}>{location.name}&nbsp;</MenuItem>
+//                 )
+//             }
+//         </Select>
+//     </div>)
+// }
 
 class Rooms extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -191,7 +193,7 @@ class Rooms extends React.Component {
             }).catch(error => {
                 console.warn(error)
             })
-        Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?sortBy=createdAt&order=desc`)
+        Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?filter=type1&sortBy=createdAt&order=desc`)
             .then(response => {
                 this.setState({ rooms: response.data })
                 this.setState({ loading: false })
@@ -203,64 +205,65 @@ class Rooms extends React.Component {
 
     render() {
         return (
-            <Grid container spacing={2}>
-                <Grid item xs={12} sm={12} md={9} lg={9} xl={9}>
-                    <LocationFilter
-                        locations={this.state.locations}
-                        filter={this.state.filter}
-                        handleFilter={this.handleFilter}
-                    />
-                    <br />
-                    {
-                        this.state.loading ?
-                            <div>
-                                <Grid container spacing={1}>
-                                    <Grid item md={6} sm={12} xs={12}>
-                                        <Skeleton variant="rect" width="100%" height={200} />
-                                        <React.Fragment>
-                                            <Skeleton height={30} style={{ marginBottom: 2 }} />
-                                            <Skeleton height={30} width="80%" />
-                                        </React.Fragment>
-                                    </Grid>
-                                    <Grid item md={6} sm={12} xs={12}>
-                                        <Skeleton variant="rect" width="100%" height={200} />
-                                        <React.Fragment>
-                                            <Skeleton height={30} style={{ marginBottom: 2 }} />
-                                            <Skeleton height={30} width="80%" />
-                                        </React.Fragment>
-                                    </Grid>
+            <Box>
+                {/* <LocationFilter
+                    locations={this.state.locations}
+                    filter={this.state.filter}
+                    handleFilter={this.handleFilter}
+                /> */}
+                {
+                    this.state.loading ?
+                        <div>
+                            <Grid container spacing={1}>
+                                <Grid item md={6} sm={12} xs={12}>
+                                    <Skeleton variant="rect" width="100%" height={200} />
+                                    <React.Fragment>
+                                        <Skeleton height={30} style={{ marginBottom: 2 }} />
+                                        <Skeleton height={30} width="80%" />
+                                    </React.Fragment>
                                 </Grid>
-                                <Grid container spacing={1}>
-                                    <Grid item md={6} sm={12} xs={12}>
-                                        <Skeleton variant="rect" width="100%" height={200} />
-                                        <React.Fragment>
-                                            <Skeleton height={30} style={{ marginBottom: 2 }} />
-                                            <Skeleton height={30} width="80%" />
-                                        </React.Fragment>
-                                    </Grid>
-                                    <Grid item md={6} sm={12} xs={12}>
-                                        <Skeleton variant="rect" width="100%" height={200} />
-                                        <React.Fragment>
-                                            <Skeleton height={30} style={{ marginBottom: 2 }} />
-                                            <Skeleton height={30} width="80%" />
-                                        </React.Fragment>
-                                    </Grid>
+                                <Grid item md={6} sm={12} xs={12}>
+                                    <Skeleton variant="rect" width="100%" height={200} />
+                                    <React.Fragment>
+                                        <Skeleton height={30} style={{ marginBottom: 2 }} />
+                                        <Skeleton height={30} width="80%" />
+                                    </React.Fragment>
                                 </Grid>
-                            </div>
-                            :
+                            </Grid>
+                            <Grid container spacing={1}>
+                                <Grid item md={6} sm={12} xs={12}>
+                                    <Skeleton variant="rect" width="100%" height={200} />
+                                    <React.Fragment>
+                                        <Skeleton height={30} style={{ marginBottom: 2 }} />
+                                        <Skeleton height={30} width="80%" />
+                                    </React.Fragment>
+                                </Grid>
+                                <Grid item md={6} sm={12} xs={12}>
+                                    <Skeleton variant="rect" width="100%" height={200} />
+                                    <React.Fragment>
+                                        <Skeleton height={30} style={{ marginBottom: 2 }} />
+                                        <Skeleton height={30} width="80%" />
+                                    </React.Fragment>
+                                </Grid>
+                            </Grid>
+                        </div>
+                        :
+                        <Box>
+                            <Box mb={1}>
+                                <Typography variant="overline">Kontrak Tahunan</Typography>
+                                <House />
+                            </Box>
+                            <Divider />
+                            <Typography variant="overline">Kos Bulanan</Typography>
                             <Roomview
                                 isLike={this.isLike}
                                 limit={this.state.limit}
                                 rooms={this.state.rooms}
                                 handleShowMore={this.handleShowMore}
                             />
-                    }
-                </Grid>
-                <Grid item xs={12} sm={12} md={3} lg={3} xl={3}>
-                    <Navigate />
-                </Grid>
-
-            </Grid>)
+                        </Box>
+                }
+            </Box>)
     }
 }
 export default Rooms;

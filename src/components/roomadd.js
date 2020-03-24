@@ -94,7 +94,7 @@ const Formview = (props) => {
                         thousandSeparator={true}
                         prefix={'Rp '} />
 
-                    <CurrencyFormat
+                    {/* <CurrencyFormat
                         customInput={TextField}
                         variant="outlined"
                         name="owner_phone"
@@ -105,8 +105,20 @@ const Formview = (props) => {
                         onChange={props.handleChange}
                         required
                         fullWidth
-                        thousandSeparator={true} />
+                        thousandSeparator={true} /> */}
 
+                    <CurrencyFormat
+                        customInput={TextField}
+                        variant="outlined"
+                        name="owner_phone"
+                        placeholder="+62 852 xxxx xxxx"
+                        format="62###########"
+                        mask="_"
+                        margin="dense"
+                        onChange={props.handleChange}
+                        required
+                        fullWidth
+                        thousandSeparator={true} />
 
                     <TextField
                         variant="outlined"
@@ -356,11 +368,10 @@ class Roomadd extends React.Component {
                 avatar: "https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar-300x300.jpg",
                 room_title: room_title,
                 image_url: image_url,
-                photo_arr: [
-                    { src: image_url, thumbnail: image_url, thumbnailWidth: 320, thumbnailHeight: 174 },
-                    { src: photo_one, thumbnail: photo_one, thumbnailWidth: 320, thumbnailHeight: 174 },
-                    { src: photo_two, thumbnail: photo_two, thumbnailWidth: 320, thumbnailHeight: 174 },
-                    { src: photo_three, thumbnail: photo_three, thumbnailWidth: 320, thumbnailHeight: 174 }
+                photos: [
+                    { src: photo_one, width: 3, height: 4 },
+                    { src: photo_two, width: 3, height: 4 },
+                    { src: photo_three, width: 3, height: 4 }
                 ],
                 facilities_arr: [{
                     lemari: lemari,
@@ -387,7 +398,7 @@ class Roomadd extends React.Component {
             { withCredentials: true }
         ).then((response) => {
             this.setState({ loading: false })
-            
+
             console.log(response)
         }).catch(error => {
             console.warn(error)

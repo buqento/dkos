@@ -2,22 +2,19 @@ import React from 'react';
 import Axios from 'axios';
 import { Link as RouterLink } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
-import { Helmet } from 'react-helmet';
 
 import Fbcomment from './fbcomment';
-import Navigate from './navigate';
 import Peta from './peta';
 import Fbshare from './fbshare';
 
-import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import MoneyIcon from '@material-ui/icons/Money';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { MdPictureInPicture, MdDirectionsCar, MdToys, MdMotorcycle, MdWifi, MdAcUnit, MdKitchen, MdHotel } from 'react-icons/md';
+import { MdPictureInPicture, MdDirectionsCar, MdToys, MdMotorcycle, MdWifi, MdAcUnit, MdKitchen, MdHotel, MdRoomService } from 'react-icons/md';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Breadcrumbs, Link, Grid, Divider } from '@material-ui/core';
+import { Typography, Breadcrumbs, Link, Grid, Divider, Box } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -29,14 +26,17 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Gallery from 'react-grid-gallery';
+
+import Gallery from "react-photo-gallery";
+import Carousel, { Modal, ModalGateway } from "react-images";
+import Fab from '@material-ui/core/Fab';
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		padding: theme.spacing(1, 1),
-		display: 'flex',
+		// padding: theme.spacing(1, 1),
+		// display: 'flex',
 		alignItems: 'center',
-		maxWidth: 900,
+		// maxWidth: 900,
 	},
 	media: {
 		height: 240,
@@ -57,19 +57,55 @@ const useStyles = makeStyles(theme => ({
 	},
 	divider: {
 		marginBottom: 20,
-	}
+	},
+	fab: {
+		position: 'fixed',
+		bottom: theme.spacing(2),
+		right: theme.spacing(2),
+	},
 }));
 
-const DetailView = (props) => {
+const FabAction = (props) => {
+	const classes = useStyles();
+	const url = "https://wa.me/" + props.phone + "?text=Hi kak, Saya mendapatkan informasi kos ini dari https://tantekos.com Apakah tersedia kamar kosong?";
+	return (<div>
+		<Fab color="secondary" aria-label="add" className={classes.fab} href={url}>
+			<WhatsAppIcon style={{ color: "#25d366" }} />
+		</Fab>
+	</div>)
+}
 
+
+const DetailView = (props) => {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
 	const handleClickOpen = () => { setOpen(true) };
 	const handleClose = () => { setOpen(false) };
+	const [currentImage, setCurrentImage] = React.useState(0);
+	const [viewerIsOpen, setViewerIsOpen] = React.useState(false);
+	const openLightbox = React.useCallback((event, { photo, index }) => {
+		setCurrentImage(index);
+		setViewerIsOpen(true);
+	}, []);
 
-	return (<div>
+	const closeLightbox = () => {
+		setCurrentImage(0);
+		setViewerIsOpen(false);
+	};
 
-		{/*inisialisasi komponen dialog*/}
+	let info = '';
+	if(props.type === "type1"){
+		if(props.room_gender === 1){
+			info = "Kos Putra";
+		}else if(props.room_gender === 2){
+			info = "Kos Putri";
+		}else{
+			info = "Kos Campur";
+		}
+	}else{
+		info = "Kontrakan";
+	}
+	return (<Box>
 		<Dialog
 			open={open}
 			onClose={handleClose}
@@ -87,180 +123,190 @@ const DetailView = (props) => {
 			</DialogActions>
 		</Dialog>
 
-		{/*tampilkan daftar gambar pada komponen */}
-		<Gallery images={props.photo_arr} isOpen={false} />
+		<Gallery photos={props.photos} onClick={openLightbox} margin={0} />
 
-		{/*		<GridList cellHeight={200} cols={4}>
-			{props.photo_arr.map(tile => (
-				<GridListTile key={tile.img} cols={tile.cols || 1}>
-					<Image src={tile.img} alt={tile.title} />
-				</GridListTile>
-			))}
-		</GridList>*/}
+		<ModalGateway>
+			{viewerIsOpen ? (
+				<Modal onClose={closeLightbox}>
+					<Carousel
+						currentIndex={currentImage}
+						views={props.photos.map(x => ({
+							...x,
+							srcset: x.srcSet,
+							caption: x.title
+						}))}
+					/>
+				</Modal>
+			) : null}
+		</ModalGateway>
 
 		{/*tampilkan detail data kos*/}
-		<br />
-		<Typography variant="h5">{props.room_title}</Typography>
-		<Typography gutterBottom variant="body1">{props.room_gender === 1 ? " Putra" : props.room_gender === 2 ? " Putri" : " Campur"} &bull; {props.location} &bull; {props.views} Lihat
-		</Typography>
 
-		{/*tampilkan grup button*/}
-		<ButtonGroup color="secondary" aria-label="outlined secondary button group">
+		<Box padding={1}>
 
-			{/*state: isLogin=true, maka dapat menekan button favorite/unfavorite*/}
-			{/*state: isLogin=false, maka tampilkan dialog*/}
-			<Button
-				color="secondary"
-				onClick={props.isLogin ? props.handleFavorites : handleClickOpen}
-				startIcon={props.isFavorite ?
-					<FavoriteIcon style={{ color: "red" }} fontSize="large" /> :
-					<FavoriteBorderIcon color="primary" fontSize="large" />}
-			>
-				{props.likes} Suka
-			</Button>
+			<Typography variant="h5">{props.room_title}</Typography>
+			<Typography gutterBottom variant="body1">
+				{ info } &bull; {props.location} &bull; {props.views} Lihat
+			</Typography>
 
-			{/*tampilkan button bagikan*/}
-			<Button>
-				<Fbshare
-					id={props.id}
-					slug={props.slug}
-					image_url={props.image_url}
-					room_title={props.room_title}
-					description={props.description} />
-			</Button>
+			{/*tampilkan grup button*/}
+				<Box mb={2}>
+			<ButtonGroup color="secondary" aria-label="outlined secondary button group">
 
-		</ButtonGroup>
+				{/*state: isLogin=true, maka dapat menekan button favorite/unfavorite*/}
+				{/*state: isLogin=false, maka tampilkan dialog*/}
 
-		<br />
-		<br />
-		<Divider className={classes.divider} />
+					<Button
+						color="secondary"
+						onClick={props.isLogin ? props.handleFavorites : handleClickOpen}
+						startIcon={props.isFavorite ?
+							<FavoriteIcon style={{ color: "red" }} fontSize="large" /> :
+							<FavoriteBorderIcon color="primary" fontSize="large" />}
+					>
+						{props.likes} Suka
+					</Button>
 
-		{/*tampilkan harga sewa*/}
-		<ListItem>
-			<ListItemIcon>
-				<MoneyIcon size="2em" />
-			</ListItemIcon>
-			<ListItemText>
-				<CurrencyFormat value={props.price_month} displayType={'text'} thousandSeparator={true} prefix={'Rp '} /> / Bulan
+				{/*tampilkan button bagikan*/}
+				<Button>
+					<Fbshare
+						id={props.id}
+						slug={props.slug}
+						image_url={props.image_url}
+						room_title={props.room_title}
+						description={props.description} />
+				</Button>
+
+			</ButtonGroup>
+						</Box>
+
+			<Divider className={classes.divider} />
+
+			{/*tampilkan harga sewa*/}
+			<ListItem>
+				<ListItemIcon>
+					<MoneyIcon size="2em" />
+				</ListItemIcon>
+				<ListItemText>
+					<CurrencyFormat value={props.price_month} displayType={'text'} thousandSeparator={true} prefix={'Rp '} /> / {props.type === 'type1' ? 'Bulan' : 'Tahun'}
 			</ListItemText>
-		</ListItem>
+			</ListItem>
 
-		<Divider className={classes.divider} />
+			<Divider className={classes.divider} />
 
-		{/*tampilkan nomor telepon pemilik*/}
-		<ListItem>
-			<ListItemIcon>
-				<WhatsAppIcon size="2em" />
-			</ListItemIcon>
-			<ListItemText primary={props.owner_phone} />
-		</ListItem>
+			{/*tampilkan nomor telepon pemilik*/}
+			<ListItem>
+				<ListItemIcon>
+					<WhatsAppIcon size="2em" />
+				</ListItemIcon>
+				<ListItemText primary={`+${props.owner_phone}`} />
+			</ListItem>
 
-		<Divider className={classes.divider} />
+			<Divider className={classes.divider} />
 
-		{/*tampilkan deskripsi*/}
-		<Typography variant="body1"><strong>Deskripsi</strong></Typography>
-		<Typography gutterBottom variant="body2">{props.description}</Typography>
+			{/*tampilkan deskripsi*/}
+			<Typography variant="body1"><strong>Deskripsi</strong></Typography>
+			<Typography gutterBottom variant="body2">{props.description}</Typography>
 
-		<Divider className={classes.divider} />
+			<Divider className={classes.divider} />
 
-		{/*fasilitas yang tersedia. True (tampilkan), false (tidak ditampilkan)*/}
-		<Grid container spacing={1}>
-			<Grid item xs={12} sm={6}>
-				<Typography variant="body1"><strong>Fasilitas Kamar</strong></Typography>
-				<List>
-					{props.facilities_arr[0].lemari &&
-						<ListItem>
-							<ListItemIcon>
-								<MdKitchen size="2em" />
-							</ListItemIcon>
-							<ListItemText primary="Lemari Pakaian" />
-						</ListItem>
-					}
-					{props.facilities_arr[0].kasur &&
-						<ListItem>
-							<ListItemIcon>
-								<MdHotel size="2em" />
-							</ListItemIcon>
-							<ListItemText primary="Kasur" />
-						</ListItem>
-					}
-					{props.facilities_arr[0].meja &&
-						<ListItem>
-							<ListItemIcon>
-								<MdPictureInPicture size="2em" />
-							</ListItemIcon>
-							<ListItemText primary="Meja Belajar" />
-						</ListItem>
-					}
-					{props.facilities_arr[0].wifi &&
-						<ListItem>
-							<ListItemIcon>
-								<MdWifi size="2em" />
-							</ListItemIcon>
-							<ListItemText primary="Wifi Hotspot" />
-						</ListItem>
-					}
-					{props.facilities_arr[0].kipas &&
-						<ListItem>
-							<ListItemIcon>
-								<MdToys size="2em" />
-							</ListItemIcon>
-							<ListItemText primary="Kipas Angin" />
-						</ListItem>
-					}
-					{props.facilities_arr[0].ac &&
-						<ListItem>
-							<ListItemIcon>
-								<MdAcUnit size="2em" />
-							</ListItemIcon>
-							<ListItemText primary="Air Conditioner" />
-						</ListItem>
-					}
-				</List>
+			{/*fasilitas yang tersedia. True (tampilkan), false (tidak ditampilkan)*/}
+			<Grid container spacing={1}>
+				<Grid item xs={12} sm={6}>
+					<Typography variant="body1"><strong>Fasilitas Kamar</strong></Typography>
+					<List>
+						{props.facilities_arr[0].lemari &&
+							<ListItem>
+								<ListItemIcon>
+									<MdKitchen size="2em" />
+								</ListItemIcon>
+								<ListItemText primary="Lemari Pakaian" />
+							</ListItem>
+						}
+						{props.facilities_arr[0].kasur &&
+							<ListItem>
+								<ListItemIcon>
+									<MdHotel size="2em" />
+								</ListItemIcon>
+								<ListItemText primary="Kasur" />
+							</ListItem>
+						}
+						{props.facilities_arr[0].meja &&
+							<ListItem>
+								<ListItemIcon>
+									<MdPictureInPicture size="2em" />
+								</ListItemIcon>
+								<ListItemText primary="Meja Belajar" />
+							</ListItem>
+						}
+						{props.facilities_arr[0].wifi &&
+							<ListItem>
+								<ListItemIcon>
+									<MdWifi size="2em" />
+								</ListItemIcon>
+								<ListItemText primary="Wifi Hotspot" />
+							</ListItem>
+						}
+						{props.facilities_arr[0].kipas &&
+							<ListItem>
+								<ListItemIcon>
+									<MdToys size="2em" />
+								</ListItemIcon>
+								<ListItemText primary="Kipas Angin" />
+							</ListItem>
+						}
+						{props.facilities_arr[0].ac &&
+							<ListItem>
+								<ListItemIcon>
+									<MdAcUnit size="2em" />
+								</ListItemIcon>
+								<ListItemText primary="Air Conditioner" />
+							</ListItem>
+						}
+					</List>
+				</Grid>
+				<Grid item>
+					<Typography variant="body1"><strong>Fasilitas Umum</strong></Typography>
+					<List>
+						{props.facilities_arr[0].parkirMotor &&
+							<ListItem>
+								<ListItemIcon>
+									<MdRoomService size="2em" />
+								</ListItemIcon>
+								<ListItemText primary="Dapur" />
+							</ListItem>
+						}
+						{props.facilities_arr[0].parkirMotor &&
+							<ListItem>
+								<ListItemIcon>
+									<MdMotorcycle size="2em" />
+								</ListItemIcon>
+								<ListItemText primary="Parkiran Sepeda Motor" />
+							</ListItem>
+						}
+						{props.facilities_arr[0].parkirMobil &&
+							<ListItem>
+								<ListItemIcon>
+									<MdDirectionsCar size="2em" />
+								</ListItemIcon>
+								<ListItemText primary="Parkiran Mobil" />
+							</ListItem>
+						}
+					</List>
+				</Grid>
 			</Grid>
-			<Grid item>
-				<Typography variant="body1"><strong>Fasilitas Umum</strong></Typography>
-				<List>
-					{props.facilities_arr[0].parkirMotor &&
-						<ListItem>
-							<ListItemIcon>
-								<OutdoorGrillIcon size="2em" />
-							</ListItemIcon>
-							<ListItemText primary="Dapur" />
-						</ListItem>
-					}
-					{props.facilities_arr[0].parkirMotor &&
-						<ListItem>
-							<ListItemIcon>
-								<MdMotorcycle size="2em" />
-							</ListItemIcon>
-							<ListItemText primary="Parkiran Sepeda Motor" />
-						</ListItem>
-					}
-					{props.facilities_arr[0].parkirMobil &&
-						<ListItem>
-							<ListItemIcon>
-								<MdDirectionsCar size="2em" />
-							</ListItemIcon>
-							<ListItemText primary="Parkiran Mobil" />
-						</ListItem>
-					}
-				</List>
-			</Grid>
-		</Grid>
 
-		<Divider className={classes.divider} />
+			<Divider className={classes.divider} />
 
-		{/*tampilkan lokasi menggunakan komponen peta*/}
-		<Typography variant="body1"><strong>Lokasi</strong></Typography>
-		<Peta latLng={props.latLng} room_title={props.room_title} zoom={16} maxZoom={18} />
-		<br />
+			{/*tampilkan lokasi menggunakan komponen peta*/}
+			<Typography variant="body1"><strong>Lokasi</strong></Typography>
+			<Peta latLng={props.latLng} room_title={props.room_title} zoom={16} maxZoom={18} />
+			<br />
+		</Box>
 
-	</div>)
+	</Box>)
 }
 
 class Detail extends React.Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -376,45 +422,28 @@ class Detail extends React.Component {
 	}
 
 	render() {
-
 		const Linktohome = React.forwardRef((props, ref) => (
 			<RouterLink innerRef={ref} to="/" {...props} />
 		));
-
-		return (<div>
-
-			{/*mengubah meta data untuk SEO*/}
-			<Helmet>
-				<meta property="og:url" content={"https://www.tantekos.com/room/" + this.state.room.slug} />
-				<meta property="og:type" content="article" />
-				<meta property="og:title" content={this.state.room.room_title} />
-				<meta property="og:description" content={this.state.room.room_title + ' ' + this.state.room.location + ' - ' + this.state.room.description} />
-				<meta property="og:image" content={this.state.room.image_url} />
-				{
-					this.state.room.room_title && <title>{"Tantekos - " + this.state.room.room_title}</title>
-				}
-				<meta name="description" content={this.state.room.room_title + ' ' + this.state.room.location + ' - ' + this.state.room.description} />
-			</Helmet>
-
+		return (<Box>
 			{
-				// tampilkan skeleton jika state loading = true
 				this.state.loading ?
 					<Skeleton height={30} width="20%" />
 					:
 					(
-						<div>
+						<Box mb={1}>
 							<Breadcrumbs aria-label="breadcrumb">
 								<Link color="inherit" component={Linktohome}>Home</Link>
 								<Typography color="textPrimary">{this.state.room.room_title}</Typography>
 							</Breadcrumbs>
-						</div>
+						</Box>
 					)
 			}
 
-			<br />
+			<FabAction phone={this.state.room.owner_phone} />
 
-			<Grid container spacing={1}>
-				<Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+			{/* <Grid> */}
+				{/* <Grid xs={12} sm={12} md={12}> */}
 
 					{
 
@@ -447,6 +476,8 @@ class Detail extends React.Component {
 									createdAt={this.state.room.createdAt}
 									views={this.state.room.views}
 									photo_arr={this.state.room.photo_arr}
+									photos={this.state.room.photos}
+									type={this.state.room.type}
 									facilities_arr={this.state.room.facilities_arr}
 									handleFavorites={this.handleFavorites}
 									likes={this.state.likes}
@@ -455,18 +486,19 @@ class Detail extends React.Component {
 								/>
 							)
 					}
-				</Grid>
-				<Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+				{/* </Grid> */}
+				{/* <Grid item xs={12} sm={12} md={6} lg={6} xl={6}> */}
 
 					{/*tampilkan komponen komentar facebook*/}
 					<Fbcomment slug={this.state.room.slug} />
 
 					{/*tampilkan komponen navigate*/}
-					<Navigate />
-				</Grid>
+				{/* </Grid> */}
 
-			</Grid>
-		</div>)
+			{/* </Grid> */}
+
+
+		</Box>)
 	}
 }
 

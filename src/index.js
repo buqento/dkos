@@ -62,28 +62,6 @@ const rootReducer = (state = globalState, action) => {
 			}
 		}
 	}
-
-	// if(action.type === "FILTER_LOCATION"){
-	// 	return{
-	// 		...state,
-	// 		filter: action.filter
-	// 	}
-	// }
-	// if(action.type === "LOGIN_STATUS"){
-	// 	return{
-	// 		...state,
-	// 		loginStatus: !state.loginStatus
-	// 	}
-	// }
-	// if(action.type === "ADD_LOCATION"){
-	// 	return{
-	// 		...state,
-	// 		lat:action.loc.lat,
-	// 		lng:action.loc.lng
-	// 	}
-	// }
-
-	// return state;
 }
 
 //Store
