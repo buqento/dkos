@@ -33,10 +33,7 @@ import Fab from '@material-ui/core/Fab';
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		// padding: theme.spacing(1, 1),
-		// display: 'flex',
 		alignItems: 'center',
-		// maxWidth: 900,
 	},
 	media: {
 		height: 240,
@@ -75,7 +72,6 @@ const FabAction = (props) => {
 	</div>)
 }
 
-
 const DetailView = (props) => {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
@@ -94,15 +90,15 @@ const DetailView = (props) => {
 	};
 
 	let info = '';
-	if(props.type === "type1"){
-		if(props.room_gender === 1){
+	if (props.type === "type1") {
+		if (props.room_gender === 1) {
 			info = "Kos Putra";
-		}else if(props.room_gender === 2){
+		} else if (props.room_gender === 2) {
 			info = "Kos Putri";
-		}else{
+		} else {
 			info = "Kos Campur";
 		}
-	}else{
+	} else {
 		info = "Kontrakan";
 	}
 	return (<Box>
@@ -146,15 +142,15 @@ const DetailView = (props) => {
 
 			<Typography variant="h5">{props.room_title}</Typography>
 			<Typography gutterBottom variant="body1">
-				{ info } &bull; {props.location} &bull; {props.views} Lihat
+				{info} &bull; {props.location} &bull; {props.views} Lihat
 			</Typography>
 
 			{/*tampilkan grup button*/}
-				<Box mb={2}>
-			<ButtonGroup color="secondary" aria-label="outlined secondary button group">
+			<Box mb={2}>
+				<ButtonGroup color="secondary" aria-label="outlined secondary button group">
 
-				{/*state: isLogin=true, maka dapat menekan button favorite/unfavorite*/}
-				{/*state: isLogin=false, maka tampilkan dialog*/}
+					{/*state: isLogin=true, maka dapat menekan button favorite/unfavorite*/}
+					{/*state: isLogin=false, maka tampilkan dialog*/}
 
 					<Button
 						color="secondary"
@@ -166,18 +162,18 @@ const DetailView = (props) => {
 						{props.likes} Suka
 					</Button>
 
-				{/*tampilkan button bagikan*/}
-				<Button>
-					<Fbshare
-						id={props.id}
-						slug={props.slug}
-						image_url={props.image_url}
-						room_title={props.room_title}
-						description={props.description} />
-				</Button>
+					{/*tampilkan button bagikan*/}
+					<Button>
+						<Fbshare
+							id={props.id}
+							slug={props.slug}
+							image_url={props.image_url}
+							room_title={props.room_title}
+							description={props.description} />
+					</Button>
 
-			</ButtonGroup>
-						</Box>
+				</ButtonGroup>
+			</Box>
 
 			<Divider className={classes.divider} />
 
@@ -188,7 +184,7 @@ const DetailView = (props) => {
 				</ListItemIcon>
 				<ListItemText>
 					<CurrencyFormat value={props.price_month} displayType={'text'} thousandSeparator={true} prefix={'Rp '} /> / {props.type === 'type1' ? 'Bulan' : 'Tahun'}
-			</ListItemText>
+				</ListItemText>
 			</ListItem>
 
 			<Divider className={classes.divider} />
@@ -392,10 +388,9 @@ class Detail extends React.Component {
 	}
 
 	async componentDidMount() {
+		console.log(this.props);
 		const user = JSON.parse(localStorage.getItem("user"));
 		const { slug } = this.props.match.params
-
-		// temukan data dengan kriteria slug
 		await Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms?filter=${slug}`)
 			.then(response => {
 				this.setState({ room: response.data[0] })
@@ -439,65 +434,45 @@ class Detail extends React.Component {
 						</Box>
 					)
 			}
-
 			<FabAction phone={this.state.room.owner_phone} />
-
-			{/* <Grid> */}
-				{/* <Grid xs={12} sm={12} md={12}> */}
-
-					{
-
-						// tampilkan skeleton jika state loading = true
-						this.state.loading ?
-							<div>
-								<Skeleton variant="rect" width="100%" height={200} style={{ marginBottom: 2 }} />
-								<React.Fragment>
-									<Skeleton height={30} style={{ marginBottom: 2 }} />
-									<Skeleton height={30} width="80%" />
-								</React.Fragment>
-							</div>
-							:
-							(
-
-								// tampilkan detail jika state loading = false
-								<DetailView
-									id={this.state.room.id}
-									avatar={this.state.room.avatar}
-									image_url={this.state.room.image_url}
-									room_title={this.state.room.room_title}
-									price_title_time={this.state.room.price_title_time}
-									price_month={this.state.room.price_month}
-									description={this.state.room.description}
-									room_gender={this.state.room.room_gender}
-									owner_name={this.state.room.owner_name}
-									owner_phone={this.state.room.owner_phone}
-									location={this.state.room.location}
-									latLng={this.state.room.latLng}
-									createdAt={this.state.room.createdAt}
-									views={this.state.room.views}
-									photo_arr={this.state.room.photo_arr}
-									photos={this.state.room.photos}
-									type={this.state.room.type}
-									facilities_arr={this.state.room.facilities_arr}
-									handleFavorites={this.handleFavorites}
-									likes={this.state.likes}
-									isFavorite={this.state.isFavorite}
-									isLogin={this.state.isLogin}
-								/>
-							)
-					}
-				{/* </Grid> */}
-				{/* <Grid item xs={12} sm={12} md={6} lg={6} xl={6}> */}
-
-					{/*tampilkan komponen komentar facebook*/}
-					<Fbcomment slug={this.state.room.slug} />
-
-					{/*tampilkan komponen navigate*/}
-				{/* </Grid> */}
-
-			{/* </Grid> */}
-
-
+			{
+				this.state.loading ?
+					<div>
+						<Skeleton variant="rect" width="100%" height={200} style={{ marginBottom: 2 }} />
+						<React.Fragment>
+							<Skeleton height={30} style={{ marginBottom: 2 }} />
+							<Skeleton height={30} width="80%" />
+						</React.Fragment>
+					</div>
+					:
+					(
+						<DetailView
+							id={this.state.room.id}
+							avatar={this.state.room.avatar}
+							image_url={this.state.room.image_url}
+							room_title={this.state.room.room_title}
+							price_title_time={this.state.room.price_title_time}
+							price_month={this.state.room.price_month}
+							description={this.state.room.description}
+							room_gender={this.state.room.room_gender}
+							owner_name={this.state.room.owner_name}
+							owner_phone={this.state.room.owner_phone}
+							location={this.state.room.location}
+							latLng={this.state.room.latLng}
+							createdAt={this.state.room.createdAt}
+							views={this.state.room.views}
+							photo_arr={this.state.room.photo_arr}
+							photos={this.state.room.photos}
+							type={this.state.room.type}
+							facilities_arr={this.state.room.facilities_arr}
+							handleFavorites={this.handleFavorites}
+							likes={this.state.likes}
+							isFavorite={this.state.isFavorite}
+							isLogin={this.state.isLogin}
+						/>
+					)
+			}
+			<Fbcomment slug={this.state.room.slug} />
 		</Box>)
 	}
 }

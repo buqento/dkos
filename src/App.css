@@ -1,3 +1,22 @@
+.no-underline-link{
+  text-decoration: none;
+}
 .map{
   height: 50vh;
+}
+
+.pos-right{
+  float: right;
+}
+
+.inline{
+  display: inline;
+}
+
+.campaign-container{
+  background-color: white;
+}
+
+.main-container{
+  background-color:#DADCDE;
 }

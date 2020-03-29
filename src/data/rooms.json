@@ -48,7 +48,7 @@
       "lng": 128.0997705459595
     },
     "slug": "kos-laha",
-    "views": 83,
+    "views": 86,
     "type": "type1"
   },
   {
@@ -100,7 +100,7 @@
       "lng": 128.23450326919559
     },
     "slug": "kos-lateri",
-    "views": 164,
+    "views": 165,
     "type": "type1"
   },
   {
@@ -256,7 +256,7 @@
       "lng": 128.25074260256565
     },
     "slug": "kos-passo-depan-bank-maluku",
-    "views": 54,
+    "views": 60,
     "type": 1
   },
   {
@@ -308,7 +308,7 @@
       "lng": 128.183085
     },
     "slug": "kos-area-passo",
-    "views": 131,
+    "views": 132,
     "type": "type1"
   },
   {
@@ -360,7 +360,7 @@
       "lng": 128.1921458244324
     },
     "slug": "kos-wara",
-    "views": 13,
+    "views": 15,
     "type": "type1"
   },
   {
@@ -464,7 +464,7 @@
       "lng": 128.25503346143722
     },
     "slug": "kos-passo-lorong-pln",
-    "views": 60,
+    "views": 67,
     "type": "type1"
   },
   {
@@ -500,7 +500,7 @@
       "lng": 128.22400287612976
     },
     "slug": "rumah-kontrakan-asrama-haji-waiheru",
-    "views": 8,
+    "views": 16,
     "photos": [
       {
         "src": "https://scontent.fcgk8-2.fna.fbcdn.net/v/t1.0-9/p720x720/90511627_221526008901905_3346605986960900096_o.jpg?_nc_cat=107&_nc_sid=b9115d&_nc_eui2=AeEn_CUlFPU5wMEKjzyA2PLGHnyKtLzHNJZttR_EzJqDoXN6DK3hdZ1KWRPiuPeGVUrRytKb6i_dPkGaoHIbAM8GHmVLz6kltF0mB7OpUD68Ag&_nc_oc=AQmRStc3mCm9XAbbmIq4EBAnANwGdddQHt6-ic0IAr3OWPt1IG_B5kidvOFxmTMHJGw&_nc_ht=scontent.fcgk8-2.fna&_nc_tp=6&oh=fcec01725f80414b20a14f752ca5c96e&oe=5EA05527",
@@ -553,7 +553,7 @@
       "lng": 128.1887170252097
     },
     "slug": "kontrak-tahunan-asmil-batumerah",
-    "views": 2,
+    "views": 5,
     "photos": [
       {
         "src": "https://scontent.fcgk9-2.fna.fbcdn.net/v/t1.0-9/p720x720/89469593_3101402859870542_4148310518077063168_o.jpg?_nc_cat=104&_nc_sid=07e735&_nc_eui2=AeFpqLHdtwrYnznKMHbmeSnWOt7oUqDviQ6ALyMPPbTXbUVh9Q7rbp1usbqTgaOrP7mczOy0maxJiSGv2kzuheN0aSyBO_RFI9mz40oLHOKfhg&_nc_oc=AQmixvnfr0HJOAEzgt04tnPekTeT9OqGzBWSh0MNxS4ENj4hmk9ymUnC0gAbqrYd464&_nc_ht=scontent.fcgk9-2.fna&_nc_tp=6&oh=5655c7836bd330412f35d51fdbc860cb&oe=5EA181B9",
@@ -587,7 +587,7 @@
     "lat": 95,
     "lng": 71,
     "image_url": "https://scontent.fcgk8-1.fna.fbcdn.net/v/t1.0-9/p720x720/88236513_210211776699995_5106443925686583296_o.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_eui2=AeFGzAYd2BWls_Q_661GpE851p6VKzze9LGo6zrHnqf53PEWjY05CX0BQbuirdfJpQJ10Px0PkKGTJoP17CKjFkgAcFqeFHcvrv00i8Ku6S7ew&_nc_oc=AQnASBeSb2-bfku86JisCU86-VwuBAF0jkNcsZPfXw0YZUHTA98dCadJgVs7_EM-pT4&_nc_ht=scontent.fcgk8-1.fna&_nc_tp=6&oh=57056114cb79761679c489ae1d03f1fd&oe=5E9DB935",
-    "price_month": "Rp 1,234,567",
+    "price_month": "Rp 0",
     "photo_arr": [],
     "facilities_arr": [
       {
@@ -606,7 +606,7 @@
       "lng": 128.22605768332917
     },
     "slug": "rumah-kontrak-tahunan-waiheru-lapiaso",
-    "views": 1,
+    "views": 6,
     "photos": [
       {
         "src": "https://scontent.fcgk8-1.fna.fbcdn.net/v/t1.0-9/p720x720/88236513_210211776699995_5106443925686583296_o.jpg?_nc_cat=111&_nc_sid=b9115d&_nc_eui2=AeFGzAYd2BWls_Q_661GpE851p6VKzze9LGo6zrHnqf53PEWjY05CX0BQbuirdfJpQJ10Px0PkKGTJoP17CKjFkgAcFqeFHcvrv00i8Ku6S7ew&_nc_oc=AQnASBeSb2-bfku86JisCU86-VwuBAF0jkNcsZPfXw0YZUHTA98dCadJgVs7_EM-pT4&_nc_ht=scontent.fcgk8-1.fna&_nc_tp=6&oh=57056114cb79761679c489ae1d03f1fd&oe=5E9DB935",
@@ -625,5 +625,164 @@
       }
     ],
     "type": "type2"
+  },
+  {
+    "id": "25",
+    "createdAt": 1585103317619,
+    "room_title": "Kontrak Tahunan BTN Wayame",
+    "avatar": "https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar-300x300.jpg",
+    "price_title_time": 38,
+    "owner_phone": "6285319132515",
+    "description": "Dikontakkan hunian berlokasi di wilayah BTN Wayame. Info lengkap hubungi nomor yang tersedia.",
+    "location": "Ambon",
+    "room_gender": 1,
+    "owner_name": "Tantekos",
+    "lat": 65,
+    "lng": 11,
+    "image_url": "https://scontent.fcgk5-1.fna.fbcdn.net/v/t1.0-9/88357368_226724505173572_29072221309763584_n.jpg?_nc_cat=107&_nc_sid=07e735&_nc_eui2=AeFE52YNlQD24wHfgVQYUl39i-brwaYZYgJd_rr835artY7gNIxODKc5-726SVgzuVPIjwM1-ClUdTtDXuvvW5ZQargjAyF02f4qRvR04Kj1VQ&_nc_oc=AQlAxpxvBpyO_xnBc8egUBIQ1ZdGB_X_jayfuqZ8Tn3pGzyzI26PmhBYwlfYyfdRyak&_nc_ht=scontent.fcgk5-1.fna&oh=a6368ea0ed88f9c86cdc17371665a7e8&oe=5E9F0756",
+    "price_month": "Rp 0",
+    "photo_arr": [],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": true,
+        "wifi": false,
+        "kipas": false,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": true
+      }
+    ],
+    "latLng": {
+      "lat": -3.693139,
+      "lng": 128.183085
+    },
+    "slug": "kontrak-tahunan-btn-wayame",
+    "views": 1,
+    "photos": [
+      {
+        "src": "https://scontent.fcgk5-1.fna.fbcdn.net/v/t1.0-9/88357368_226724505173572_29072221309763584_n.jpg?_nc_cat=107&_nc_sid=07e735&_nc_eui2=AeFE52YNlQD24wHfgVQYUl39i-brwaYZYgJd_rr835artY7gNIxODKc5-726SVgzuVPIjwM1-ClUdTtDXuvvW5ZQargjAyF02f4qRvR04Kj1VQ&_nc_oc=AQlAxpxvBpyO_xnBc8egUBIQ1ZdGB_X_jayfuqZ8Tn3pGzyzI26PmhBYwlfYyfdRyak&_nc_ht=scontent.fcgk5-1.fna&oh=a6368ea0ed88f9c86cdc17371665a7e8&oe=5E9F0756",
+        "width": 4,
+        "height": 3
+      },
+      {
+        "src": "https://scontent.fcgk4-2.fna.fbcdn.net/v/t1.0-9/89035956_226724468506909_1162506883769040896_n.jpg?_nc_cat=106&_nc_sid=07e735&_nc_eui2=AeHWet5jjT38glMZe_xORml5GVEKlCWoipDlW999tbRzwYbfCcZ6UDBEZ1qo-ZHVQYyvg1fg2e3bj6lfxxhgarMDr9XeFzeX25guREBNuWN3nQ&_nc_oc=AQmGqRiwl0UwjWpwTw-tpbK43UTMd87PJWHwKWIdDNqOCQ7MHa_Wjqe-68g6uRR_QyY&_nc_ht=scontent.fcgk4-2.fna&oh=49367b3a374a273299db4b2ad6ea4a89&oe=5EA1BF1C",
+        "width": 4,
+        "height": 3
+      },
+      {
+        "src": "https://scontent.fcgk4-2.fna.fbcdn.net/v/t1.0-9/89035956_226724468506909_1162506883769040896_n.jpg?_nc_cat=106&_nc_sid=07e735&_nc_eui2=AeHWet5jjT38glMZe_xORml5GVEKlCWoipDlW999tbRzwYbfCcZ6UDBEZ1qo-ZHVQYyvg1fg2e3bj6lfxxhgarMDr9XeFzeX25guREBNuWN3nQ&_nc_oc=AQmGqRiwl0UwjWpwTw-tpbK43UTMd87PJWHwKWIdDNqOCQ7MHa_Wjqe-68g6uRR_QyY&_nc_ht=scontent.fcgk4-2.fna&oh=49367b3a374a273299db4b2ad6ea4a89&oe=5EA1BF1C",
+        "width": 4,
+        "height": 3
+      }
+    ],
+    "type": "type2"
+  },
+  {
+    "id": "26",
+    "createdAt": 1585104506645,
+    "room_title": "Rumah Kontrak Tahunan Belakang Rindam Suli",
+    "avatar": "https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar-300x300.jpg",
+    "price_title_time": 74,
+    "owner_phone": "6281343585022",
+    "description": "Rumah dikontrakan per tahun, berlokasi di Jl. Banda - Suli (belakang Rindam). Fasilitas: 3 kamar tidur, ruang tamu, ruang keluarga,  dapur, kamar mandi, bak penampung air. Info selengkapnya hubungi nomor yang tersedia.",
+    "location": "Ambon",
+    "room_gender": 1,
+    "owner_name": "Tantekos",
+    "lat": 19,
+    "lng": 87,
+    "image_url": "https://scontent.fcgk4-2.fna.fbcdn.net/v/t1.0-9/86735440_111488607106706_6492535292078063616_n.jpg?_nc_cat=106&_nc_sid=b9115d&_nc_eui2=AeFAsTwULaz01OMgABoNBEAo4QmIEmy8fN7e5ETQqGYiT8RNthbbIzYDucTuM_XOtUkIWWQEcyLKahWaa67MRyOMYc8wEN2-iHmHvw-q20rEzA&_nc_oc=AQmkCG8bu9HVvommYkXIprX4sb2YEt6eB9os4gz65-gpLE_JqvYico_IOwNzzifk9Kg&_nc_ht=scontent.fcgk4-2.fna&oh=dacc230d4636e667b0b48e133cc2fd9a&oe=5E9FD7B3",
+    "price_month": "Rp 7,000,000",
+    "photo_arr": [],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": true,
+        "wifi": false,
+        "kipas": false,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": true
+      }
+    ],
+    "latLng": {
+      "lat": -3.693139,
+      "lng": 128.183085
+    },
+    "slug": "rumah-kontrak-tahunan-belakang-rindam-suli",
+    "views": 1,
+    "photos": [
+      {
+        "src": "https://scontent.fcgk4-1.fna.fbcdn.net/v/t1.0-9/87157744_111488797106687_2051112699365949440_n.jpg?_nc_cat=110&_nc_sid=b9115d&_nc_eui2=AeG0cZa2luYV0Gf1ZMV2TE6ehh79AJJad2Nol0wBRAYGMIqbW6S1PbgXDXQigxSdLfwZwN7yO-K2-c_5EfL1nwz7gm6LZ8K6saK7rLAtACTvmA&_nc_oc=AQm_z3yHx-9VRDbhvm6BFdR4N5zOajtd77pH6zlPPsWoC_S1uaCe_u0AmxV_joVq_9Q&_nc_ht=scontent.fcgk4-1.fna&oh=4f8bca7ae007a5fdf1a5ae22e933b2fb&oe=5EA0604D",
+        "width": 4,
+        "height": 3
+      },
+      {
+        "src": "https://scontent.fcgk4-2.fna.fbcdn.net/v/t1.0-9/87078134_111488850440015_3724121650795380736_n.jpg?_nc_cat=106&_nc_sid=b9115d&_nc_eui2=AeHcXNi8Yzo-yeCuRl1ToKpIe1OtzU0vZTxcMKDfnYPZfU2Gqq8thcIgMbo3vsZr4ajRizml0QeOoaG7By0gebsF5miJW-9CNWsfD73R-fsuBg&_nc_oc=AQnK1ELLO2wmq-i_mZRcaiXe1kxwjUMuWiISOGvDzpX9Yl91SVLrKAKqZWuEssn5aHU&_nc_ht=scontent.fcgk4-2.fna&oh=566fb9e59ca41f34392b1cf8d5290f85&oe=5EA0BCCD",
+        "width": 3,
+        "height": 4
+      },
+      {
+        "src": "https://scontent.fcgk4-2.fna.fbcdn.net/v/t1.0-9/86766378_111488643773369_6073296241461035008_n.jpg?_nc_cat=109&_nc_sid=b9115d&_nc_eui2=AeGAClQkKHnoZNsfaN6Qxuia_dmZqD7o8lRaCQ7-rPCpgixG3tGa9ljR0o_nKyi1WdVnEG-cy-8nsNe_WzWb2EnxBj2yIPD3oVHpDS7Y-VhNBg&_nc_oc=AQmMb3SwusOGEIGj3cHdha8c_tIjILqTAYnvY355c_74tfOKVX7U23OnGLNOprZwqtE&_nc_ht=scontent.fcgk4-2.fna&oh=8f9ecdc73bc557563362c9aea4cfb9d4&oe=5E9F0B97",
+        "width": 3,
+        "height": 4
+      }
+    ],
+    "type": "type2"
+  },
+  {
+    "id": "27",
+    "createdAt": 1585121064305,
+    "room_title": "Kost Area Brimob Arbes Passo",
+    "avatar": "https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar-300x300.jpg",
+    "price_title_time": 80,
+    "owner_phone": "6288888888888",
+    "description": "Kost Area Brimob Arbes Passo. Fasilitas: Kamar mandi dalam, dapur, Spring bed 2 badan. ",
+    "location": "Ambon",
+    "room_gender": 1,
+    "owner_name": "Tantekos",
+    "lat": 88,
+    "lng": 24,
+    "image_url": "https://scontent.fbdo6-2.fna.fbcdn.net/v/t1.0-9/69735067_2404401036438751_9083856827472412672_n.jpg?_nc_cat=107&_nc_sid=b9115d&_nc_eui2=AeE0AfCF6hK09A8qtvMXFDQbNLpcjh3atrSFQ9sI6bzSBOGidf95KENOn6_pF693YFcl5b4YLixdkhBAn7PHMRzsIljC-AcLI-TUq4KXrTzg5A&_nc_oc=AQm4WgYJl9SQhTZesCLXKgymr2fWQ55UYwEaM8iSrQSFvRx5U6GSgdyVeKHJJtOij_U&_nc_ht=scontent.fbdo6-2.fna&oh=3effba270eeb550d6add3cd855af9e4c&oe=5EA09AF5",
+    "price_month": "Rp 750,000",
+    "photo_arr": [],
+    "facilities_arr": [
+      {
+        "lemari": true,
+        "kasur": true,
+        "meja": true,
+        "wifi": false,
+        "kipas": false,
+        "ac": false,
+        "parkirMotor": true,
+        "parkirMobil": false
+      }
+    ],
+    "latLng": {
+      "lat": -3.693139,
+      "lng": 128.183085
+    },
+    "slug": "kost-area-brimob-arbes-passo",
+    "views": 1,
+    "type": "type1",
+    "photos": [
+      {
+        "src": "https://scontent.fbdo6-2.fna.fbcdn.net/v/t1.0-9/69735067_2404401036438751_9083856827472412672_n.jpg?_nc_cat=107&_nc_sid=b9115d&_nc_eui2=AeE0AfCF6hK09A8qtvMXFDQbNLpcjh3atrSFQ9sI6bzSBOGidf95KENOn6_pF693YFcl5b4YLixdkhBAn7PHMRzsIljC-AcLI-TUq4KXrTzg5A&_nc_oc=AQm4WgYJl9SQhTZesCLXKgymr2fWQ55UYwEaM8iSrQSFvRx5U6GSgdyVeKHJJtOij_U&_nc_ht=scontent.fbdo6-2.fna&oh=3effba270eeb550d6add3cd855af9e4c&oe=5EA09AF5",
+        "width": "3",
+        "height": "4"
+      },
+      {
+        "src": "https://scontent.fbdo6-2.fna.fbcdn.net/v/t1.0-9/69447995_2404401063105415_9202723539197624320_n.jpg?_nc_cat=110&_nc_sid=b9115d&_nc_eui2=AeE9cVtzpMePIea3aw0YRRoHvtkCAoRzbMUs6AwjuuR3F7gGs09GPbQnXq0MhsTif_bE9GxcW6QG0tSGRz-6hJeIJGVY5JAtSb5g4KqYSb2Hvg&_nc_oc=AQmgAuxvWn6I69pG2rm-Be1pSQgiTADPURDh8MKoS6t6ufnLldQi3eYWr76ZQYDw16E&_nc_ht=scontent.fbdo6-2.fna&oh=9703b46268ce582b72db69aa31dab3f7&oe=5E9FEFAB",
+        "width": "3",
+        "height": "4"
+      },
+      {
+        "src": "https://scontent.fbdo6-2.fna.fbcdn.net/v/t1.0-9/69415571_2404401086438746_1478938693791121408_n.jpg?_nc_cat=107&_nc_sid=b9115d&_nc_eui2=AeEjln6aS2RJ5DEg0BPIdb_Vk3kQKibfi0drL7WE3EUHyloWZJSnYHYHbxD8eYLfUVIy8GTHzH_XEmzL8D9aDCtsvCJ4V_Lf75A-UTgTGsv2tw&_nc_oc=AQkPyTr2o5aYXNBaFA-Tsxx9XeM2WAKJFlyCs53sB_87gGvGZGIbxPZE-sFl6K_c92U&_nc_ht=scontent.fbdo6-2.fna&oh=f69efe3b062fe1d94cf87d8da1a6080a&oe=5E9ED70C",
+        "width": "3",
+        "height": "4"
+      }
+    ]
   }
 ]

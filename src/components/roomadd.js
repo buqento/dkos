@@ -63,6 +63,26 @@ const Formview = (props) => {
                         required
                         fullWidth
                     />
+
+                    <Select
+                        value={props.photo_one_ratio}
+                        onChange={props.handleChange}
+                        name="photo_one_ratio"
+                        variant="outlined"
+                        margin="dense"
+                        required
+                        fullWidth
+                    >
+                        {
+                            [{ id: "34", label: "3 x 4" }, { id: "43", label: "4 x 3" }, { id: "11", label: "1 x 1" }]
+                                .map(option => (
+                                    <MenuItem key={option.id} value={option.id}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))
+                        }
+                    </Select>
+
                     <TextField
                         variant="outlined"
                         name="photo_two"
@@ -72,6 +92,26 @@ const Formview = (props) => {
                         required
                         fullWidth
                     />
+
+                    <Select
+                        value={props.photo_two_ratio}
+                        onChange={props.handleChange}
+                        name="photo_two_ratio"
+                        variant="outlined"
+                        margin="dense"
+                        required
+                        fullWidth
+                    >
+                        {
+                            [{ id: "34", label: "3 x 4" }, { id: "43", label: "4 x 3" }, { id: "11", label: "1 x 1" }]
+                                .map(option => (
+                                    <MenuItem key={option.id} value={option.id}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))
+                        }
+                    </Select>
+
                     <TextField
                         variant="outlined"
                         name="photo_three"
@@ -81,6 +121,24 @@ const Formview = (props) => {
                         required
                         fullWidth
                     />
+                    <Select
+                        value={props.photo_three_ratio}
+                        onChange={props.handleChange}
+                        name="photo_three_ratio"
+                        variant="outlined"
+                        margin="dense"
+                        required
+                        fullWidth
+                    >
+                        {
+                            [{ id: "34", label: "3 x 4" }, { id: "43", label: "4 x 3" }, { id: "11", label: "1 x 1" }]
+                                .map(option => (
+                                    <MenuItem key={option.id} value={option.id}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))
+                        }
+                    </Select>
 
                     <CurrencyFormat
                         customInput={TextField}
@@ -93,19 +151,6 @@ const Formview = (props) => {
                         fullWidth
                         thousandSeparator={true}
                         prefix={'Rp '} />
-
-                    {/* <CurrencyFormat
-                        customInput={TextField}
-                        variant="outlined"
-                        name="owner_phone"
-                        placeholder="+62 852 xxxx xxxx"
-                        format="+62 ### #### ####"
-                        mask="_"
-                        margin="dense"
-                        onChange={props.handleChange}
-                        required
-                        fullWidth
-                        thousandSeparator={true} /> */}
 
                     <CurrencyFormat
                         customInput={TextField}
@@ -131,9 +176,31 @@ const Formview = (props) => {
                         fullWidth
                         multiline
                     />
-                    <br />
-                    <br />
+                </Grid>
 
+                <Grid item md={6}>
+
+                    <Select
+                        value={props.type}
+                        onChange={props.handleChange}
+                        name="type"
+                        variant="outlined"
+                        margin="dense"
+                        required
+                        fullWidth
+                    >
+                        {
+                            [{ id: 1, val: "type1", label: "Kos" }, { id: 2, val: "type2", label: "Kontrakan" }]
+                                .map(option => (
+                                    <MenuItem key={option.id} value={option.val}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))
+                        }
+                    </Select>
+
+                    <br />
+                    <br />
                     <Select
                         value={props.room_gender}
                         onChange={props.handleChange}
@@ -179,10 +246,9 @@ const Formview = (props) => {
                             </MenuItem>
                         ))}
                     </Select>
-                </Grid>
-
-                <Grid item md={6}>
-
+                    
+                    <br />
+                    <br />
                     <FormControlLabel
                         control={
                             <Checkbox
@@ -282,7 +348,6 @@ const Formview = (props) => {
 
                     <Roomaddpeta />
 
-
                 </Grid>
             </Grid>
             <Button variant="outlined" color="primary" type="submit">Publish</Button>
@@ -305,7 +370,10 @@ class Roomadd extends React.Component {
             facilities_arr: "",
             photo_one: "",
             photo_two: "",
-            photo_three: "",
+            photo_three: "",            
+            photo_one_ratio: "34",
+            photo_two_ratio: "34",
+            photo_three_ratio: "34",
             price_month: "",
             owner_phone: "",
             owner_name: "",
@@ -315,6 +383,7 @@ class Roomadd extends React.Component {
             room_gender: 1,
             createdAt: "",
             slug: "",
+            type: "type1",
             lemari: true,
             kasur: true,
             meja: false,
@@ -342,26 +411,18 @@ class Roomadd extends React.Component {
 
     handlePost(event) {
         this.setState({ loading: true })
-        const {
-            room_title,
-            image_url,
-            photo_one,
-            photo_two,
-            photo_three,
-            price_month,
-            owner_phone,
-            description,
-            room_gender,
-            location,
-            lemari,
-            kasur,
-            meja,
-            wifi,
-            kipas,
-            ac,
-            parkirMotor,
-            parkirMobil
+        const { room_title, image_url, photo_one, photo_two, photo_three, 
+            photo_one_ratio, photo_two_ratio, photo_three_ratio, price_month,
+            owner_phone, description, room_gender, location, lemari, kasur, meja, wifi,
+            kipas, ac, parkirMotor, parkirMobil, type
         } = this.state
+
+        let p1w = photo_one_ratio.charAt(0);
+        let p1h = photo_one_ratio.charAt(1);
+        let p2w = photo_two_ratio.charAt(0);
+        let p2h = photo_two_ratio.charAt(1);
+        let p3w = photo_three_ratio.charAt(0);
+        let p3h = photo_three_ratio.charAt(1);
 
         Axios.post(`https://5de747e7b1ad690014a4e0d2.mockapi.io/rooms`,
             {
@@ -369,9 +430,9 @@ class Roomadd extends React.Component {
                 room_title: room_title,
                 image_url: image_url,
                 photos: [
-                    { src: photo_one, width: 3, height: 4 },
-                    { src: photo_two, width: 3, height: 4 },
-                    { src: photo_three, width: 3, height: 4 }
+                    { src: photo_one, width: p1w, height: p1h },
+                    { src: photo_two, width: p2w, height: p2h },
+                    { src: photo_three, width: p3w, height: p3h }
                 ],
                 facilities_arr: [{
                     lemari: lemari,
@@ -392,22 +453,23 @@ class Roomadd extends React.Component {
                 slug: Slugify(room_title.toLowerCase()),
                 latLng: { lat: this.props.lat, lng: this.props.lng },
                 room_gender: room_gender,
-                createdAt: Date.now()
+                createdAt: Date.now(),
+                type: type
             },
             { headers: { 'Content-Type': 'application/json' } },
             { withCredentials: true }
         ).then((response) => {
             this.setState({ loading: false })
-
-            console.log(response)
+            console.log(response);
+            alert('Yoshhhhhhhhhhhhhh!');
         }).catch(error => {
-            console.warn(error)
+            alert(error)
+            console.log(error);
         })
         event.preventDefault()
     }
 
     async componentDidMount() {
-        // Get locations
         await Axios.get(`https://5de747e7b1ad690014a4e0d2.mockapi.io/location`)
             .then(response => {
                 this.setState({ locations: response.data })
@@ -420,6 +482,10 @@ class Roomadd extends React.Component {
     render() {
         return (<div>
             <Formview
+                photo_one_ratio={this.state.photo_one_ratio}
+                photo_two_ratio={this.state.photo_two_ratio}
+                photo_three_ratio={this.state.photo_three_ratio}
+                type={this.state.type}
                 room_gender={this.state.room_gender}
                 locations={this.state.locations}
                 location={this.state.location}
